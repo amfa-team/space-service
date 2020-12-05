@@ -1,4 +1,4 @@
-import type { HelloPayload } from "@amfa-team/hello-service-types";
+import type { HelloPayload } from "@amfa-team/space-service-types";
 import { createContext, useContext } from "react";
 import { atom, selectorFamily, useRecoilValue } from "recoil";
 import type { ApiSettings } from "./api";

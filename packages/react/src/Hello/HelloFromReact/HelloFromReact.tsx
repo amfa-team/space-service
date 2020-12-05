@@ -1,4 +1,4 @@
-import { helloWorld } from "@amfa-team/hello-service-shared";
+import { helloWorld } from "@amfa-team/space-service-shared";
 import React from "react";
 import styles from "../HelloFromShared/helloFromShared.module.css";
 // @ts-ignore

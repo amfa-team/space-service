@@ -1,4 +1,4 @@
-import type { GetRoutes, PostRoutes } from "@amfa-team/hello-service-types";
+import type { GetRoutes, PostRoutes } from "@amfa-team/space-service-types";
 import type { APIGatewayEventRequestContext } from "aws-lambda";
 
 export interface PublicRequest<T> {

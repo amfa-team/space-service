@@ -45,7 +45,7 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_SDK }}
           SLACK_CHANNEL: deploys
-          SLACK_TITLE: hello-service/example deployed
+          SLACK_TITLE: space-service/example deployed
       # deploy-api:
       - name: serverless deploy
         working-directory: ./packages/api

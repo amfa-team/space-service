@@ -9,12 +9,12 @@
       "workspaces": {
         "extensions": [".mjs", ".js", ".ts", ".tsx", ".json", ".css"],
         "sources": {
-          "@amfa-team/hello-service-shared": ["./packages/shared/src"],
-          "@amfa-team/hello-service-types": ["./packages/types/src"],
-          "@amfa-team/hello-service/dist/index.css": [
+          "@amfa-team/space-service-shared": ["./packages/shared/src"],
+          "@amfa-team/space-service-types": ["./packages/types/src"],
+          "@amfa-team/space-service/dist/index.css": [
             "./packages/react/src/index.css"
           ],
-          "@amfa-team/hello-service": ["./packages/react/src"]
+          "@amfa-team/space-service": ["./packages/react/src"]
         }
       }
     },

@@ -4,7 +4,7 @@ import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import { RecoilRoot } from "recoil";
 import App from "./App";
-import "@amfa-team/hello-service/dist/index.css";
+import "@amfa-team/space-service/dist/index.css";
 import "./global.css";
 
 init({

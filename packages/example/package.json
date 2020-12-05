@@ -1,6 +1,6 @@
 {
-  "name": "@amfa-team/hello-service-example",
-  "repository": "https://github.com/amfa-team/hello-service.git",
+  "name": "@amfa-team/space-service-example",
+  "repository": "https://github.com/amfa-team/space-service.git",
   "version": "0.1.0",
   "private": true,
   "description": "Test page example",
@@ -9,7 +9,7 @@
   "module": "dist/index.es.js",
   "types": "lib/index.d.ts",
   "dependencies": {
-    "@amfa-team/hello-service": "^0.1.0",
+    "@amfa-team/space-service": "^0.1.0",
     "@sentry/react": "^5.27.3",
     "@sentry/tracing": "^5.27.3",
     "react": "^16.14.0",

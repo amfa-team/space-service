@@ -11,8 +11,8 @@
     "declarationMap": true,
     "sourceMap": true,
     "paths": {
-      "@amfa-team/hello-service-shared": ["./packages/shared/src"],
-      "@amfa-team/hello-service-types": ["./packages/types/src"]
+      "@amfa-team/space-service-shared": ["./packages/shared/src"],
+      "@amfa-team/space-service-types": ["./packages/types/src"]
     },
     "allowJs": true,
     "checkJs": true,

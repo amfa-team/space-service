@@ -1,6 +1,6 @@
 {
-  "name": "@amfa-team/hello-service",
-  "repository": "https://github.com/amfa-team/hello-service.git",
+  "name": "@amfa-team/space-service",
+  "repository": "https://github.com/amfa-team/space-service.git",
   "version": "0.1.0",
   "description": "React component library",
   "license": "SEE LICENSE IN LICENSE.md",
@@ -61,7 +61,7 @@
     "typescript-plugin-css-modules": "^2.8.0"
   },
   "peerDependencies": {
-    "@amfa-team/hello-service-shared": "^0.1.0",
+    "@amfa-team/space-service-shared": "^0.1.0",
     "@sentry/react": "^5.27.3",
     "@types/react": "^16.9.56",
     "@types/react-dom": "^16.9.9",

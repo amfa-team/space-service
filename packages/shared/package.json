@@ -1,7 +1,7 @@
 {
-  "name": "@amfa-team/hello-service-shared",
+  "name": "@amfa-team/space-service-shared",
   "private": true,
-  "repository": "https://github.com/amfa-team/hello-service.git",
+  "repository": "https://github.com/amfa-team/space-service.git",
   "version": "0.1.0",
   "description": "Shared code between environment",
   "license": "SEE LICENSE IN LICENSE.md",
