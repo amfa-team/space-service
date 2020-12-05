@@ -1,3 +1,5 @@
+import type { ISpace } from "./model";
+
 export interface SuccessResponse<T> {
   success: true;
   payload: T;
@@ -24,18 +26,14 @@ export type PostRoute<I, O> = {
   out: O;
 };
 
-export interface HelloData {
-  name: string | null;
-}
-
-export interface HelloPayload {
-  message: string;
+export interface SpacesPayload {
+  spaces: ISpace[];
 }
 
 export type GetRoutes = {
-  hello: GetRoute<HelloPayload>;
+  list: GetRoute<SpacesPayload>;
 };
 
 export type PostRoutes = {
-  hello: PostRoute<HelloData, HelloPayload>;
+  // no-op
 };

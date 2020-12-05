@@ -6,6 +6,7 @@ import type {
   Context,
 } from "aws-lambda";
 import type { JsonDecoder } from "ts.data.json";
+import { close, connect } from "../../mongo/client";
 import { InvalidRequestError } from "./exceptions";
 import { logger } from "./logger";
 import type {
@@ -32,15 +33,15 @@ export function setup() {
   });
 }
 
-export async function init(/* context: Context | null */) {
+export async function init(context: Context | null) {
   logger.info("io.init: will");
-  // await connect(context);
+  await connect(context);
   logger.info("io.init: did");
 }
 
-export async function teardown(/* context: Context | null */) {
+export async function teardown(context: Context | null) {
   logger.info("io.teardown: will");
-  // close(context);
+  close(context);
   await flush(2000);
   logger.info("io.teardown: did");
 }
@@ -135,7 +136,7 @@ export async function handlePublicGET<P extends keyof GetRoutes>(
   handler: GetHandler<P>,
 ): Promise<APIGatewayProxyResult> {
   try {
-    await init(/* context */);
+    await init(context);
     const payload = await handler(
       event.queryStringParameters,
       event.headers,
@@ -157,7 +158,7 @@ export async function handlePublicPOST<P extends keyof PostRoutes>(
   try {
     logger.info("io.handlePublicPOST: will", { event });
 
-    await init(/* context */);
+    await init(context);
 
     const { data } = await parseHttpPublicRequest(event, decoder, jsonParse);
     const result = await handler(data, event.headers, event.requestContext);

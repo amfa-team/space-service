@@ -42,6 +42,7 @@
     "@sentry/serverless": "^5.27.3",
     "@types/aws-lambda": "^8.10.64",
     "aws-lambda": "^1.0.6",
+    "mongoose": "^5.11.4",
     "source-map-support": "^0.5.19",
     "ts.data.json": "^1.5.0"
   }

@@ -83,7 +83,7 @@
     "build:rollup": "rollup -c rollup.config.js",
     "build:css": "cpx 'src/**/*.css' lib",
     "clean": "tsc -b --clean && rm -rf dist",
-    "start": "yarn build:tsc && yarn build:css && concurrently \"yarn start:tsc\" \"yarn start:rollup\" \"yarn start:css\"",
+    "start": "yarn build:css && concurrently \"yarn start:tsc\" \"yarn start:rollup\" \"yarn start:css\"",
     "start:rollup": "yarn build:rollup -w",
     "start:tsc": "yarn build:tsc -w",
     "start:css": "yarn build:css --watch",

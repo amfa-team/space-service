@@ -21,6 +21,7 @@ provider:
   environment:
     SENTRY_ENVIRONMENT: "${self:provider.stage}"
     SENTRY_DNS: "${env:SENTRY_DNS}"
+    MONGO_DB_URL: "${env:MONGO_DB_URL}"
     DOMAIN: ${self:custom.sbs.domains.${opt:stage, self:provider.stage}}
   apiGateway:
     shouldStartNameWithService: true
@@ -31,19 +32,12 @@ package:
   individually: true
 
 functions:
-  hello:
-    handler: src/handler.hello
+  list:
+    handler: src/handler.list
     events:
       - http:
-          path: hello
+          path: list
           method: get
-          cors: ${file(./serverless/cors.yml):main}
-  helloYou:
-    handler: src/handler.helloYou
-    events:
-      - http:
-          path: hello
-          method: post
           cors: ${file(./serverless/cors.yml):main}
 
 custom:

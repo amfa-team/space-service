@@ -4,30 +4,14 @@ import type {
   APIGatewayProxyResult,
   Context,
 } from "aws-lambda";
-import {
-  handleHello,
-  handleHelloYou,
-  helloYouDecoder,
-} from "./hello/helloController";
-import { handlePublicGET, handlePublicPOST, setup } from "./services/io/io";
+import { handleList } from "./controllers/spaceController";
+import { handlePublicGET, setup } from "./services/io/io";
 
 setup();
 
-export const hello = AWSLambda.wrapHandler(async function hello(
+export const list = AWSLambda.wrapHandler(async function hello(
   event: APIGatewayProxyEvent,
   context: Context,
 ): Promise<APIGatewayProxyResult> {
-  return handlePublicGET<"hello">(event, context, handleHello);
-});
-
-export const helloYou = AWSLambda.wrapHandler(async function helloYou(
-  event: APIGatewayProxyEvent,
-  context: Context,
-): Promise<APIGatewayProxyResult> {
-  return handlePublicPOST<"hello">(
-    event,
-    context,
-    handleHelloYou,
-    helloYouDecoder,
-  );
+  return handlePublicGET<"list">(event, context, handleList);
 });

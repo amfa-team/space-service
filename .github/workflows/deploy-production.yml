@@ -55,3 +55,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           SENTRY_DNS: ${{ secrets.SENTRY_API_DNS }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          MONGO_DB_URL: ${{ secrets.MONGO_DB_URL_PRODUCTION }}

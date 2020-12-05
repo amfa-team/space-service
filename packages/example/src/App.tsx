@@ -1,14 +1,22 @@
-import { Hello } from "@amfa-team/space-service";
+import { SpaceList, SpaceServiceSettings } from "@amfa-team/space-service";
 import type { ReactElement } from "react";
 import React from "react";
 
 const endpoint = process.env.API_ENDPOINT ?? "";
 
+const settings = { endpoint };
+
 function App(): ReactElement {
   return (
-    <div>
-      <Hello endpoint={endpoint} />
-    </div>
+    <SpaceServiceSettings settings={settings}>
+      <SpaceList>
+        {(space) => (
+          <div>
+            {space.name}({space.id})
+          </div>
+        )}
+      </SpaceList>
+    </SpaceServiceSettings>
   );
 }
 
