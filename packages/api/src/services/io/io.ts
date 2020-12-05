@@ -1,6 +1,10 @@
 import type { GetRoutes, PostRoutes } from "@amfa-team/space-service-types";
 import { flush, init as initSentry } from "@sentry/serverless";
-import type { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
+import type {
+  APIGatewayProxyEvent,
+  APIGatewayProxyResult,
+  Context,
+} from "aws-lambda";
 import type { JsonDecoder } from "ts.data.json";
 import { InvalidRequestError } from "./exceptions";
 import { logger } from "./logger";
@@ -28,8 +32,15 @@ export function setup() {
   });
 }
 
-export async function teardown() {
+export async function init(/* context: Context | null */) {
+  logger.info("io.init: will");
+  // await connect(context);
+  logger.info("io.init: did");
+}
+
+export async function teardown(/* context: Context | null */) {
   logger.info("io.teardown: will");
+  // close(context);
   await flush(2000);
   logger.info("io.teardown: did");
 }
@@ -55,9 +66,19 @@ function decode<T>(data: unknown, decoder: JsonDecoder.Decoder<T>): T {
 export function parseHttpPublicRequest<T>(
   event: APIGatewayProxyEvent,
   decoder: JsonDecoder.Decoder<T>,
+  jsonParse: boolean,
 ): PublicRequest<T> {
-  const body = parse(event.body);
-  return { data: decode(body, decoder) };
+  const rawBody = event.body;
+  logger.info("io.parseHttpPublicRequest: will", { rawBody, jsonParse });
+  const body = jsonParse ? parse(rawBody) : rawBody;
+  const data = decode(body, decoder);
+  logger.info("io.parseHttpPublicRequest: did", {
+    rawBody,
+    data,
+    body,
+    jsonParse,
+  });
+  return { data };
 }
 
 export async function handleHttpErrorResponse(
@@ -79,7 +100,12 @@ export async function handleHttpErrorResponse(
 
   return {
     statusCode: 500,
-    headers: { ...getCorsHeaders() },
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,PATCH",
+      "Access-Control-Allow-Headers":
+        "Content-Type,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-User-Id",
+    },
     body: JSON.stringify({
       success: false,
       error: "Unexpected Server error",
@@ -87,8 +113,8 @@ export async function handleHttpErrorResponse(
   };
 }
 
-export function handleSuccessResponse(
-  data: HandlerResult<unknown>,
+export function handleSuccessResponse<T>(
+  data: HandlerResult<T>,
 ): APIGatewayProxyResult {
   return {
     statusCode: 200,
@@ -105,15 +131,17 @@ export function handleSuccessResponse(
 
 export async function handlePublicGET<P extends keyof GetRoutes>(
   event: APIGatewayProxyEvent,
+  context: Context,
   handler: GetHandler<P>,
 ): Promise<APIGatewayProxyResult> {
   try {
-    const result = await handler(
+    await init(/* context */);
+    const payload = await handler(
       event.queryStringParameters,
       event.headers,
       event.requestContext,
     );
-    return handleSuccessResponse(result);
+    return handleSuccessResponse(payload);
   } catch (e) {
     return handleHttpErrorResponse(e, event);
   }
@@ -121,14 +149,24 @@ export async function handlePublicGET<P extends keyof GetRoutes>(
 
 export async function handlePublicPOST<P extends keyof PostRoutes>(
   event: APIGatewayProxyEvent,
+  context: Context,
   handler: PostHandler<P>,
   decoder: JsonDecoder.Decoder<PostRoutes[P]["in"]>,
+  jsonParse: boolean = true,
 ): Promise<APIGatewayProxyResult> {
   try {
-    const { data } = await parseHttpPublicRequest(event, decoder);
+    logger.info("io.handlePublicPOST: will", { event });
+
+    await init(/* context */);
+
+    const { data } = await parseHttpPublicRequest(event, decoder, jsonParse);
     const result = await handler(data, event.headers, event.requestContext);
-    return handleSuccessResponse(result);
+    const response = await handleSuccessResponse(result);
+
+    logger.info("io.handlePublicPOST: did");
+    return response;
   } catch (e) {
+    logger.error(e, "io.handlePublicPOST: fail");
     return handleHttpErrorResponse(e, event);
   }
 }
