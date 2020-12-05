@@ -1,0 +1,147 @@
+service: hello-service-example
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-west-3
+  profile: picnic
+  stage: ${opt:stage}
+  environment:
+    SENTRY_ENVIRONMENT: "${self:provider.stage}"
+    SENTRY_DNS: "${env:SENTRY_DNS}"
+
+plugins:
+  - serverless-stage-manager
+  - serverless-finch
+
+custom:
+  sbs:
+    domains:
+      production: "hello.test.sidebyside.live"
+      staging: "hello.test.dev.sidebyside.live"
+      dev: "localhost"
+  client:
+    bucketName: "sbs-hello-service-${opt:stage}"
+    distributionFolder: build/
+    indexDocument: index.html
+    errorDocument: index.html
+    manageResources: false
+    objectHeaders:
+      "*.js":
+        - name: Cache-Control
+          value: no-cache
+        - name: "Content-Type"
+          value: "text/js"
+  stages:
+    - production
+    - staging
+
+resources:
+  Resources:
+    HostedZone:
+      Type: AWS::Route53::RecordSet
+      Properties:
+        AliasTarget:
+          DNSName:
+            Fn::GetAtt:
+              - ApiDistribution
+              - DomainName
+          HostedZoneId: Z2FDTNDATAQYW2
+        HostedZoneName: "sidebyside.live."
+        Name: ${self:custom.sbs.domains.${opt:stage, self:provider.stage}}
+        Type: A
+    ClientBucketResource:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.client.bucketName}
+    ClientBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket: ${self:custom.client.bucketName}
+        PolicyDocument:
+          Statement:
+            - Sid: OAIGetObject
+              Effect: Allow
+              Principal:
+                AWS:
+                  Fn::Join:
+                    - " "
+                    - - arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity
+                      - Ref: S3OriginAccessIdentity
+              Action:
+                - s3:GetObject
+              Resource:
+                Fn::Join:
+                  - ""
+                  - - "arn:aws:s3:::"
+                    - Ref: ClientBucketResource
+                    - "/*"
+    S3OriginAccessIdentity:
+      Type: "AWS::CloudFront::CloudFrontOriginAccessIdentity"
+      Properties:
+        CloudFrontOriginAccessIdentityConfig:
+          Comment: Serverless managed (hello-service)
+    ApiDistribution:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          Aliases:
+            - ${self:custom.sbs.domains.${opt:stage, self:provider.stage}}
+          ViewerCertificate:
+            AcmCertificateArn: arn:aws:acm:us-east-1:449140100597:certificate/85494f64-658b-49b5-bd58-3fd0565b175b
+            MinimumProtocolVersion: TLSv1.2_2018
+            SslSupportMethod: sni-only
+          Origins:
+            - Id: WebApp
+              DomainName:
+                Fn::GetAtt: [ClientBucketResource, DomainName]
+              S3OriginConfig:
+                OriginAccessIdentity:
+                  Fn::Join:
+                    - ""
+                    - - origin-access-identity/cloudfront/
+                      - Ref: S3OriginAccessIdentity
+          Enabled: true
+          HttpVersion: http2
+          Comment: cdn for api gateway
+          PriceClass: PriceClass_100
+          DefaultRootObject: index.html
+          CustomErrorResponses:
+            - ErrorCode: 403
+              ResponseCode: 200
+              ResponsePagePath: "/index.html"
+            - ErrorCode: 404
+              ResponseCode: 200
+              ResponsePagePath: "/index.html"
+          DefaultCacheBehavior:
+            # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html
+            # Managed-CachingDisabled
+            CachePolicyId: "4135ea2d-6df8-44a3-9df3-4b5a84be39ad"
+            AllowedMethods:
+              - GET
+              - HEAD
+              - OPTIONS
+            Compress: "true"
+            ## The origin id defined above
+            TargetOriginId: WebApp
+            ## Defining if and how the QueryString and Cookies are forwarded to the origin which in this case is S3
+            ForwardedValues:
+              QueryString: "false"
+              Cookies:
+                Forward: none
+            ## The protocol that users can use to access the files in the origin. To allow HTTP use `allow-all`
+            ViewerProtocolPolicy: redirect-to-https
+          Logging:
+            IncludeCookies: "false"
+            Bucket: ""
+            Prefix: ""
+  Outputs:
+    WebSite:
+      Value:
+        Fn::Join:
+          - ""
+          - - "https://"
+            - Fn::GetAtt:
+                - ApiDistribution
+                - DomainName
+      Description: "WebSite URL"

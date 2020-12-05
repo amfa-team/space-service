@@ -1,0 +1,6 @@
+{
+  "extends": ["sbs", "sbs/typescript"],
+  "settings": {
+    "polyfills": []
+  }
+}

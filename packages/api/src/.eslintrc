@@ -1,0 +1,7 @@
+{
+  "extends": ["sbs/base", "sbs/typescript"],
+  "rules": {
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unnecessary-condition": "off"
+  }
+}

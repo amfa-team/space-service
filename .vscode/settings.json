@@ -1,0 +1,40 @@
+{
+  "prettier.packageManager": "yarn",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.validate.enable": true,
+  "javascript.validate.enable": true,
+  "files.insertFinalNewline": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "files.associations": {
+    ".stylelintrc": "json"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "packages/*/lib": true,
+    "packages/*/dist": true,
+    "packages/*/build": true,
+    "**/.serverless": true,
+    "**/.webpack": true
+  },
+  "files.watcherExclude": {
+    "packages/*/lib": true,
+    "packages/*/dist": true,
+    "packages/*/build": true,
+    "**/.serverless": true,
+    "**/.webpack": true
+  },
+  "search.exclude": {
+    "packages/*/lib": true,
+    "packages/*/dist": true,
+    "packages/*/build": true,
+    "**/.serverless": true,
+    "**/.webpack": true
+  }
+}

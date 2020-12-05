@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "extends": "sbs/script",
+  "parserOptions": {
+    "project": ["./tsconfig.json", "./packages/*/tsconfig.json"]
+  },
+  "settings": {
+    "import/resolver": {
+      "workspaces": {
+        "extensions": [".mjs", ".js", ".ts", ".tsx", ".json", ".css"],
+        "sources": {
+          "@amfa-team/hello-service-shared": ["./packages/shared/src"],
+          "@amfa-team/hello-service-types": ["./packages/types/src"],
+          "@amfa-team/hello-service/dist/index.css": [
+            "./packages/react/src/index.css"
+          ],
+          "@amfa-team/hello-service": ["./packages/react/src"]
+        }
+      }
+    },
+    "targets": ["Chrome >= 70", "Edge >= 18", "Firefox >= 64", "Safari >= 12"]
+  }
+}

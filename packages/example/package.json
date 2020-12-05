@@ -1,0 +1,76 @@
+{
+  "name": "@amfa-team/hello-service-example",
+  "repository": "https://github.com/amfa-team/hello-service.git",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Test page example",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "lib/index.d.ts",
+  "dependencies": {
+    "@amfa-team/hello-service": "^0.1.0",
+    "@sentry/react": "^5.27.3",
+    "@sentry/tracing": "^5.27.3",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "recoil": "^0.1.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.5",
+    "@types/react": "^16.9.56",
+    "@types/react-dom": "^16.9.9",
+    "babel-loader": "^8.1.0",
+    "copy-webpack-plugin": "^6.3.0",
+    "css-loader": "^4.3.0",
+    "dotenv-webpack": "^3.0.0",
+    "html-webpack-plugin": "^4.5.0",
+    "postcss-loader": "^4.0.4",
+    "postcss-modules-values": "^3.0.0",
+    "process": "^0.11.10",
+    "serverless": "^2.11.0",
+    "serverless-finch": "^2.6.0",
+    "serverless-stage-manager": "^1.0.5",
+    "source-map-loader": "^1.1.2",
+    "style-loader": "^1.3.0",
+    "terser-webpack-plugin": "^4.2.3",
+    "ts-loader": "^8.0.10",
+    "tslib": "^2.0.3",
+    "typescript": "^4.0.3",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.3.0"
+  },
+  "peerDependencies": {
+    "@types/react": "^16.9.56",
+    "@types/react-dom": "^16.9.9",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+    "@types/react-dom": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "build": "webpack --config ./webpack/webpack.prod.js",
+    "start": "webpack-dev-server --config ./webpack/webpack.dev.js --open",
+    "clean": "tsc -b --clean && rm -rf dist",
+    "serverless": "serverless",
+    "aws:profile:set": "serverless config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY --profile picnic -o",
+    "deploy:staging": "yarn deploy:staging:stack && yarn deploy:staging:website && yarn deploy:staging:info",
+    "deploy:staging:stack": "serverless deploy --verbose --stage staging",
+    "deploy:staging:website": "serverless client deploy --verbose --stage staging --no-confirm",
+    "deploy:staging:info": "serverless info --verbose --stage staging",
+    "deploy:production": "yarn deploy:production:stack && yarn deploy:production:website && yarn deploy:production:info",
+    "deploy:production:stack": "serverless deploy --verbose --stage production",
+    "deploy:production:website": "serverless client deploy --verbose --stage production --no-confirm",
+    "deploy:production:info": "serverless info --verbose --stage production"
+  }
+}

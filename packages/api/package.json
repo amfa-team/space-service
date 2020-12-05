@@ -1,0 +1,48 @@
+{
+  "name": "@amfa-team/hello-service-api",
+  "repository": "https://github.com/amfa-team/hello-service.git",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Serverless API",
+  "main": "dist/handler.js",
+  "types": "src/handler.ts",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@sentry/webpack-plugin": "^1.13.0",
+    "babel-loader": "^8.1.0",
+    "serverless": "^2.11.0",
+    "serverless-domain-manager": "^5.1.0",
+    "serverless-dotenv-plugin": "^3.1.0",
+    "serverless-dynamodb-local": "^0.2.39",
+    "serverless-offline": "^6.8.0",
+    "serverless-plugin-monorepo": "^0.9.0",
+    "serverless-pseudo-parameters": "^2.5.0",
+    "serverless-stage-manager": "^1.0.5",
+    "serverless-webpack": "^5.3.5",
+    "ts-loader": "^8.0.10",
+    "typescript": "^4.0.5",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-node-externals": "^2.5.2"
+  },
+  "scripts": {
+    "start": "serverless offline --stage dev",
+    "build": "echo \"api: No build script\"",
+    "clean": "rm -rf .webpack lib",
+    "aws:profile:set": "serverless config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY --profile picnic -o",
+    "deploy:staging": "serverless deploy --stage staging",
+    "deploy:staging:info": "serverless info --stage staging",
+    "deploy:production": "serverless deploy --stage production",
+    "deploy:production:info": "serverless info --stage production"
+  },
+  "dependencies": {
+    "@amfa-team/hello-service-shared": "^0.1.0",
+    "@sentry/serverless": "^5.27.3",
+    "@types/aws-lambda": "^8.10.64",
+    "aws-lambda": "^1.0.6",
+    "source-map-support": "^0.5.19",
+    "ts.data.json": "^1.5.0"
+  }
+}

@@ -1,0 +1,36 @@
+.title {
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1em;
+  text-align: center;
+}
+
+.box {
+  position: relative;
+  background-color: #fff;
+  margin: 0 0 70px 0px;
+  padding: 40px 0 60px;
+  font-size: 18px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+  z-index: 1;
+}
+
+.text {
+  margin: 30px;
+  font-weight: 300;
+  line-height: 1.7em;
+}
+
+.btn {
+  color: #323232;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: #fcfcfc;
+  padding: 10px 20px;
+  display: inline-block;
+  border: 1px solid #dddddd;
+  position: relative;
+  line-height: 1em;
+}

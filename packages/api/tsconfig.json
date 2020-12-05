@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "tsBuildInfoFile": "../../.build-cache/api.tsbuildinfo"
+  },
+  "include": ["src"],
+  "references": [
+    { "path": "../shared", "prepend": false },
+    { "path": "../types", "prepend": false }
+  ]
+}

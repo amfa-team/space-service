@@ -1,0 +1,20 @@
+{
+  "name": "@amfa-team/hello-service-types",
+  "private": true,
+  "repository": "https://github.com/amfa-team/hello-service.git",
+  "version": "0.1.0",
+  "description": "",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "sideEffects": false,
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.0.5"
+  },
+  "peerDependencies": {},
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "tsc -b --clean"
+  }
+}

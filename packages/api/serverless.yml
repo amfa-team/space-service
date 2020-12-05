@@ -1,0 +1,78 @@
+service: hello-service-api
+
+frameworkVersion: ^2.11.0
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-stage-manager
+  - serverless-domain-manager
+  - serverless-pseudo-parameters
+  - serverless-webpack
+  - serverless-plugin-monorepo
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-west-3
+  memorySize: 512
+  stage: ${opt:stage}
+  profile: picnic
+  environment:
+    SENTRY_ENVIRONMENT: "${self:provider.stage}"
+    SENTRY_DNS: "${env:SENTRY_DNS}"
+    DOMAIN: ${self:custom.sbs.domains.${opt:stage, self:provider.stage}}
+  apiGateway:
+    shouldStartNameWithService: true
+  tracing:
+    apiGateway: true
+
+package:
+  individually: true
+
+functions:
+  hello:
+    handler: src/handler.hello
+    events:
+      - http:
+          path: hello
+          method: get
+          cors: ${file(./serverless/cors.yml):main}
+  helloYou:
+    handler: src/handler.helloYou
+    events:
+      - http:
+          path: hello
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
+
+custom:
+  sbs:
+    domains:
+      production: "hello.sidebyside.live"
+      staging: "hello.dev.sidebyside.live"
+      dev: "localhost"
+
+  serverless-offline:
+    useChildProcesses: true
+    httpPort: 4000
+
+  webpack:
+    webpackConfig: "webpack.config.js"
+    keepOutputDirectory: true
+    includeModules: true
+    packager: "yarn"
+    excludeFiles: src/**/*.test.js
+  stages:
+    - dev
+    - production
+    - staging
+  customDomain:
+    domainName: ${self:custom.sbs.domains.${opt:stage, self:provider.stage}}
+    stage: ${opt:stage}
+    basePath: api
+    certificateName: "*.sidebyside.live"
+    createRoute53Record: true
+    endpointType: "regional"
+    apiType: rest
+    autoDomain: true

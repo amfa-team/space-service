@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["es2020", "dom"],
+    "jsx": "react",
+    "tsBuildInfoFile": "../../.build-cache/example.tsbuildinfo",
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "esModuleInterop": true
+  },
+  "include": ["src"]
+}

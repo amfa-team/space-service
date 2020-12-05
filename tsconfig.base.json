@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "module": "ES2020",
+    "target": "es2020",
+    "lib": ["es2020"],
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "paths": {
+      "@amfa-team/hello-service-shared": ["./packages/shared/src"],
+      "@amfa-team/hello-service-types": ["./packages/types/src"]
+    },
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}
