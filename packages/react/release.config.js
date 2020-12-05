@@ -3,7 +3,7 @@ module.exports = {
     "master",
     { name: "develop", channel: "beta", prerelease: "beta" },
   ],
-  repositoryUrl: "https://github.com/amfa-team/hello-service.git",
+  repositoryUrl: "https://github.com/amfa-team/space-service.git",
   plugins: [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",

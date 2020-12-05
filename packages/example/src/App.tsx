@@ -1,4 +1,4 @@
-import { Hello } from "@amfa-team/hello-service";
+import { Hello } from "@amfa-team/space-service";
 import type { ReactElement } from "react";
 import React from "react";
 

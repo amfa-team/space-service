@@ -1,6 +1,6 @@
 {
-  "name": "hello-service",
-  "repository": "https://github.com/amfa-team/hello-service.git",
+  "name": "space-service",
+  "repository": "https://github.com/amfa-team/space-service.git",
   "version": "0.1.0",
   "description": "Side By Side Service template",
   "main": "index.js",
@@ -59,8 +59,11 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,css,md,json,html}": "prettier --write",
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --cache",
+      "prettier --write"
+    ],
     "*.{css}": "stylelint",
-    "*.{js,jsx,ts,tsx}": "eslint --cache"
+    "*.{css,md,json,html}": "prettier --write"
   }
 }

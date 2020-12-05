@@ -1,4 +1,4 @@
-service: hello-service-example
+service: space-service-example
 
 provider:
   name: aws
@@ -17,11 +17,11 @@ plugins:
 custom:
   sbs:
     domains:
-      production: "hello.test.sidebyside.live"
-      staging: "hello.test.dev.sidebyside.live"
+      production: "space.test.sidebyside.live"
+      staging: "space.test.dev.sidebyside.live"
       dev: "localhost"
   client:
-    bucketName: "sbs-hello-service-${opt:stage}"
+    bucketName: "sbs-space-service-${opt:stage}"
     distributionFolder: build/
     indexDocument: index.html
     errorDocument: index.html
@@ -80,7 +80,7 @@ resources:
       Type: "AWS::CloudFront::CloudFrontOriginAccessIdentity"
       Properties:
         CloudFrontOriginAccessIdentityConfig:
-          Comment: Serverless managed (hello-service)
+          Comment: Serverless managed (space-service)
     ApiDistribution:
       Type: AWS::CloudFront::Distribution
       Properties:

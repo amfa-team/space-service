@@ -1,4 +1,4 @@
-import type { GetRoutes, PostRoutes } from "@amfa-team/hello-service-types";
+import type { GetRoutes, PostRoutes } from "@amfa-team/space-service-types";
 import { flush, init as initSentry } from "@sentry/serverless";
 import type { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import type { JsonDecoder } from "ts.data.json";

@@ -1,5 +1,5 @@
-import { helloWorld } from "@amfa-team/hello-service-shared";
-import type { HelloData, HelloPayload } from "@amfa-team/hello-service-types";
+import { helloWorld } from "@amfa-team/space-service-shared";
+import type { HelloData, HelloPayload } from "@amfa-team/space-service-types";
 import { JsonDecoder } from "ts.data.json";
 import { InvalidRequestError } from "../services/io/exceptions";
 import type { HandlerResult } from "../services/io/types";

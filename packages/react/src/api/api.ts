@@ -2,7 +2,7 @@ import type {
   GetRoutes,
   PostRoutes,
   Response,
-} from "@amfa-team/hello-service-types";
+} from "@amfa-team/space-service-types";
 import { fetch as fetchPolyfill } from "whatwg-fetch";
 
 export type ApiSettings = {

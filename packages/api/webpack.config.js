@@ -46,19 +46,19 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
     alias: {
-      "@amfa-team/hello-service-shared": path.resolve(
+      "@amfa-team/space-service-shared": path.resolve(
         __dirname,
         "../shared/src",
       ),
-      "@amfa-team/hello-service-types": path.resolve(__dirname, "../types/src"),
+      "@amfa-team/space-service-types": path.resolve(__dirname, "../types/src"),
     },
   },
   plugins,
   externals: [
     nodeExternals({
       allowlist: [
-        "@amfa-team/hello-service-shared",
-        "@amfa-team/hello-service-types",
+        "@amfa-team/space-service-shared",
+        "@amfa-team/space-service-types",
       ],
       additionalModuleDirs: [
         path.resolve(__dirname, "..", "..", "node_modules"),

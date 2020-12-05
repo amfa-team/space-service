@@ -1,7 +1,7 @@
 {
-  "name": "@amfa-team/hello-service-types",
+  "name": "@amfa-team/space-service-types",
   "private": true,
-  "repository": "https://github.com/amfa-team/hello-service.git",
+  "repository": "https://github.com/amfa-team/space-service.git",
   "version": "0.1.0",
   "description": "",
   "license": "SEE LICENSE IN LICENSE.md",
