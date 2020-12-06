@@ -1,3 +1,16 @@
+# [1.1.0-beta.1](https://github.com/amfa-team/space-service/compare/v1.0.0...v1.1.0-beta.1) (2020-12-06)
+
+
+### Bug Fixes
+
+* remove API_SECRET ([f9f84ff](https://github.com/amfa-team/space-service/commit/f9f84ff67d28b90847e0f4de8522d95377dc8e48))
+
+
+### Features
+
+* add space list ([8fab483](https://github.com/amfa-team/space-service/commit/8fab4832c0d5e0fd260e60e158b27a1121f871eb))
+* add space list admin ([65a3bcb](https://github.com/amfa-team/space-service/commit/65a3bcbca7ef49155d6b9236dd4aeac53d505346))
+
 # 1.0.0 (2020-12-05)
 
 
