@@ -34,7 +34,7 @@ provider:
     - Effect: "Allow"
       Action:
         - "s3:*"
-      Resource: "arn:aws:s3:#{AWS::Region}:#{AWS::AccountId}:${self:custom.sbs.bucketName.${opt:stage, self:provider.stage}}/*"
+      Resource: "arn:aws:s3:::${self:custom.sbs.bucketName.${opt:stage, self:provider.stage}}/*"
 
 package:
   individually: true
