@@ -1,3 +1,10 @@
+# [1.1.0-beta.2](https://github.com/amfa-team/space-service/compare/v1.1.0-beta.1...v1.1.0-beta.2) (2020-12-06)
+
+
+### Bug Fixes
+
+* rollup config ([24f9019](https://github.com/amfa-team/space-service/commit/24f9019a521a42214aa1ac50540a498f5dd65128))
+
 # [1.1.0-beta.1](https://github.com/amfa-team/space-service/compare/v1.0.0...v1.1.0-beta.1) (2020-12-06)
 
 
