@@ -1,14 +1,19 @@
-import { Hello } from "@amfa-team/space-service";
 import type { ReactElement } from "react";
 import React from "react";
-
-const endpoint = process.env.API_ENDPOINT ?? "";
+import { Route, Switch } from "react-router-dom";
+import Admin from "./Admin";
+import Public from "./Public";
 
 function App(): ReactElement {
   return (
-    <div>
-      <Hello endpoint={endpoint} />
-    </div>
+    <Switch>
+      <Route path="/admin">
+        <Admin />
+      </Route>
+      <Route path={`/`}>
+        <Public />
+      </Route>
+    </Switch>
   );
 }
 
