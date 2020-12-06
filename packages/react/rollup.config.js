@@ -19,6 +19,34 @@ export default [
         format: "es",
         sourcemap: true,
       },
+    ],
+    plugins: [
+      resolve({
+        extensions,
+        browser: true,
+        preferBuiltins: false,
+        modulesOnly: true,
+        resolveOnly: [/^@amfa-team\/.*$/],
+      }),
+      sourcemaps(),
+      postcss({
+        extract: true,
+        minimize: !process.env.ROLLUP_WATCH,
+        sourceMap: true,
+        plugins: [postCssValues],
+      }),
+      babel({
+        babelHelpers: "runtime",
+        extensions,
+        plugins: [["@babel/plugin-transform-runtime", { useESModules: true }]],
+      }),
+      polyfill(["abortcontroller-polyfill"]),
+      ...extraPlugins,
+    ],
+  },
+  {
+    input: "lib/index.js",
+    output: [
       {
         file: pkg.main,
         format: "cjs",
@@ -43,7 +71,7 @@ export default [
       babel({
         babelHelpers: "runtime",
         extensions,
-        plugins: [["@babel/plugin-transform-runtime", { useESModules: true }]],
+        plugins: [["@babel/plugin-transform-runtime", { useESModules: false }]],
       }),
       polyfill(["abortcontroller-polyfill"]),
       ...extraPlugins,
