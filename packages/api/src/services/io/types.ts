@@ -1,9 +1,15 @@
-import type { GetRoutes, PostRoutes } from "@amfa-team/space-service-types";
+import type {
+  AdminData,
+  GetRoutes,
+  PostRoutes,
+} from "@amfa-team/space-service-types";
 import type { APIGatewayEventRequestContext } from "aws-lambda";
 
 export interface PublicRequest<T> {
   data: T;
 }
+
+export type AdminRequest<T extends AdminData> = PublicRequest<T>;
 
 export interface RequestContext {
   domainName?: string;

@@ -106,3 +106,5 @@ packages/*/lib
 # CSS Files
 src/**/*.css
 src/**/*.css.map
+
+packages/api/buckets

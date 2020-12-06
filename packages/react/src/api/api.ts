@@ -7,6 +7,7 @@ import { fetch as fetchPolyfill } from "whatwg-fetch";
 
 export type ApiSettings = {
   endpoint: string;
+  secret?: string;
 };
 
 export async function apiGet<P extends keyof GetRoutes>(

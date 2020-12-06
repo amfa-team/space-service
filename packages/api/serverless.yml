@@ -9,6 +9,7 @@ plugins:
   - serverless-pseudo-parameters
   - serverless-webpack
   - serverless-plugin-monorepo
+  - serverless-s3-local
   - serverless-offline
 
 provider:
@@ -23,10 +24,17 @@ provider:
     SENTRY_DNS: "${env:SENTRY_DNS}"
     MONGO_DB_URL: "${env:MONGO_DB_URL}"
     DOMAIN: ${self:custom.sbs.domains.${opt:stage, self:provider.stage}}
+    S3_IMAGE_BUCKET: ${self:custom.sbs.bucketName.${opt:stage, self:provider.stage}}
+    API_SECRET: "${env:API_SECRET}"
   apiGateway:
     shouldStartNameWithService: true
   tracing:
     apiGateway: true
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:*"
+      Resource: "arn:aws:s3:#{AWS::Region}:#{AWS::AccountId}:${self:custom.sbs.bucketName.${opt:stage, self:provider.stage}}/*"
 
 package:
   individually: true
@@ -39,9 +47,53 @@ functions:
           path: list
           method: get
           cors: ${file(./serverless/cors.yml):main}
+  adminSpaceList:
+    handler: src/handler.adminSpaceList
+    events:
+      - http:
+          path: admin/space
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
+  adminSpaceUpdate:
+    handler: src/handler.adminSpaceUpdate
+    events:
+      - http:
+          path: admin/space/update
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
+  adminImageUpload:
+    handler: src/handler.adminImageUpload
+    events:
+      - http:
+          path: admin/image/upload
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
 
+resources:
+  Resources:
+    ClientBucketResource:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.sbs.bucketName.${opt:stage, self:provider.stage}}
+        CorsConfiguration:
+          CorsRules:
+            - AllowedHeaders:
+                - "*"
+              AllowedMethods:
+                - GET
+                - PUT
+                - POST
+                - DELETE
+                - HEAD
+              AllowedOrigins:
+                - "*"
+              MaxAge: 3000
 custom:
   sbs:
+    bucketName:
+      production: space-service-images-production
+      staging: space-service-images-staging
+      dev: space-service-images-staging
     domains:
       production: "space.sidebyside.live"
       staging: "space.dev.sidebyside.live"
@@ -57,10 +109,12 @@ custom:
     includeModules: true
     packager: "yarn"
     excludeFiles: src/**/*.test.js
+
   stages:
     - dev
     - production
     - staging
+
   customDomain:
     domainName: ${self:custom.sbs.domains.${opt:stage, self:provider.stage}}
     stage: ${opt:stage}
@@ -70,3 +124,8 @@ custom:
     endpointType: "regional"
     apiType: rest
     autoDomain: true
+
+  s3:
+    host: localhost
+    cors: ./serverless/cors-s3.xml
+    allowMismatchedSignatures: true

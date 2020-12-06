@@ -30,10 +30,59 @@ export interface SpacesPayload {
   spaces: ISpace[];
 }
 
-export type GetRoutes = {
+export interface AdminData {
+  secret: string;
+}
+
+export interface PaginationData {
+  pageIndex: number;
+  pageSize: number;
+}
+
+export interface AdminListData extends AdminData {
+  pagination: PaginationData;
+}
+
+export interface PaginationContext extends PaginationData {
+  pageCount: number;
+  count: number;
+}
+
+export interface PaginationPayload<T> {
+  pagination: PaginationContext;
+  page: T[];
+}
+
+export interface ImageUploadReq extends AdminData {
+  name: string;
+}
+
+export interface SpaceUpdateReq extends AdminData {
+  space: ISpace;
+}
+
+export interface ImageUploadPayload {
+  uploadUrl: string;
+}
+
+export type PublicGetRoutes = {
   list: GetRoute<SpacesPayload>;
 };
 
-export type PostRoutes = {
+export type AdminGetRoutes = {
   // no-op
 };
+
+export type GetRoutes = PublicGetRoutes & AdminGetRoutes;
+
+export type PublicPostRoutes = {
+  // no-op
+};
+
+export type AdminPostRoutes = {
+  "admin/image/upload": PostRoute<ImageUploadReq, ImageUploadPayload>;
+  "admin/space/update": PostRoute<SpaceUpdateReq, ISpace>;
+  "admin/space": PostRoute<AdminListData, PaginationPayload<ISpace>>;
+};
+
+export type PostRoutes = PublicPostRoutes & AdminPostRoutes;

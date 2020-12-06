@@ -2,6 +2,7 @@ import { init } from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import App from "./App";
 import "@amfa-team/space-service/dist/index.css";
@@ -17,11 +18,13 @@ init({
 
 ReactDOM.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <Suspense fallback={<div>Loading...</div>}>
-        <App />
-      </Suspense>
-    </RecoilRoot>
+    <Router>
+      <RecoilRoot>
+        <Suspense fallback={<div>Loading...</div>}>
+          <App />
+        </Suspense>
+      </RecoilRoot>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root"),
 );

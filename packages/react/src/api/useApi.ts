@@ -1,8 +1,8 @@
 import type { ISpace } from "@amfa-team/space-service-types";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { atom, useRecoilState, useRecoilValue } from "recoil";
 import type { ApiSettings } from "./api";
-import { apiGet } from "./api";
+import { apiGet, apiPost } from "./api";
 
 const apiSettingsAtom = atom<ApiSettings | null>({
   key: "room-service/useApi/apiSettings",
@@ -56,5 +56,102 @@ export function useSpaceList() {
 
   return {
     spaces,
+  };
+}
+
+export function useUploadImage() {
+  const settings = useApiSettings();
+  const [isUploading, setIsUploading] = useState(false);
+  const [abortController, setAbortController] = useState(new AbortController());
+  const [imageUrl, setImageUrl] = useState<null | string>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    setIsUploading(false);
+    setAbortController(controller);
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
+
+  const upload = useCallback(
+    async (name: string, file: File) => {
+      if (settings) {
+        const { uploadUrl } = await apiPost(
+          settings,
+          "admin/image/upload",
+          { secret: settings.secret ?? "", name },
+          abortController.signal,
+        );
+
+        await fetch(uploadUrl, {
+          method: "PUT",
+          body: file,
+          credentials: "omit",
+        });
+
+        const img = uploadUrl.split("?")[0];
+        setImageUrl(img);
+        return img;
+      }
+
+      return "";
+    },
+    [settings, abortController],
+  );
+
+  return {
+    ready: settings !== null,
+    isUploading,
+    upload,
+    imageUrl,
+  };
+}
+
+export type SpaceUpdateData = {
+  slug: string;
+  name: string;
+  enabled: boolean;
+  image: File | string;
+};
+
+export function useSpaceUpdate() {
+  const settings = useApiSettings();
+  const { upload } = useUploadImage();
+
+  const validate = useCallback((data: SpaceUpdateData | null) => {
+    return Boolean(data?.name && data.slug && data.image);
+  }, []);
+
+  const update = useCallback(
+    async (data: SpaceUpdateData | null) => {
+      if (settings && data !== null && validate(data)) {
+        const imageUrl =
+          data.image instanceof File
+            ? await upload(data.name, data.image)
+            : data.image;
+
+        const space = {
+          _id: data.slug,
+          name: data.name,
+          enabled: data.enabled,
+          imageUrl,
+        };
+
+        return apiPost(settings, "admin/space/update", {
+          secret: settings.secret ?? "",
+          space,
+        });
+      }
+
+      return null;
+    },
+    [upload, settings, validate],
+  );
+
+  return {
+    update,
+    validate,
   };
 }
