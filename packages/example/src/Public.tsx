@@ -11,9 +11,13 @@ function Public(): ReactElement {
     <SpaceServiceSettings settings={settings}>
       <SpaceList>
         {(space) => (
-          <div>
+          <div
+            style={{ display: "inline-block", width: "300px", height: "300px" }}
+          >
             {space.name}({space._id})
-            <img src={space.imageUrl} width={300} alt="space" />
+            {space.imageUrl && (
+              <img src={space.imageUrl} width={300} alt="space" />
+            )}
           </div>
         )}
       </SpaceList>

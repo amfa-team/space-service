@@ -5,7 +5,7 @@ import type { ApiSettings } from "./api";
 import { apiGet, apiPost } from "./api";
 
 const apiSettingsAtom = atom<ApiSettings | null>({
-  key: "room-service/useApi/apiSettings",
+  key: "space-service/useApi/apiSettings",
   default: null,
 });
 
@@ -21,6 +21,42 @@ export function useSpaceService(settings: ApiSettings) {
 export function useApiSettings(): ApiSettings | null {
   const settings = useRecoilValue(apiSettingsAtom);
   return settings;
+}
+
+export function useSpace(slug: string) {
+  const [space, setSpace] = useState<ISpace | null>(null);
+  const [error, setError] = useState<Error | null>(null);
+  const settings = useApiSettings();
+
+  useEffect(() => {
+    const abortController = new AbortController();
+    setError(null);
+    if (settings) {
+      apiPost<"get">(settings, "get", { slug }, abortController.signal)
+        .then((result) => {
+          if (!abortController.signal.aborted) {
+            setSpace(result);
+          }
+        })
+        .catch((e) => {
+          if (!abortController.signal.aborted) {
+            setError(e);
+          }
+        });
+    }
+
+    return () => {
+      abortController.abort();
+    };
+  }, [settings, slug]);
+
+  if (error) {
+    throw error;
+  }
+
+  return {
+    space,
+  };
 }
 
 export function useSpaceList() {
@@ -113,7 +149,10 @@ export type SpaceUpdateData = {
   slug: string;
   name: string;
   enabled: boolean;
-  image: File | string;
+  home: boolean;
+  random: boolean;
+  order: number;
+  image: File | string | null;
 };
 
 export function useSpaceUpdate() {
@@ -121,7 +160,7 @@ export function useSpaceUpdate() {
   const { upload } = useUploadImage();
 
   const validate = useCallback((data: SpaceUpdateData | null) => {
-    return Boolean(data?.name && data.slug && data.image);
+    return Boolean(data?.name && data.slug);
   }, []);
 
   const update = useCallback(
@@ -129,13 +168,16 @@ export function useSpaceUpdate() {
       if (settings && data !== null && validate(data)) {
         const imageUrl =
           data.image instanceof File
-            ? await upload(data.name, data.image)
+            ? await upload(data.slug, data.image)
             : data.image;
 
         const space = {
           _id: data.slug,
           name: data.name,
           enabled: data.enabled,
+          home: data.home,
+          random: data.random,
+          order: data.order,
           imageUrl,
         };
 

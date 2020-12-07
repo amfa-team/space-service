@@ -31,6 +31,23 @@ const SpaceSchema: Schema = new Schema(
       required: true,
       default: null,
     },
+    random: {
+      type: Boolean,
+      required: true,
+      index: true,
+      default: false,
+    },
+    home: {
+      type: Boolean,
+      required: true,
+      index: true,
+      default: true,
+    },
+    order: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
   },
   {
     minimize: false,
@@ -38,6 +55,14 @@ const SpaceSchema: Schema = new Schema(
     toJSON: { getters: true, virtuals: true },
     toObject: { getters: true, virtuals: true },
   },
+);
+
+SpaceSchema.index(
+  { enabled: 1, home: 1, order: 1 }, // home page list
+);
+
+SpaceSchema.index(
+  { enabled: 1, home: 1, random: 1 }, // random resolution
 );
 
 const SpaceModel = mongoose.model<ISpaceDocument>("Space", SpaceSchema);

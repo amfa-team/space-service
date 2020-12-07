@@ -19,6 +19,18 @@ const getColumns = (onUpdateClick: (space: ISpace) => unknown) => [
     accessor: (space: ISpace) => (space.enabled ? "TRUE" : "FALSE"),
   },
   {
+    Header: "Random",
+    accessor: (space: ISpace) => (space.random ? "TRUE" : "FALSE"),
+  },
+  {
+    Header: "Home",
+    accessor: (space: ISpace) => (space.home ? "TRUE" : "FALSE"),
+  },
+  {
+    Header: "Order",
+    accessor: "order",
+  },
+  {
     Header: "Image Url",
     accessor: "imageUrl",
   },
