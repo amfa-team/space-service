@@ -1,3 +1,4 @@
+import { SpaceServiceSettings } from "@amfa-team/space-service";
 import { init } from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import React, { Suspense } from "react";
@@ -16,12 +17,18 @@ init({
   enabled: Boolean(process.env.SENTRY_ENVIRONMENT),
 });
 
+const endpoint = process.env.API_ENDPOINT ?? "";
+
+const settings = { endpoint };
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <RecoilRoot>
         <Suspense fallback={<div>Loading...</div>}>
-          <App />
+          <SpaceServiceSettings settings={settings}>
+            <App />
+          </SpaceServiceSettings>
         </Suspense>
       </RecoilRoot>
     </Router>
