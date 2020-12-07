@@ -7,6 +7,7 @@ import type {
   SpaceUpdateReq,
 } from "@amfa-team/space-service-types";
 import { Endpoint, S3 } from "aws-sdk";
+import type { PutObjectRequest } from "aws-sdk/clients/s3";
 import { JsonDecoder } from "ts.data.json";
 import { SpaceModel } from "../mongo/model/space";
 import type { HandlerResult } from "../services/io/types";
@@ -51,11 +52,12 @@ export async function handleAdminImageUpload(
 ): Promise<HandlerResult<ImageUploadPayload>> {
   const s3 = new S3(S3_CONFIG);
 
-  const s3Params = {
+  const s3Params: PutObjectRequest = {
     Bucket: getEnv("S3_IMAGE_BUCKET"),
     Key: `${req.name}.jpg`,
     ContentType: "image/jpeg",
     ACL: "public-read",
+    CacheControl: "public, must-revalidate",
   };
 
   return {
