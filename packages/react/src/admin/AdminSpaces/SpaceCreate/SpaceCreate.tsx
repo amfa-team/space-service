@@ -11,21 +11,30 @@ interface SpaceCreateProps {
 
 export function SpaceCreate(props: SpaceCreateProps) {
   const { space, onChanged } = props;
-  const [slug, setSlug] = useState<string>("");
-  const [name, setName] = useState<string>("");
-  const [imageUrl, setImageUrl] = useState<string>("");
-  const [enabled, setEnabled] = useState<boolean>(true);
   const [file, setFile] = useState<File | null>(null);
   const [filePreview, setFilePreview] = useState<string>("");
-  const [data, setData] = useState<SpaceUpdateData | null>(null);
+  const [data, setData] = useState<SpaceUpdateData>({
+    slug: space._id ?? "",
+    name: space.name ?? "",
+    enabled: space.enabled ?? false,
+    home: space.home ?? false,
+    random: space.random ?? false,
+    order: space.order ?? 0,
+    image: space.imageUrl ?? null,
+  });
   const { update, validate } = useSpaceUpdate();
 
   const reset = useCallback(() => {
-    setSlug(space._id ?? "");
-    setName(space.name ?? "");
-    setImageUrl(space.imageUrl ?? "");
-    setEnabled(space.enabled ?? true);
-    setFilePreview("");
+    setFile(null);
+    setData({
+      slug: space._id ?? "",
+      name: space.name ?? "",
+      enabled: space.enabled ?? false,
+      home: space.home ?? false,
+      random: space.random ?? false,
+      order: space.order ?? 0,
+      image: space.imageUrl ?? null,
+    });
   }, [space]);
 
   useEffect(() => {
@@ -42,32 +51,61 @@ export function SpaceCreate(props: SpaceCreateProps) {
       };
     }
 
+    setFilePreview("");
+
     return () => {
       // no-op
     };
   }, [file]);
 
   useEffect(() => {
-    setData({ slug, name, enabled, image: file ?? imageUrl });
-  }, [slug, name, enabled, file, imageUrl]);
+    setData((d) => ({ ...d, image: file }));
+  }, [file]);
 
   const onSlugChanged = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSlug(e.target.value);
+      const slug = e.target.value;
+      setData((d) => ({ ...d, slug }));
     },
     [],
   );
 
   const onNameChanged = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setName(e.target.value);
+      const name = e.target.value;
+      setData((d) => ({ ...d, name }));
     },
     [],
   );
 
   const onEnabledChanged = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setEnabled(e.target.checked ?? false);
+      const enabled = e.target.checked ?? false;
+      setData((d) => ({ ...d, enabled }));
+    },
+    [],
+  );
+
+  const onRandomChanged = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const random = e.target.checked ?? false;
+      setData((d) => ({ ...d, random }));
+    },
+    [],
+  );
+
+  const onHomeChanged = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const home = e.target.checked ?? false;
+      setData((d) => ({ ...d, home }));
+    },
+    [],
+  );
+
+  const onOrderChanged = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const order = Number(e.target.value);
+      setData((d) => ({ ...d, order }));
     },
     [],
   );
@@ -77,6 +115,13 @@ export function SpaceCreate(props: SpaceCreateProps) {
     if (!files.length) return;
     setFile(files[0] ?? null);
   }, []);
+
+  const removeImage = useCallback(() => {
+    setFile(null);
+    setData((d) => ({ ...d, image: null }));
+  }, []);
+
+  const imagePreview = data.image instanceof File ? filePreview : data.image;
 
   const submit = useCallback(
     (e: SyntheticEvent<HTMLFormElement>) => {
@@ -98,7 +143,7 @@ export function SpaceCreate(props: SpaceCreateProps) {
             Slug:
             <input
               type="text"
-              value={slug}
+              value={data.slug}
               size={50}
               onChange={onSlugChanged}
               required
@@ -111,7 +156,7 @@ export function SpaceCreate(props: SpaceCreateProps) {
             Name:
             <input
               type="text"
-              value={name}
+              value={data.name}
               size={50}
               onChange={onNameChanged}
               required
@@ -123,30 +168,62 @@ export function SpaceCreate(props: SpaceCreateProps) {
           <label>
             <input
               type="checkbox"
-              checked={enabled}
+              checked={data.enabled}
               onChange={onEnabledChanged}
             />
             Enabled
           </label>
         </div>
-        {imageUrl && (
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              checked={data.random}
+              onChange={onRandomChanged}
+            />
+            Random
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              checked={data.home}
+              onChange={onHomeChanged}
+            />
+            Home
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="number" value={data.order} onChange={onOrderChanged} />
+            Order
+          </label>
+        </div>
+        {space.imageUrl && (
           <div>
             <p>Previous: </p>
-            <img height={200} alt="previous" src={imageUrl} />
+            <img height={200} alt="previous" src={space.imageUrl} />
           </div>
         )}
-        {filePreview && (
+        {imagePreview && (
           <div>
             <p>Preview: </p>
-            <img height={200} alt="preview" src={filePreview} />
+            <img height={200} alt="preview" src={imagePreview} />
           </div>
         )}
         <div>
           <p>Select an image</p>
-          <input type="file" onChange={onFileChange} accept="image/*" />
+          <input type="file" onChange={onFileChange} accept="image/jpeg" />
+          <button type="button" onClick={removeImage}>
+            Remove image
+          </button>
         </div>
         <button type="submit" disabled={!validate(data)}>
           Submit
+        </button>
+        <button type="button" onClick={reset}>
+          Reset
         </button>
       </form>
     </div>

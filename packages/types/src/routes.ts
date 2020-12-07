@@ -73,10 +73,15 @@ export type AdminGetRoutes = {
   // no-op
 };
 
+export interface GetSpaceReq {
+  slug: string;
+}
+
 export type GetRoutes = PublicGetRoutes & AdminGetRoutes;
 
 export type PublicPostRoutes = {
   // no-op
+  get: PostRoute<GetSpaceReq, ISpace | null>;
 };
 
 export type AdminPostRoutes = {

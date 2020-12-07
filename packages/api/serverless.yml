@@ -47,6 +47,13 @@ functions:
           path: list
           method: get
           cors: ${file(./serverless/cors.yml):main}
+  getSpace:
+    handler: src/handler.getSpace
+    events:
+      - http:
+          path: get
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
   adminSpaceList:
     handler: src/handler.adminSpaceList
     events:

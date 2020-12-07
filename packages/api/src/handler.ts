@@ -12,10 +12,26 @@ import {
   handleAdminSpaceUpdate,
   handleAdminSpaces,
 } from "./controllers/adminController";
-import { handleList } from "./controllers/spaceController";
-import { handleAdminPOST, handlePublicGET, setup } from "./services/io/io";
+import {
+  handleGet,
+  handleGetDecoder,
+  handleList,
+} from "./controllers/spaceController";
+import {
+  handleAdminPOST,
+  handlePublicGET,
+  handlePublicPOST,
+  setup,
+} from "./services/io/io";
 
 setup();
+
+export const getSpace = AWSLambda.wrapHandler(async function list(
+  event: APIGatewayProxyEvent,
+  context: Context,
+): Promise<APIGatewayProxyResult> {
+  return handlePublicPOST<"get">(event, context, handleGet, handleGetDecoder);
+});
 
 export const list = AWSLambda.wrapHandler(async function list(
   event: APIGatewayProxyEvent,
