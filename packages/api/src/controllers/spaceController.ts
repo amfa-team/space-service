@@ -1,7 +1,7 @@
 import type {
+  GetSpaceReq,
   ISpace,
   SpacesPayload,
-  GetSpaceReq,
 } from "@amfa-team/space-service-types";
 import { JsonDecoder } from "ts.data.json";
 import { SpaceModel } from "../mongo/model/space";
