@@ -1,3 +1,10 @@
+# [1.1.0-beta.4](https://github.com/amfa-team/space-service/compare/v1.1.0-beta.3...v1.1.0-beta.4) (2020-12-07)
+
+
+### Features
+
+* cache image ([762bff8](https://github.com/amfa-team/space-service/commit/762bff8c27dcfb166eab3ed98dcf6e86d7c4ccf3))
+
 # [1.1.0-beta.3](https://github.com/amfa-team/space-service/compare/v1.1.0-beta.2...v1.1.0-beta.3) (2020-12-07)
 
 
