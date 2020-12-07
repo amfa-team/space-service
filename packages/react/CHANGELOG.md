@@ -1,3 +1,11 @@
+# [1.1.0-beta.3](https://github.com/amfa-team/space-service/compare/v1.1.0-beta.2...v1.1.0-beta.3) (2020-12-07)
+
+
+### Features
+
+* add space link in example ([86d5ffe](https://github.com/amfa-team/space-service/commit/86d5ffeae103bac184405ae581a64e89bf86eb4c))
+* support random room & home page only spaces ([5c42777](https://github.com/amfa-team/space-service/commit/5c427774d3a14419738a3b6410bdb31691d26c2e))
+
 # [1.1.0-beta.2](https://github.com/amfa-team/space-service/compare/v1.1.0-beta.1...v1.1.0-beta.2) (2020-12-06)
 
 
