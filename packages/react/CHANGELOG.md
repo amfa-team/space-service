@@ -1,3 +1,10 @@
+# [1.1.0-beta.5](https://github.com/amfa-team/space-service/compare/v1.1.0-beta.4...v1.1.0-beta.5) (2020-12-08)
+
+
+### Bug Fixes
+
+* example admin settings ([df0f578](https://github.com/amfa-team/space-service/commit/df0f5783176508e8c3303c8c1eda8b6d2950361b))
+
 # [1.1.0-beta.4](https://github.com/amfa-team/space-service/compare/v1.1.0-beta.3...v1.1.0-beta.4) (2020-12-07)
 
 
