@@ -125,6 +125,9 @@ export function useUploadImage() {
           method: "PUT",
           body: file,
           credentials: "omit",
+          headers: {
+            "Cache-Control": "public, must-revalidate",
+          },
         });
 
         const img = uploadUrl.split("?")[0];

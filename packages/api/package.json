@@ -44,6 +44,10 @@
     "@types/aws-lambda": "^8.10.64",
     "aws-lambda": "^1.0.6",
     "aws-sdk": "^2.804.0",
+    "gm": "^1.23.1",
+    "imagemin": "^7.0.1",
+    "imagemin-jpeg-recompress": "^7.0.0",
+    "imagemin-jpegtran": "^7.0.0",
     "mongoose": "^5.11.4",
     "source-map-support": "^0.5.19",
     "ts.data.json": "^1.5.0"

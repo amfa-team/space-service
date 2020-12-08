@@ -6,22 +6,12 @@ import type {
   PaginationPayload,
   SpaceUpdateReq,
 } from "@amfa-team/space-service-types";
-import { Endpoint, S3 } from "aws-sdk";
 import type { PutObjectRequest } from "aws-sdk/clients/s3";
 import { JsonDecoder } from "ts.data.json";
 import { SpaceModel } from "../mongo/model/space";
 import type { HandlerResult } from "../services/io/types";
+import { getS3Client } from "../services/s3/s3Client";
 import { getEnv } from "../utils/env";
-
-const S3_CONFIG = process.env.IS_OFFLINE
-  ? {
-      region: "eu-west-1",
-      s3ForcePathStyle: true,
-      accessKeyId: "S3RVER", // This specific key is required when working offline
-      secretAccessKey: "S3RVER",
-      endpoint: new Endpoint("http://localhost:4569"),
-    }
-  : {};
 
 export const adminImageUploadDecoder = JsonDecoder.object<ImageUploadReq>(
   {
@@ -50,14 +40,13 @@ export const adminListDecoder = JsonDecoder.object(
 export async function handleAdminImageUpload(
   req: ImageUploadReq,
 ): Promise<HandlerResult<ImageUploadPayload>> {
-  const s3 = new S3(S3_CONFIG);
+  const s3 = getS3Client();
 
   const s3Params: PutObjectRequest = {
     Bucket: getEnv("S3_IMAGE_BUCKET"),
     Key: `${req.name}.jpg`,
     ContentType: "image/jpeg",
     ACL: "public-read",
-    CacheControl: "public, must-revalidate",
   };
 
   return {
