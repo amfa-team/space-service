@@ -1,5 +1,4 @@
 import { Endpoint, S3 } from "aws-sdk";
-import { getEnv } from "../utils/env";
 
 const S3_CONFIG = process.env.IS_OFFLINE
   ? {
