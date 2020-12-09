@@ -1,3 +1,21 @@
+# [1.1.0](https://github.com/amfa-team/space-service/compare/v1.0.0...v1.1.0) (2020-12-09)
+
+
+### Bug Fixes
+
+* example admin settings ([df0f578](https://github.com/amfa-team/space-service/commit/df0f5783176508e8c3303c8c1eda8b6d2950361b))
+* remove API_SECRET ([f9f84ff](https://github.com/amfa-team/space-service/commit/f9f84ff67d28b90847e0f4de8522d95377dc8e48))
+* rollup config ([24f9019](https://github.com/amfa-team/space-service/commit/24f9019a521a42214aa1ac50540a498f5dd65128))
+
+
+### Features
+
+* add space link in example ([86d5ffe](https://github.com/amfa-team/space-service/commit/86d5ffeae103bac184405ae581a64e89bf86eb4c))
+* add space list ([8fab483](https://github.com/amfa-team/space-service/commit/8fab4832c0d5e0fd260e60e158b27a1121f871eb))
+* add space list admin ([65a3bcb](https://github.com/amfa-team/space-service/commit/65a3bcbca7ef49155d6b9236dd4aeac53d505346))
+* cache image ([762bff8](https://github.com/amfa-team/space-service/commit/762bff8c27dcfb166eab3ed98dcf6e86d7c4ccf3))
+* support random room & home page only spaces ([5c42777](https://github.com/amfa-team/space-service/commit/5c427774d3a14419738a3b6410bdb31691d26c2e))
+
 # [1.1.0-beta.5](https://github.com/amfa-team/space-service/compare/v1.1.0-beta.4...v1.1.0-beta.5) (2020-12-08)
 
 
