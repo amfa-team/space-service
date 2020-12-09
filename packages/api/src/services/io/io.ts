@@ -1,4 +1,10 @@
-import type { GetRoutes, PostRoutes } from "@amfa-team/space-service-types";
+import type {
+  AdminData,
+  AdminGetRoutes,
+  AdminPostRoutes,
+  PublicGetRoutes,
+  PublicPostRoutes,
+} from "@amfa-team/space-service-types";
 import { flush, init as initSentry } from "@sentry/serverless";
 import type {
   APIGatewayProxyEvent,
@@ -6,9 +12,12 @@ import type {
   Context,
 } from "aws-lambda";
 import type { JsonDecoder } from "ts.data.json";
-import { InvalidRequestError } from "./exceptions";
+import { close, connect } from "../../mongo/client";
+import { getEnv } from "../../utils/env";
+import { ForbiddenError, InvalidRequestError } from "./exceptions";
 import { logger } from "./logger";
 import type {
+  AdminRequest,
   GetHandler,
   HandlerResult,
   PostHandler,
@@ -32,15 +41,15 @@ export function setup() {
   });
 }
 
-export async function init(/* context: Context | null */) {
+export async function init(context: Context | null) {
   logger.info("io.init: will");
-  // await connect(context);
+  await connect(context);
   logger.info("io.init: did");
 }
 
-export async function teardown(/* context: Context | null */) {
+export async function teardown(context: Context | null) {
   logger.info("io.teardown: will");
-  // close(context);
+  close(context);
   await flush(2000);
   logger.info("io.teardown: did");
 }
@@ -79,6 +88,20 @@ export function parseHttpPublicRequest<T>(
     jsonParse,
   });
   return { data };
+}
+
+export function parseHttpAdminRequest<T extends AdminData>(
+  event: APIGatewayProxyEvent,
+  decoder: JsonDecoder.Decoder<T>,
+): AdminRequest<T> {
+  const body = parse(event.body);
+  const req = { data: decode(body, decoder) };
+
+  if (req.data.secret !== getEnv("API_SECRET")) {
+    throw new ForbiddenError();
+  }
+
+  return req;
 }
 
 export async function handleHttpErrorResponse(
@@ -129,13 +152,13 @@ export function handleSuccessResponse<T>(
   };
 }
 
-export async function handlePublicGET<P extends keyof GetRoutes>(
+export async function handlePublicGET<P extends keyof PublicGetRoutes>(
   event: APIGatewayProxyEvent,
   context: Context,
   handler: GetHandler<P>,
 ): Promise<APIGatewayProxyResult> {
   try {
-    await init(/* context */);
+    await init(context);
     const payload = await handler(
       event.queryStringParameters,
       event.headers,
@@ -147,17 +170,17 @@ export async function handlePublicGET<P extends keyof GetRoutes>(
   }
 }
 
-export async function handlePublicPOST<P extends keyof PostRoutes>(
+export async function handlePublicPOST<P extends keyof PublicPostRoutes>(
   event: APIGatewayProxyEvent,
   context: Context,
   handler: PostHandler<P>,
-  decoder: JsonDecoder.Decoder<PostRoutes[P]["in"]>,
+  decoder: JsonDecoder.Decoder<PublicPostRoutes[P]["in"]>,
   jsonParse: boolean = true,
 ): Promise<APIGatewayProxyResult> {
   try {
     logger.info("io.handlePublicPOST: will", { event });
 
-    await init(/* context */);
+    await init(context);
 
     const { data } = await parseHttpPublicRequest(event, decoder, jsonParse);
     const result = await handler(data, event.headers, event.requestContext);
@@ -167,6 +190,45 @@ export async function handlePublicPOST<P extends keyof PostRoutes>(
     return response;
   } catch (e) {
     logger.error(e, "io.handlePublicPOST: fail");
+    return handleHttpErrorResponse(e, event);
+  }
+}
+
+export async function handleAdminGET<P extends keyof AdminGetRoutes>(
+  event: APIGatewayProxyEvent,
+  context: Context,
+  handler: GetHandler<P>,
+): Promise<APIGatewayProxyResult> {
+  try {
+    await init(context);
+
+    if (event.headers["x-api-secret"] !== getEnv("API_SECRET")) {
+      throw new ForbiddenError();
+    }
+
+    const result = await handler(
+      event.queryStringParameters,
+      event.headers,
+      event.requestContext,
+    );
+    return handleSuccessResponse(result);
+  } catch (e) {
+    return handleHttpErrorResponse(e, event);
+  }
+}
+
+export async function handleAdminPOST<P extends keyof AdminPostRoutes>(
+  event: APIGatewayProxyEvent,
+  context: Context,
+  handler: PostHandler<P>,
+  decoder: JsonDecoder.Decoder<AdminPostRoutes[P]["in"]>,
+): Promise<APIGatewayProxyResult> {
+  try {
+    await init(context);
+    const { data } = await parseHttpAdminRequest(event, decoder);
+    const result = await handler(data, event.headers, event.requestContext);
+    return handleSuccessResponse(result);
+  } catch (e) {
     return handleHttpErrorResponse(e, event);
   }
 }
