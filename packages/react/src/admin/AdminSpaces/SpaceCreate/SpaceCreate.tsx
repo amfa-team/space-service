@@ -19,6 +19,7 @@ export function SpaceCreate(props: SpaceCreateProps) {
     enabled: space.enabled ?? false,
     home: space.home ?? false,
     random: space.random ?? false,
+    public: space.public ?? true,
     order: space.order ?? 0,
     image: space.imageUrl ?? null,
   });
@@ -32,6 +33,7 @@ export function SpaceCreate(props: SpaceCreateProps) {
       enabled: space.enabled ?? false,
       home: space.home ?? false,
       random: space.random ?? false,
+      public: space.public ?? true,
       order: space.order ?? 0,
       image: space.imageUrl ?? null,
     });
@@ -98,6 +100,14 @@ export function SpaceCreate(props: SpaceCreateProps) {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const home = e.target.checked ?? false;
       setData((d) => ({ ...d, home }));
+    },
+    [],
+  );
+
+  const onPublicChanged = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const p = e.target.checked ?? false;
+      setData((d) => ({ ...d, public: p }));
     },
     [],
   );
@@ -192,6 +202,16 @@ export function SpaceCreate(props: SpaceCreateProps) {
               onChange={onHomeChanged}
             />
             Home
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              checked={data.public}
+              onChange={onPublicChanged}
+            />
+            Public
           </label>
         </div>
         <div>

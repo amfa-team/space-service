@@ -152,6 +152,7 @@ export type SpaceUpdateData = {
   slug: string;
   name: string;
   enabled: boolean;
+  public: boolean;
   home: boolean;
   random: boolean;
   order: number;
@@ -179,6 +180,7 @@ export function useSpaceUpdate() {
           name: data.name,
           enabled: data.enabled,
           home: data.home,
+          public: data.public,
           random: data.random,
           order: data.order,
           imageUrl,

@@ -89,6 +89,7 @@ export const adminSpaceUpdateDecoder = JsonDecoder.object(
         enabled: JsonDecoder.boolean,
         imageUrl: JsonDecoder.nullable(JsonDecoder.string),
         home: JsonDecoder.boolean,
+        public: JsonDecoder.boolean,
         random: JsonDecoder.boolean,
         order: JsonDecoder.number,
       },

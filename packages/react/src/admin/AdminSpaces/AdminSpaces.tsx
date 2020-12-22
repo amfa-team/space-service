@@ -27,6 +27,10 @@ const getColumns = (onUpdateClick: (space: ISpace) => unknown) => [
     accessor: (space: ISpace) => (space.home ? "TRUE" : "FALSE"),
   },
   {
+    Header: "Public",
+    accessor: (space: ISpace) => (space.public ? "TRUE" : "FALSE"),
+  },
+  {
     Header: "Order",
     accessor: "order",
   },

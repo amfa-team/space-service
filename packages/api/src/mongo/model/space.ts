@@ -26,6 +26,12 @@ const SpaceSchema: Schema = new Schema(
       index: true,
       default: false,
     },
+    public: {
+      type: Boolean,
+      required: true,
+      index: true,
+      default: true,
+    },
     imageUrl: {
       type: String,
       required: true,

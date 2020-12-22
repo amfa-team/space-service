@@ -14,18 +14,16 @@ function App(): ReactElement {
   return (
     <Switch>
       <Route path="/admin">
-        <SpaceServiceSettings settings={settings}>
-          <Admin />
-        </SpaceServiceSettings>
+        <Admin />
       </Route>
-      <Route path={`/:spaceName`}>
-        <SpaceServiceSettings settings={settings}>
+      <SpaceServiceSettings settings={settings}>
+        <Route path={`/:spaceName`}>
           <Space />
-        </SpaceServiceSettings>
-      </Route>
-      <Route path={`/`}>
-        <Public />
-      </Route>
+        </Route>
+        <Route path={`/`}>
+          <Public />
+        </Route>
+      </SpaceServiceSettings>
     </Switch>
   );
 }
