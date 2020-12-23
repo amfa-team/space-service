@@ -1,4 +1,4 @@
-import type { ISpace } from "./model";
+import type { IPermission, ISpace } from "./model";
 
 export interface SuccessResponse<T> {
   success: true;
@@ -65,6 +65,20 @@ export interface SpaceRemoveReq extends AdminData {
   slug: string;
 }
 
+export type PermissionUpdateData = Pick<
+  IPermission,
+  Exclude<keyof IPermission, "_id">
+>;
+
+export interface PermissionUpdateReq extends AdminData {
+  permission: PermissionUpdateData;
+}
+
+export interface PermissionRemoveReq extends AdminData {
+  spaceId: string;
+  userId: string;
+}
+
 export interface ImageUploadPayload {
   uploadUrl: string;
 }
@@ -93,6 +107,9 @@ export type AdminPostRoutes = {
   "admin/space/update": PostRoute<SpaceUpdateReq, ISpace>;
   "admin/space/remove": PostRoute<SpaceRemoveReq, null>;
   "admin/space": PostRoute<AdminListData, PaginationPayload<ISpace>>;
+  "admin/permission": PostRoute<AdminListData, PaginationPayload<IPermission>>;
+  "admin/permission/update": PostRoute<PermissionUpdateReq, IPermission>;
+  "admin/permission/remove": PostRoute<PermissionRemoveReq, null>;
 };
 
 export type PostRoutes = PublicPostRoutes & AdminPostRoutes;

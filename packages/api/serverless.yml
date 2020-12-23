@@ -75,6 +75,27 @@ functions:
           path: admin/space/remove
           method: post
           cors: ${file(./serverless/cors.yml):main}
+  adminPermissionList:
+    handler: src/handler.adminPermissionList
+    events:
+      - http:
+          path: admin/permission
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
+  adminPermissionUpdate:
+    handler: src/handler.adminPermissionUpdate
+    events:
+      - http:
+          path: admin/permission/update
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
+  adminPermissionRemove:
+    handler: src/handler.adminPermissionRemove
+    events:
+      - http:
+          path: admin/permission/remove
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
   adminImageUpload:
     handler: src/handler.adminImageUpload
     events:
