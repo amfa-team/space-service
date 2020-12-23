@@ -1,8 +1,8 @@
 import type { ISpace } from "@amfa-team/space-service-types";
 import type { SyntheticEvent } from "react";
 import React, { useCallback, useEffect, useState } from "react";
-import type { SpaceUpdateData } from "../../../api/useApi";
-import { useSpaceUpdate } from "../../../api/useApi";
+import type { SpaceUpdateData } from "../../../api/space/admin/useAdminSpaceUpdate";
+import { useAdminSpaceUpdate } from "../../../api/space/admin/useAdminSpaceUpdate";
 
 interface SpaceCreateProps {
   space: Partial<ISpace>;
@@ -23,7 +23,7 @@ export function SpaceCreate(props: SpaceCreateProps) {
     order: space.order ?? 0,
     image: space.imageUrl ?? null,
   });
-  const { update, validate } = useSpaceUpdate();
+  const { update, validate } = useAdminSpaceUpdate();
 
   const reset = useCallback(() => {
     setFile(null);

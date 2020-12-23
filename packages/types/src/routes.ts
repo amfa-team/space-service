@@ -61,6 +61,10 @@ export interface SpaceUpdateReq extends AdminData {
   space: ISpace;
 }
 
+export interface SpaceRemoveReq extends AdminData {
+  slug: string;
+}
+
 export interface ImageUploadPayload {
   uploadUrl: string;
 }
@@ -87,6 +91,7 @@ export type PublicPostRoutes = {
 export type AdminPostRoutes = {
   "admin/image/upload": PostRoute<ImageUploadReq, ImageUploadPayload>;
   "admin/space/update": PostRoute<SpaceUpdateReq, ISpace>;
+  "admin/space/remove": PostRoute<SpaceRemoveReq, null>;
   "admin/space": PostRoute<AdminListData, PaginationPayload<ISpace>>;
 };
 

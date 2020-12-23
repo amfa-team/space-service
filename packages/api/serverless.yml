@@ -68,6 +68,13 @@ functions:
           path: admin/space/update
           method: post
           cors: ${file(./serverless/cors.yml):main}
+  adminSpaceRemove:
+    handler: src/handler.adminSpaceRemove
+    events:
+      - http:
+          path: admin/space/remove
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
   adminImageUpload:
     handler: src/handler.adminImageUpload
     events:
