@@ -18,8 +18,8 @@ const getColumns = (
     accessor: "spaceId",
   },
   {
-    Header: "UserId",
-    accessor: "userId",
+    Header: "User Email",
+    accessor: "userEmail",
   },
   {
     Header: "Role",
@@ -85,7 +85,9 @@ export default function AdminPermissions() {
 
   const onRemovedClicked = useCallback(
     async (permission: IPermission) => {
-      return remove(permission.spaceId, permission.userId).then(() => reset());
+      return remove(permission.spaceId, permission.userEmail).then(() =>
+        reset(),
+      );
     },
     [remove, reset],
   );

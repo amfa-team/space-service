@@ -8,7 +8,7 @@ export function useAdminPermissionUpdate() {
 
   const validate = useCallback((permission: PermissionUpdateData | null) => {
     return (
-      Boolean(permission?.userId && permission.spaceId) &&
+      Boolean(permission?.userEmail && permission.spaceId) &&
       permission?.role === "admin"
     );
   }, []);

@@ -12,6 +12,6 @@ export interface ISpace {
 export interface IPermission {
   _id: string;
   spaceId: string;
-  userId: string;
-  role: "admin";
+  userEmail: string;
+  role: "admin" | "user";
 }

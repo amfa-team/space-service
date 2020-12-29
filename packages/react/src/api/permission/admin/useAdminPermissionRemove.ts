@@ -6,12 +6,12 @@ export function useAdminPermissionRemove() {
   const settings = useApiSettings();
 
   const remove = useCallback(
-    async (spaceId: string, userId: string) => {
+    async (spaceId: string, userEmail: string) => {
       if (settings) {
         return apiPost(settings, "admin/permission/remove", {
           secret: settings.secret ?? "",
           spaceId,
-          userId,
+          userEmail,
         });
       }
 

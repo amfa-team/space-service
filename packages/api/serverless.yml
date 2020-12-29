@@ -26,6 +26,7 @@ provider:
     DOMAIN: ${self:custom.sbs.domains.${opt:stage, self:provider.stage}}
     S3_IMAGE_BUCKET: ${self:custom.sbs.bucketName.${opt:stage, self:provider.stage}}
     API_SECRET: "${env:API_SECRET}"
+    USER_SERVICE_API_SECRET: "${env:USER_SERVICE_API_SECRET}"
   apiGateway:
     shouldStartNameWithService: true
   tracing:

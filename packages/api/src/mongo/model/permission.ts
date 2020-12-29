@@ -15,7 +15,7 @@ const PermissionSchema: Schema = new Schema(
       required: true,
       index: true,
     },
-    userId: {
+    userEmail: {
       type: Schema.Types.ObjectId,
       required: true,
       index: true,
@@ -35,7 +35,7 @@ const PermissionSchema: Schema = new Schema(
   },
 );
 
-PermissionSchema.index({ spaceId: 1, userId: 1 }, { unique: true });
+PermissionSchema.index({ spaceId: 1, userEmail: 1 }, { unique: true });
 
 const PermissionModel = mongoose.model<IPermissionDocument>(
   "Permission",

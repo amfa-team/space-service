@@ -42,7 +42,7 @@ export const adminPermissionUpdateDecoder = JsonDecoder.object<
     permission: JsonDecoder.object(
       {
         spaceId: JsonDecoder.string,
-        userId: JsonDecoder.string,
+        userEmail: JsonDecoder.string,
         role: JsonDecoder.oneOf([JsonDecoder.isExactly("admin")], "role"),
       },
       "permission",
@@ -56,10 +56,10 @@ export async function handleAdminPermissionUpdate(
   data: PermissionUpdateReq,
 ): Promise<HandlerResult<IPermission>> {
   const {
-    permission: { spaceId, userId, role },
+    permission: { spaceId, userEmail, role },
   } = data;
   const permission = await PermissionModel.findOneAndUpdate(
-    { spaceId, userId },
+    { spaceId, userEmail },
     { role },
     {
       upsert: true,
@@ -79,7 +79,7 @@ export async function handleAdminPermissionUpdate(
 export const adminPermissionRemoveDecoder = JsonDecoder.object(
   {
     spaceId: JsonDecoder.string,
-    userId: JsonDecoder.string,
+    userEmail: JsonDecoder.string,
     secret: JsonDecoder.string,
   },
   "adminPermissionUpdateDecoder",
@@ -88,8 +88,8 @@ export const adminPermissionRemoveDecoder = JsonDecoder.object(
 export async function handleAdminPermissionRemove(
   data: PermissionRemoveReq,
 ): Promise<HandlerResult<null>> {
-  const { spaceId, userId } = data;
-  await PermissionModel.findOneAndRemove({ spaceId, userId });
+  const { spaceId, userEmail } = data;
+  await PermissionModel.findOneAndRemove({ spaceId, userEmail });
 
   return {
     payload: null,

@@ -15,7 +15,7 @@ export function PermissionCreate(props: PermissionCreateProps) {
   const { permission, onChanged } = props;
   const [data, setData] = useState<PermissionUpdateData>({
     spaceId: permission.spaceId ?? "",
-    userId: permission.userId ?? "",
+    userEmail: permission.userEmail ?? "",
     role: permission.role ?? "admin",
   });
   const { update, validate } = useAdminPermissionUpdate();
@@ -23,7 +23,7 @@ export function PermissionCreate(props: PermissionCreateProps) {
   const reset = useCallback(() => {
     setData({
       spaceId: permission.spaceId ?? "",
-      userId: permission.userId ?? "",
+      userEmail: permission.userEmail ?? "",
       role: permission.role ?? "admin",
     });
   }, [permission]);
@@ -39,10 +39,10 @@ export function PermissionCreate(props: PermissionCreateProps) {
     },
     [],
   );
-  const onUserIdChanged = useCallback(
+  const onUserEmailChanged = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const userId = e.target.value;
-      setData((d) => ({ ...d, userId }));
+      const userEmail = e.target.value;
+      setData((d) => ({ ...d, userEmail }));
     },
     [],
   );
@@ -87,9 +87,9 @@ export function PermissionCreate(props: PermissionCreateProps) {
             Name:
             <input
               type="text"
-              value={data.userId}
+              value={data.userEmail}
               size={50}
-              onChange={onUserIdChanged}
+              onChange={onUserEmailChanged}
               required
               minLength={3}
             />
@@ -99,14 +99,11 @@ export function PermissionCreate(props: PermissionCreateProps) {
           <label>
             Role:
             <select onChange={onRoleChanged}>
-              <option
-                value="admin"
-                selected={
-                  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-                  data.role === "admin"
-                }
-              >
+              <option value="admin" selected={data.role === "admin"}>
                 admin
+              </option>
+              <option value="user" selected={data.role === "user"}>
+                user
               </option>
             </select>
           </label>

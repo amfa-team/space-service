@@ -30,6 +30,10 @@ export interface SpacesPayload {
   spaces: ISpace[];
 }
 
+export interface PermissionsPayload {
+  permissions: IPermission[];
+}
+
 export interface AdminData {
   secret: string;
 }
@@ -76,11 +80,28 @@ export interface PermissionUpdateReq extends AdminData {
 
 export interface PermissionRemoveReq extends AdminData {
   spaceId: string;
-  userId: string;
+  userEmail: string;
 }
 
 export interface ImageUploadPayload {
   uploadUrl: string;
+}
+
+export interface RestrictedReq {
+  token: string;
+}
+
+export interface ManagePermissionList extends RestrictedReq {
+  spaceId: string;
+}
+
+export interface ManagePermissionUpdate extends RestrictedReq {
+  permission: PermissionUpdateData;
+}
+
+export interface ManagePermissionRemove extends RestrictedReq {
+  spaceId: string;
+  userEmail: string;
 }
 
 export type PublicGetRoutes = {
@@ -100,6 +121,16 @@ export type GetRoutes = PublicGetRoutes & AdminGetRoutes;
 export type PublicPostRoutes = {
   // no-op
   get: PostRoute<GetSpaceReq, ISpace | null>;
+  "manage/space/list": PostRoute<RestrictedReq, SpacesPayload>;
+  "manage/permission/list": PostRoute<ManagePermissionList, PermissionsPayload>;
+  "manage/permission/update": PostRoute<
+    ManagePermissionUpdate,
+    PermissionsPayload
+  >;
+  "manage/permission/remove": PostRoute<
+    ManagePermissionRemove,
+    PermissionsPayload
+  >;
 };
 
 export type AdminPostRoutes = {
