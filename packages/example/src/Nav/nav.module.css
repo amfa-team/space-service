@@ -1,0 +1,23 @@
+.root {
+  border-bottom: 1px solid black;
+  padding: 10px;
+  display: flex;
+  text-align: left;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 45px;
+  box-sizing: border-box;
+}
+
+.root > * {
+  padding: 5px;
+}
+
+.actions {
+  display: flex;
+}
+
+.actions > * {
+  padding: 5px;
+}

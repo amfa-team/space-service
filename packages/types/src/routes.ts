@@ -61,8 +61,21 @@ export interface SpaceUpdateReq extends AdminData {
   space: ISpace;
 }
 
+export interface SpaceRemoveReq extends AdminData {
+  slug: string;
+}
+
 export interface ImageUploadPayload {
   uploadUrl: string;
+}
+
+export interface RestrictedReq {
+  token: string;
+}
+
+export interface ManagePermissionRemove extends RestrictedReq {
+  spaceId: string;
+  userEmail: string;
 }
 
 export type PublicGetRoutes = {
@@ -75,18 +88,26 @@ export type AdminGetRoutes = {
 
 export interface GetSpaceReq {
   slug: string;
+  token: null | string;
+}
+
+export interface GetSpacePayload {
+  space: ISpace | null;
+  private: boolean;
 }
 
 export type GetRoutes = PublicGetRoutes & AdminGetRoutes;
 
 export type PublicPostRoutes = {
   // no-op
-  get: PostRoute<GetSpaceReq, ISpace | null>;
+  get: PostRoute<GetSpaceReq, GetSpacePayload>;
+  "manage/space/list": PostRoute<RestrictedReq, SpacesPayload>;
 };
 
 export type AdminPostRoutes = {
   "admin/image/upload": PostRoute<ImageUploadReq, ImageUploadPayload>;
   "admin/space/update": PostRoute<SpaceUpdateReq, ISpace>;
+  "admin/space/remove": PostRoute<SpaceRemoveReq, null>;
   "admin/space": PostRoute<AdminListData, PaginationPayload<ISpace>>;
 };
 

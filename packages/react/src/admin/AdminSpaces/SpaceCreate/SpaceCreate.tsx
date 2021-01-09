@@ -1,8 +1,8 @@
 import type { ISpace } from "@amfa-team/space-service-types";
 import type { SyntheticEvent } from "react";
 import React, { useCallback, useEffect, useState } from "react";
-import type { SpaceUpdateData } from "../../../api/useApi";
-import { useSpaceUpdate } from "../../../api/useApi";
+import type { SpaceUpdateData } from "../../../api/space/admin/useAdminSpaceUpdate";
+import { useAdminSpaceUpdate } from "../../../api/space/admin/useAdminSpaceUpdate";
 
 interface SpaceCreateProps {
   space: Partial<ISpace>;
@@ -19,10 +19,11 @@ export function SpaceCreate(props: SpaceCreateProps) {
     enabled: space.enabled ?? false,
     home: space.home ?? false,
     random: space.random ?? false,
+    public: space.public ?? true,
     order: space.order ?? 0,
     image: space.imageUrl ?? null,
   });
-  const { update, validate } = useSpaceUpdate();
+  const { update, validate } = useAdminSpaceUpdate();
 
   const reset = useCallback(() => {
     setFile(null);
@@ -32,6 +33,7 @@ export function SpaceCreate(props: SpaceCreateProps) {
       enabled: space.enabled ?? false,
       home: space.home ?? false,
       random: space.random ?? false,
+      public: space.public ?? true,
       order: space.order ?? 0,
       image: space.imageUrl ?? null,
     });
@@ -98,6 +100,14 @@ export function SpaceCreate(props: SpaceCreateProps) {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const home = e.target.checked ?? false;
       setData((d) => ({ ...d, home }));
+    },
+    [],
+  );
+
+  const onPublicChanged = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const p = e.target.checked ?? false;
+      setData((d) => ({ ...d, public: p }));
     },
     [],
   );
@@ -192,6 +202,16 @@ export function SpaceCreate(props: SpaceCreateProps) {
               onChange={onHomeChanged}
             />
             Home
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              checked={data.public}
+              onChange={onPublicChanged}
+            />
+            Public
           </label>
         </div>
         <div>

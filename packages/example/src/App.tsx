@@ -1,32 +1,39 @@
-import { SpaceServiceSettings } from "@amfa-team/space-service";
+import { UserServiceSettings } from "@amfa-team/user-service";
 import type { ReactElement } from "react";
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Admin from "./Admin";
-import Public from "./Public";
-import Space from "./Space";
+import Nav from "./Nav/Nav";
+import Public from "./Public/Public";
+import User from "./User";
 
-const endpoint = process.env.API_ENDPOINT ?? "";
+const userEndpoint = process.env.USER_API_ENDPOINT ?? "";
 
-const settings = { endpoint };
+const userSettings = {
+  endpoint: userEndpoint,
+  secure: process.env.NODE_ENV === "production",
+  resetPath: "/",
+  invitePath: "/invite",
+  getSpacePath: (spaceSlug: string) => `/${spaceSlug}`,
+};
 
 function App(): ReactElement {
   return (
-    <Switch>
-      <Route path="/admin">
-        <SpaceServiceSettings settings={settings}>
+    <UserServiceSettings settings={userSettings}>
+      <User />
+      <Nav />
+      <Switch>
+        <Route path="/admin/:pageName">
           <Admin />
-        </SpaceServiceSettings>
-      </Route>
-      <Route path={`/:spaceName`}>
-        <SpaceServiceSettings settings={settings}>
-          <Space />
-        </SpaceServiceSettings>
-      </Route>
-      <Route path={`/`}>
-        <Public />
-      </Route>
-    </Switch>
+        </Route>
+        <Route path="/admin">
+          <Redirect to="/admin/space" />
+        </Route>
+        <Route path="/">
+          <Public />
+        </Route>
+      </Switch>
+    </UserServiceSettings>
   );
 }
 

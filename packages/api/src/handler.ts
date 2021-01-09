@@ -4,14 +4,16 @@ import type {
   APIGatewayProxyResult,
   Context,
 } from "aws-lambda";
+import { adminListDecoder } from "./controllers/admin/common";
 import {
   adminImageUploadDecoder,
-  adminListDecoder,
+  adminSpaceRemoveDecoder,
   adminSpaceUpdateDecoder,
   handleAdminImageUpload,
+  handleAdminSpaceRemove,
   handleAdminSpaceUpdate,
   handleAdminSpaces,
-} from "./controllers/adminController";
+} from "./controllers/admin/spaceAdminController";
 import {
   handleGet,
   handleGetDecoder,
@@ -78,6 +80,20 @@ export const adminSpaceUpdate = AWSLambda.wrapHandler(
       context,
       handleAdminSpaceUpdate,
       adminSpaceUpdateDecoder,
+    );
+  },
+);
+
+export const adminSpaceRemove = AWSLambda.wrapHandler(
+  async function adminSpaceRemove(
+    event: APIGatewayProxyEvent,
+    context: Context,
+  ): Promise<APIGatewayProxyResult> {
+    return handleAdminPOST<"admin/space/remove">(
+      event,
+      context,
+      handleAdminSpaceRemove,
+      adminSpaceRemoveDecoder,
     );
   },
 );

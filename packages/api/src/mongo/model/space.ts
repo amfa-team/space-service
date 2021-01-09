@@ -26,6 +26,12 @@ const SpaceSchema: Schema = new Schema(
       index: true,
       default: false,
     },
+    public: {
+      type: Boolean,
+      required: true,
+      index: true,
+      default: true,
+    },
     imageUrl: {
       type: String,
       required: true,
@@ -62,7 +68,7 @@ SpaceSchema.index(
 );
 
 SpaceSchema.index(
-  { enabled: 1, home: 1, random: 1 }, // random resolution
+  { enabled: 1, public: 1, home: 1, random: 1 }, // random resolution
 );
 
 const SpaceModel = mongoose.model<ISpaceDocument>("Space", SpaceSchema);
