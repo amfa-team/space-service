@@ -21,6 +21,7 @@
     "access": "restricted"
   },
   "devDependencies": {
+    "@amfa-team/space-service-types": "^1.1.0",
     "@amfa-team/user-service": "^1.2.0-beta.6",
     "@amfa-team/user-service-types": "^1.0.0-beta.6",
     "@babel/core": "^7.12.3",
@@ -64,7 +65,7 @@
     "typescript-plugin-css-modules": "^2.8.0"
   },
   "peerDependencies": {
-    "@amfa-team/space-service-types": "^1.0.0",
+    "@amfa-team/space-service-types": "^1.1.0",
     "@amfa-team/user-service": "^1.2.0-beta.6",
     "@amfa-team/user-service-types": "^1.0.0-beta.6",
     "@sentry/react": "^5.27.3",
