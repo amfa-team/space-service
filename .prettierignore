@@ -107,4 +107,4 @@ packages/*/lib
 src/**/*.css
 src/**/*.css.map
 
-packages/react/CHANGELOG.md
+packages/*/CHANGELOG.md

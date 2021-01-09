@@ -37,5 +37,18 @@
     "packages/*/build": true,
     "**/.serverless": true,
     "**/.webpack": true
-  }
+  },
+  "compareFolders.excludeFilter": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/node_modules",
+    "packages/*/lib",
+    "packages/*/dist",
+    "packages/*/build",
+    "**/.serverless",
+    "**/.webpack"
+  ]
 }

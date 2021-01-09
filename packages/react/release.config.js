@@ -31,13 +31,6 @@ module.exports = {
       },
     ],
     [
-      "@saithodev/semantic-release-backmerge",
-      {
-        branchName: "develop",
-        plugins: [],
-      },
-    ],
-    [
       "semantic-release-slack-bot",
       {
         notifyOnSuccess: true,
