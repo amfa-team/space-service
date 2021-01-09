@@ -26,7 +26,7 @@ export default [
         browser: true,
         preferBuiltins: false,
         modulesOnly: true,
-        resolveOnly: [/^@amfa-team\/.*$/],
+        resolveOnly: [/^@amfa-team\/space-service.*$/],
       }),
       sourcemaps(),
       postcss({
@@ -59,7 +59,7 @@ export default [
         browser: true,
         preferBuiltins: false,
         modulesOnly: true,
-        resolveOnly: [/^@amfa-team\/.*$/],
+        resolveOnly: [/^@amfa-team\/space-service.*$/],
       }),
       sourcemaps(),
       postcss({
