@@ -11,7 +11,7 @@
     "*.css"
   ],
   "dependencies": {
-    "@amfa-team/space-service-types": "^1.2.0-beta.1",
+    "@amfa-team/space-service-types": "^1.1.0",
     "@babel/runtime": "^7.12.5",
     "abortcontroller-polyfill": "^1.5.0",
     "core-js": "^3.7.0",
