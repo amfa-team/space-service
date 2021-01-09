@@ -25,6 +25,7 @@ jobs:
       - run: yarn install
       - run: echo "SENTRY_DNS=${{secrets.SENTRY_EXAMPLE_DNS}}" >> packages/example/.env
       - run: echo "API_ENDPOINT=${{secrets.API_ENDPOINT_STAGING}}" >> packages/example/.env
+      - run: echo "USER_API_ENDPOINT=${{secrets.USER_API_ENDPOINT_STAGING}}" >> packages/example/.env
       - run: yarn build
       - run: yarn lint
       - run: yarn lint:style
