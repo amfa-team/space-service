@@ -6,13 +6,6 @@ import type {
 } from "aws-lambda";
 import { adminListDecoder } from "./controllers/admin/common";
 import {
-  adminPermissionRemoveDecoder,
-  adminPermissionUpdateDecoder,
-  handleAdminPermissionList,
-  handleAdminPermissionRemove,
-  handleAdminPermissionUpdate,
-} from "./controllers/admin/permissionAdminController";
-import {
   adminImageUploadDecoder,
   adminSpaceRemoveDecoder,
   adminSpaceUpdateDecoder,
@@ -101,48 +94,6 @@ export const adminSpaceRemove = AWSLambda.wrapHandler(
       context,
       handleAdminSpaceRemove,
       adminSpaceRemoveDecoder,
-    );
-  },
-);
-
-export const adminPermissionList = AWSLambda.wrapHandler(
-  async function adminPermissionList(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handleAdminPOST<"admin/permission">(
-      event,
-      context,
-      handleAdminPermissionList,
-      adminListDecoder,
-    );
-  },
-);
-
-export const adminPermissionUpdate = AWSLambda.wrapHandler(
-  async function adminPermissionUpdate(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handleAdminPOST<"admin/permission/update">(
-      event,
-      context,
-      handleAdminPermissionUpdate,
-      adminPermissionUpdateDecoder,
-    );
-  },
-);
-
-export const adminPermissionRemove = AWSLambda.wrapHandler(
-  async function adminPermissionRemove(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handleAdminPOST<"admin/permission/remove">(
-      event,
-      context,
-      handleAdminPermissionRemove,
-      adminPermissionRemoveDecoder,
     );
   },
 );

@@ -10,6 +10,32 @@
     d "1"
     es5-ext "^0.10.47"
 
+"@amfa-team/user-service-node@^1.0.0-beta.5":
+  version "1.0.0-beta.5"
+  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service-node/1.0.0-beta.5/895d7ecf6c79420792d105383a324cfb333af0a6b9ba2c92648d8469c7b81ca9#e5b48a054f78d32145009a45d45fc9c682985215"
+  integrity sha512-CX9uhc25XN+L8zkHMP9yIm1nUiKoVpHnd1vkkC1jyOG6MxhpWclsmDoijuR2Ou0PuK8NyrwobSXHueRf1FYOrA==
+  dependencies:
+    jsonwebtoken "^8.5.1"
+
+"@amfa-team/user-service-types@^1.0.0-beta.6":
+  version "1.0.0-beta.6"
+  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service-types/1.0.0-beta.6/f956631697eb7b902120b329a80ed002bf3e3ead55879d7039c1e4ffb9c63e37#dd163b693999bb3b7836710b0521e2ff2882b38a"
+  integrity sha512-ts4jeg921LKRJESo1fZSmWjdAm74QVYRTZF0mtnpxYuBOrWsawrlFCL0kIRuXIDiruei7v+RGul/sXe4I/lV+w==
+
+"@amfa-team/user-service@^1.2.0-beta.6":
+  version "1.2.0-beta.6"
+  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service/1.2.0-beta.6/fe40cd358bf8e55a2beb749d1c3bcd9a9b2bd0a094a928490034695c837698a6#0ddee58bae9b2bceab68821d220fd180c2644523"
+  integrity sha512-t5/F9r2YZdyf5J75uIqqVBd6FjZr/yLBUir/zbJO7gVm7F2OBBVYkKVpm9h+ybcI2dRwfUCVx2q5vOOMIkiCbA==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    abortcontroller-polyfill "^1.5.0"
+    classnames "^2.2.6"
+    core-js "^3.7.0"
+    email-validator "^2.0.4"
+    jwt-decode "^3.1.2"
+    react-table "^7.6.2"
+    whatwg-fetch "^3.5.0"
+
 "@babel/code-frame@7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.8.3.tgz#33e25903d7481181534e12ec0a25f16b6fcf419e"
@@ -3686,7 +3712,7 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
 
-"@types/qs@*", "@types/qs@^6.9.0":
+"@types/qs@*", "@types/qs@^6.9.0", "@types/qs@^6.9.5":
   version "6.9.5"
   resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.5.tgz#434711bdd49eb5ee69d90c1d67c354a9a8ecb18b"
   integrity sha512-/JHkVHtx/REVG0VVToGRGH2+23hsYLHdyG+GrvoUGlGAd0ErauXDyvHtRI/7H7mzLm+tBCKA7pfcpkQ1lf58iQ==
@@ -6489,7 +6515,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.5:
+classnames@^2.2.5, classnames@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
@@ -8492,6 +8518,11 @@ elliptic@^6.5.3:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
+
+email-validator@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/email-validator/-/email-validator-2.0.4.tgz#b8dfaa5d0dae28f1b03c95881d904d4e40bfe7ed"
+  integrity sha512-gYCwo7kh5S3IDyZPLZf6hSS0MnZT8QmJFqYvbqlDZSbwdZlY6QZWxJ4i/6UhITOJ4XzyI647Bm2MXKCLqnJ4nQ==
 
 "emoji-regex@>=6.0.0 <=6.1.1":
   version "6.1.1"
@@ -12686,6 +12717,11 @@ jwt-decode@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-2.2.0.tgz#7d86bd56679f58ce6a84704a657dd392bba81a79"
   integrity sha1-fYa9VmefWM5qhHBKZX3TkruoGnk=
+
+jwt-decode@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-3.1.2.tgz#3fb319f3675a2df0c2895c8f5e9fa4b67b04ed59"
+  integrity sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==
 
 kafka-node@^5.0.0:
   version "5.0.0"
@@ -16893,7 +16929,7 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-qs@^6.5.1, qs@^6.6.0:
+qs@^6.5.1, qs@^6.6.0, qs@^6.9.4:
   version "6.9.4"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.4.tgz#9090b290d1f91728d3c22e54843ca44aea5ab687"
   integrity sha512-A1kFqHekCTM7cz0udomYUoYNWjBebHm/5wzU/XqrBRBNWectVH0QIiN+NEcZ0Dte5hvzHwbr8+XQmguPhJ6WdQ==
@@ -20501,7 +20537,16 @@ ts.data.json@^1.5.0:
   resolved "https://registry.yarnpkg.com/ts.data.json/-/ts.data.json-1.5.0.tgz#fe6484546974d0787f5a3224a91187355699db52"
   integrity sha512-LLC8b4un4sRtWBA47MYaBF+JxsDYq/dUDQrl1Y2l7+RZLBbZvQpIEmr2vCCo6Tegg+hay3sBFYiQHxtTknSDtA==
 
-tsconfig-paths@^3.9.0:
+tsconfig-paths-webpack-plugin@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/tsconfig-paths-webpack-plugin/-/tsconfig-paths-webpack-plugin-3.3.0.tgz#a7461723c20623ca9148621a5ce36532682ad2ff"
+  integrity sha512-MpQeZpwPY4gYASCUjY4yt2Zj8yv86O8f++3Ai4o0yI0fUC6G1syvnL9VuY71PBgimRYDQU47f12BEmJq9wRaSw==
+  dependencies:
+    chalk "^2.3.0"
+    enhanced-resolve "^4.0.0"
+    tsconfig-paths "^3.4.0"
+
+tsconfig-paths@^3.4.0, tsconfig-paths@^3.9.0:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.9.0.tgz#098547a6c4448807e8fcb8eae081064ee9a3c90b"
   integrity sha512-dRcuzokWhajtZWkQsDVKbWyY+jgcLC5sqJhg2PSgf4ZkH2aHPvaOY8YWGhmjb68b5qqTfasSsDO9k7RUiEmZAw==

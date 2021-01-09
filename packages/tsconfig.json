@@ -3,7 +3,7 @@
   "references": [
     { "path": "./api" },
     { "path": "./example" },
-    { "path": "./shared" },
+    { "path": "./node" },
     { "path": "./types" },
     { "path": "./react" }
   ]

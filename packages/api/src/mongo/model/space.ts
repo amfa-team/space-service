@@ -68,7 +68,7 @@ SpaceSchema.index(
 );
 
 SpaceSchema.index(
-  { enabled: 1, home: 1, random: 1 }, // random resolution
+  { enabled: 1, public: 1, home: 1, random: 1 }, // random resolution
 );
 
 const SpaceModel = mongoose.model<ISpaceDocument>("Space", SpaceSchema);

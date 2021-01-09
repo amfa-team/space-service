@@ -21,6 +21,8 @@
     "access": "restricted"
   },
   "devDependencies": {
+    "@amfa-team/user-service": "^1.2.0-beta.6",
+    "@amfa-team/user-service-types": "^1.0.0-beta.6",
     "@babel/core": "^7.12.3",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-transform-runtime": "^7.12.1",
@@ -65,6 +67,8 @@
   "peerDependencies": {
     "@amfa-team/space-service-shared": "^0.1.0",
     "@amfa-team/space-service-types": "^0.1.0",
+    "@amfa-team/user-service": "^1.2.0-beta.6",
+    "@amfa-team/user-service-types": "^1.0.0-beta.6",
     "@sentry/react": "^5.27.3",
     "@types/react": "^16.9.56",
     "@types/react-dom": "^16.9.9",
@@ -90,7 +94,6 @@
     "start:rollup": "yarn build:rollup -w",
     "start:tsc": "yarn build:tsc -w",
     "start:css": "yarn build:css --watch",
-    "deploy": "semantic-release",
     "prepublishOnly": "yarn build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"

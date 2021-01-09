@@ -1,4 +1,4 @@
-import type { IPermission, ISpace } from "./model";
+import type { ISpace } from "./model";
 
 export interface SuccessResponse<T> {
   success: true;
@@ -28,10 +28,6 @@ export type PostRoute<I, O> = {
 
 export interface SpacesPayload {
   spaces: ISpace[];
-}
-
-export interface PermissionsPayload {
-  permissions: IPermission[];
 }
 
 export interface AdminData {
@@ -69,34 +65,12 @@ export interface SpaceRemoveReq extends AdminData {
   slug: string;
 }
 
-export type PermissionUpdateData = Pick<
-  IPermission,
-  Exclude<keyof IPermission, "_id">
->;
-
-export interface PermissionUpdateReq extends AdminData {
-  permission: PermissionUpdateData;
-}
-
-export interface PermissionRemoveReq extends AdminData {
-  spaceId: string;
-  userEmail: string;
-}
-
 export interface ImageUploadPayload {
   uploadUrl: string;
 }
 
 export interface RestrictedReq {
   token: string;
-}
-
-export interface ManagePermissionList extends RestrictedReq {
-  spaceId: string;
-}
-
-export interface ManagePermissionUpdate extends RestrictedReq {
-  permission: PermissionUpdateData;
 }
 
 export interface ManagePermissionRemove extends RestrictedReq {
@@ -114,23 +88,20 @@ export type AdminGetRoutes = {
 
 export interface GetSpaceReq {
   slug: string;
+  token: null | string;
+}
+
+export interface GetSpacePayload {
+  space: ISpace | null;
+  private: boolean;
 }
 
 export type GetRoutes = PublicGetRoutes & AdminGetRoutes;
 
 export type PublicPostRoutes = {
   // no-op
-  get: PostRoute<GetSpaceReq, ISpace | null>;
+  get: PostRoute<GetSpaceReq, GetSpacePayload>;
   "manage/space/list": PostRoute<RestrictedReq, SpacesPayload>;
-  "manage/permission/list": PostRoute<ManagePermissionList, PermissionsPayload>;
-  "manage/permission/update": PostRoute<
-    ManagePermissionUpdate,
-    PermissionsPayload
-  >;
-  "manage/permission/remove": PostRoute<
-    ManagePermissionRemove,
-    PermissionsPayload
-  >;
 };
 
 export type AdminPostRoutes = {
@@ -138,9 +109,6 @@ export type AdminPostRoutes = {
   "admin/space/update": PostRoute<SpaceUpdateReq, ISpace>;
   "admin/space/remove": PostRoute<SpaceRemoveReq, null>;
   "admin/space": PostRoute<AdminListData, PaginationPayload<ISpace>>;
-  "admin/permission": PostRoute<AdminListData, PaginationPayload<IPermission>>;
-  "admin/permission/update": PostRoute<PermissionUpdateReq, IPermission>;
-  "admin/permission/remove": PostRoute<PermissionRemoveReq, null>;
 };
 
 export type PostRoutes = PublicPostRoutes & AdminPostRoutes;

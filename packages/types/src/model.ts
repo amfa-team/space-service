@@ -8,10 +8,3 @@ export interface ISpace {
   random: boolean;
   order: number;
 }
-
-export interface IPermission {
-  _id: string;
-  spaceId: string;
-  userEmail: string;
-  role: "admin" | "user";
-}

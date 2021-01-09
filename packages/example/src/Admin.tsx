@@ -28,9 +28,6 @@ function Admin(): ReactElement {
           <li>
             <NavLink to="/admin/space">Space</NavLink>
           </li>
-          <li>
-            <NavLink to="/admin/permission">Permission</NavLink>
-          </li>
         </ul>
       </div>
       <SpaceServiceSettings settings={{ endpoint, secret }}>
