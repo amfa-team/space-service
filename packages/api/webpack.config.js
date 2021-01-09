@@ -47,10 +47,6 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
     alias: {
-      "@amfa-team/space-service-shared": path.resolve(
-        __dirname,
-        "../shared/src",
-      ),
       "@amfa-team/space-service-types": path.resolve(__dirname, "../types/src"),
     },
     plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })],
@@ -58,10 +54,7 @@ module.exports = {
   plugins,
   externals: [
     nodeExternals({
-      allowlist: [
-        "@amfa-team/space-service-shared",
-        "@amfa-team/space-service-types",
-      ],
+      allowlist: ["@amfa-team/space-service-types"],
       additionalModuleDirs: [
         path.resolve(__dirname, "..", "..", "node_modules"),
       ],

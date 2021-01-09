@@ -98,11 +98,6 @@ Run `yarn && yarn start`
 
 ### Packages
 
-#### Shared
-
-- typescript
-- shared code between environments
-
 #### React
 
 - React component library

@@ -9,7 +9,6 @@
       "workspaces": {
         "extensions": [".mjs", ".js", ".ts", ".tsx", ".json", ".css"],
         "sources": {
-          "@amfa-team/space-service-shared": ["./packages/shared/src"],
           "@amfa-team/space-service-types": ["./packages/types/src"],
           "@amfa-team/space-service/dist/index.css": [
             "./packages/react/src/index.css"

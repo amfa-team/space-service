@@ -12,8 +12,5 @@
     "sourceMap": false
   },
   "include": ["src"],
-  "references": [
-    { "path": "../shared", "prepend": false },
-    { "path": "../types", "prepend": false }
-  ]
+  "references": [{ "path": "../types", "prepend": false }]
 }
