@@ -1,6 +1,7 @@
 const path = require("path");
 const SentryWebpackPlugin = require("@sentry/webpack-plugin");
 const slsw = require("serverless-webpack");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
 
@@ -52,6 +53,7 @@ module.exports = {
       ),
       "@amfa-team/space-service-types": path.resolve(__dirname, "../types/src"),
     },
+    plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })],
   },
   plugins,
   externals: [
