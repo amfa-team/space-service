@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.2.0-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.2.0-beta.1...@amfa-team/space-service@1.2.0-beta.2) (2021-01-09)
+
+
+### Bug Fixes
+
+* resolve ([c1d776d](https://github.com/amfa-team/space-service/commit/c1d776d46bf2e4da6d62b3ea75d19aecfb8300ab))
+
 # @amfa-team/space-service [1.2.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.1.0...@amfa-team/space-service@1.2.0-beta.1) (2021-01-09)
 
 
