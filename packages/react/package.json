@@ -13,7 +13,7 @@
   "dependencies": {
     "@amfa-team/space-service-types": "^1.1.0",
     "@babel/runtime": "^7.12.5",
-    "abortcontroller-polyfill": "^1.7.0",
+    "abortcontroller-polyfill": "^1.7.1",
     "core-js": "^3.8.2",
     "react-table": "^7.6.2",
     "whatwg-fetch": "^3.5.0"
