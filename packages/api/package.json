@@ -32,8 +32,8 @@
   },
   "scripts": {
     "start": "serverless offline --stage dev",
-    "build": "echo \"api: No build script\"",
-    "clean": "rm -rf .webpack lib",
+    "build": "tsc -b",
+    "clean": "tsc -b --clean && rm -rf .webpack lib",
     "aws:profile:set": "serverless config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY --profile picnic -o",
     "deploy:staging": "serverless deploy --stage staging",
     "deploy:staging:info": "serverless info --stage staging",

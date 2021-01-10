@@ -38,7 +38,7 @@ provider:
       Resource: "arn:aws:s3:::${self:custom.sbs.bucketName.${opt:stage, self:provider.stage}}/*"
 
 package:
-  individually: true
+  individually: false
 
 functions:
   list:
