@@ -11,6 +11,19 @@
 
 * upgrade deps ([14d20b6](https://github.com/amfa-team/space-service/commit/14d20b6f1c047873a3fb259e754a086514d9f730))
 
+# @amfa-team/space-service-types [1.2.0-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-types@1.2.0-beta.1...@amfa-team/space-service-types@1.2.0-beta.2) (2021-01-10)
+
+
+### Bug Fixes
+
+* dependencies ([0f4c100](https://github.com/amfa-team/space-service/commit/0f4c10071631a4bb73f35facdcfad19a0be98457))
+* types build ([73f56ee](https://github.com/amfa-team/space-service/commit/73f56ee100a5624427abd383ee548036655f58db))
+
+
+### Features
+
+* upgrade deps ([14d20b6](https://github.com/amfa-team/space-service/commit/14d20b6f1c047873a3fb259e754a086514d9f730))
+
 # @amfa-team/space-service-types [1.2.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-types@1.1.0...@amfa-team/space-service-types@1.2.0-beta.1) (2021-01-09)
 
 
