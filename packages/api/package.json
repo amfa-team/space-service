@@ -43,16 +43,16 @@
   "dependencies": {
     "@amfa-team/user-service-node": "^1.0.0-beta.5",
     "@amfa-team/space-service-types": "^1.1.0",
-    "@sentry/serverless": "^5.27.3",
-    "@types/aws-lambda": "^8.10.64",
+    "@sentry/serverless": "^5.29.2",
+    "@types/aws-lambda": "^8.10.70",
     "aws-lambda": "^1.0.6",
-    "aws-sdk": "^2.804.0",
+    "aws-sdk": "^2.824.0",
     "gm": "^1.23.1",
     "imagemin": "^7.0.1",
     "imagemin-jpeg-recompress": "^7.0.0",
     "imagemin-jpegtran": "^7.0.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.11.4",
+    "mongoose": "^5.11.11",
     "source-map-support": "^0.5.19",
     "ts.data.json": "^1.5.0"
   }
