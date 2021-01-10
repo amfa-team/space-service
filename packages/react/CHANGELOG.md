@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.2.0-beta.5](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.2.0-beta.4...@amfa-team/space-service@1.2.0-beta.5) (2021-01-10)
+
+
+### Features
+
+* upgrade deps ([4d057b9](https://github.com/amfa-team/space-service/commit/4d057b98730bbd67c6ad4e6ab7f7bd7929fc6f7e))
+
 # @amfa-team/space-service [1.2.0-beta.4](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.2.0-beta.3...@amfa-team/space-service@1.2.0-beta.4) (2021-01-10)
 
 
