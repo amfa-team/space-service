@@ -57,6 +57,7 @@ module.exports = {
   plugins,
   externals: [
     nodeExternals({
+      allowlist: [/^@amfa-team\//],
       additionalModuleDirs: [
         path.resolve(__dirname, "..", "..", "node_modules"),
       ],
