@@ -54,7 +54,6 @@ module.exports = {
   plugins,
   externals: [
     nodeExternals({
-      allowlist: ["@amfa-team/space-service-types"],
       additionalModuleDirs: [
         path.resolve(__dirname, "..", "..", "node_modules"),
       ],

@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "@amfa-team/user-service-node": "^1.0.0-beta.5",
+    "@amfa-team/user-service-types": "^1.0.0-beta.6",
     "@amfa-team/space-service-types": "^1.1.0",
     "@sentry/serverless": "^5.29.2",
     "@types/aws-lambda": "^8.10.70",
