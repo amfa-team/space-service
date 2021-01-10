@@ -107,5 +107,3 @@ packages/*/lib
 # CSS Files
 src/**/*.css
 src/**/*.css.map
-
-packages/*/CHANGELOG.md
