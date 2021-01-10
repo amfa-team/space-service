@@ -5,7 +5,7 @@ const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
 
-const plugins = [new webpack.WatchIgnorePlugin([/\.d\.ts$/])];
+const plugins = [new webpack.WatchIgnorePlugin({ paths: [/\.d\.ts$/] })];
 
 if (!slsw.lib.webpack.isLocal) {
   plugins.push(

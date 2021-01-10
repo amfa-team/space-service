@@ -10,27 +10,27 @@
     d "1"
     es5-ext "^0.10.47"
 
-"@amfa-team/user-service-node@^1.0.0-beta.5":
-  version "1.0.0-beta.5"
-  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service-node/1.0.0-beta.5/895d7ecf6c79420792d105383a324cfb333af0a6b9ba2c92648d8469c7b81ca9#e5b48a054f78d32145009a45d45fc9c682985215"
-  integrity sha512-CX9uhc25XN+L8zkHMP9yIm1nUiKoVpHnd1vkkC1jyOG6MxhpWclsmDoijuR2Ou0PuK8NyrwobSXHueRf1FYOrA==
+"@amfa-team/user-service-node@^1.0.0-beta.6":
+  version "1.0.0-beta.6"
+  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service-node/1.0.0-beta.6/f2d424a26eaccaf85f02bf984d9853f0fb98ee0d4d1a4bd162013c56e11f8710#81c8d37313674a20eb2cc95165afcc4d6ff2cc2f"
+  integrity sha512-6UxHmTi2aC3gC+238W6CftCv8VG78RKwiWDkTx/Yc6T8lnmP0m1DEcoCGBRnwvlfNDI4QyD+g2nx5Dquo/JkwQ==
   dependencies:
     jsonwebtoken "^8.5.1"
 
-"@amfa-team/user-service-types@^1.0.0-beta.6":
-  version "1.0.0-beta.6"
-  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service-types/1.0.0-beta.6/f956631697eb7b902120b329a80ed002bf3e3ead55879d7039c1e4ffb9c63e37#dd163b693999bb3b7836710b0521e2ff2882b38a"
-  integrity sha512-ts4jeg921LKRJESo1fZSmWjdAm74QVYRTZF0mtnpxYuBOrWsawrlFCL0kIRuXIDiruei7v+RGul/sXe4I/lV+w==
+"@amfa-team/user-service-types@^1.0.0-beta.7":
+  version "1.0.0-beta.7"
+  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service-types/1.0.0-beta.7/7736a3c4c3a9e9bb1a2966796bbb6a9cfe5f9d9981275894a13fa149eacd976f#faa6b51ddde62d3baef05efc58c8479204217393"
+  integrity sha512-ku2barzpXxXUdegjT6WY3XB+tISYJGxsm39Qp3lmNced/GYRHHf2f4u/ENdbLC2iPk7zLANrC3IRQ+xFfrK43A==
 
-"@amfa-team/user-service@^1.2.0-beta.6":
-  version "1.2.0-beta.6"
-  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service/1.2.0-beta.6/fe40cd358bf8e55a2beb749d1c3bcd9a9b2bd0a094a928490034695c837698a6#0ddee58bae9b2bceab68821d220fd180c2644523"
-  integrity sha512-t5/F9r2YZdyf5J75uIqqVBd6FjZr/yLBUir/zbJO7gVm7F2OBBVYkKVpm9h+ybcI2dRwfUCVx2q5vOOMIkiCbA==
+"@amfa-team/user-service@^1.2.0-beta.8":
+  version "1.2.0-beta.8"
+  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service/1.2.0-beta.8/f919bcb1fe56f78dd0e53756e429af8ecaeffea9834d1b131a15cd0fd7c86673#16e762dcdc57dccc1392df86cdfe0850b3e5ec4d"
+  integrity sha512-fepLJSZm6sVS0J5fU7WUE3PckuQUg11I3j8iT1xBwTQNq+LcPkoJqiw3iF+MVoofBpDLO3sR3SSeCmCJQ27ilg==
   dependencies:
     "@babel/runtime" "^7.12.5"
-    abortcontroller-polyfill "^1.5.0"
+    abortcontroller-polyfill "^1.7.1"
     classnames "^2.2.6"
-    core-js "^3.7.0"
+    core-js "^3.8.2"
     email-validator "^2.0.4"
     jwt-decode "^3.1.2"
     react-table "^7.6.2"
@@ -4549,15 +4549,15 @@ abbrev@1, abbrev@~1.1.1:
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
   integrity sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==
 
-abortcontroller-polyfill@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/abortcontroller-polyfill/-/abortcontroller-polyfill-1.5.0.tgz#2c562f530869abbcf88d949a2b60d1d402e87a7c"
-  integrity sha512-O6Xk757Jb4o0LMzMOMdWvxpHWrQzruYBaUruFaIOfAQRnWFxfdXYobw12jrVHGtoXk6WiiyYzc0QWN9aL62HQA==
-
 abortcontroller-polyfill@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/abortcontroller-polyfill/-/abortcontroller-polyfill-1.7.0.tgz#7719edfaaa2ae527b87142d3d282ff3de3f369f2"
   integrity sha512-QkiN2F5zqeskxEmt3LinwAYOq5LpB1IUab9x1szUxizeE4ZUoj5HA26neSde+c8kvEyHeHRFIE6vdM4tk1AIQg==
+
+abortcontroller-polyfill@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/abortcontroller-polyfill/-/abortcontroller-polyfill-1.7.1.tgz#27084bac87d78a7224c8ee78135d05df430c2d2f"
+  integrity sha512-yml9NiDEH4M4p0G4AcPkg8AAa4mF3nfYF28VQxaokpO67j9H7gWgmsVWJ/f1Rn+PzsnDYvzJzWIQzCqDKRvWlA==
 
 accepts@^1.3.5, accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.7:
   version "1.3.7"
@@ -7747,11 +7747,6 @@ core-js@^3.0.1, core-js@^3.0.4, core-js@^3.6.1, core-js@^3.6.5:
   version "3.6.5"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
   integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
-
-core-js@^3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.7.0.tgz#b0a761a02488577afbf97179e4681bf49568520f"
-  integrity sha512-NwS7fI5M5B85EwpWuIwJN4i/fbisQUwLwiSNUWeXlkAZ0sbBjLEvLvFLf1uzAUV66PcEPt4xCGCmOZSxVf3xzA==
 
 core-js@^3.8.2:
   version "3.8.2"
