@@ -4,14 +4,15 @@ import type {
   ImageUploadPayload,
   ImageUploadReq,
   PaginationPayload,
+  SpaceRemoveReq,
   SpaceUpdateReq,
 } from "@amfa-team/space-service-types";
 import type { PutObjectRequest } from "aws-sdk/clients/s3";
 import { JsonDecoder } from "ts.data.json";
-import { SpaceModel } from "../mongo/model/space";
-import type { HandlerResult } from "../services/io/types";
-import { getS3Client } from "../services/s3/s3Client";
-import { getEnv } from "../utils/env";
+import { SpaceModel } from "../../mongo/model/space";
+import type { HandlerResult } from "../../services/io/types";
+import { getS3Client } from "../../services/s3/s3Client";
+import { getEnv } from "../../utils/env";
 
 export const adminImageUploadDecoder = JsonDecoder.object<ImageUploadReq>(
   {
@@ -19,22 +20,6 @@ export const adminImageUploadDecoder = JsonDecoder.object<ImageUploadReq>(
     name: JsonDecoder.string,
   },
   "adminImageUploadDecoder",
-);
-
-export const paginationDecoder = JsonDecoder.object(
-  {
-    pageSize: JsonDecoder.number,
-    pageIndex: JsonDecoder.number,
-  },
-  "paginationDecoder",
-);
-
-export const adminListDecoder = JsonDecoder.object(
-  {
-    pagination: paginationDecoder,
-    secret: JsonDecoder.string,
-  },
-  "adminListDecoder",
 );
 
 export async function handleAdminImageUpload(
@@ -89,6 +74,7 @@ export const adminSpaceUpdateDecoder = JsonDecoder.object(
         enabled: JsonDecoder.boolean,
         imageUrl: JsonDecoder.nullable(JsonDecoder.string),
         home: JsonDecoder.boolean,
+        public: JsonDecoder.boolean,
         random: JsonDecoder.boolean,
         order: JsonDecoder.number,
       },
@@ -109,5 +95,23 @@ export async function handleAdminSpaceUpdate(
 
   return {
     payload: space,
+  };
+}
+
+export const adminSpaceRemoveDecoder = JsonDecoder.object(
+  {
+    slug: JsonDecoder.string,
+    secret: JsonDecoder.string,
+  },
+  "adminSpaceUpdateDecoder",
+);
+
+export async function handleAdminSpaceRemove(
+  data: SpaceRemoveReq,
+): Promise<HandlerResult<null>> {
+  await SpaceModel.findByIdAndRemove(data.slug);
+
+  return {
+    payload: null,
   };
 }

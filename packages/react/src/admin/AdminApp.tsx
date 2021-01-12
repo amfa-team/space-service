@@ -1,10 +1,10 @@
 import React from "react";
 import AdminSpaces from "./AdminSpaces/AdminSpaces";
 
-export function AdminApp() {
-  return (
-    <div>
-      <AdminSpaces />
-    </div>
-  );
+interface AdminAppProps {
+  current: "space" | "permission";
+}
+
+export function AdminApp(props: AdminAppProps) {
+  return <div>{props.current === "space" && <AdminSpaces />}</div>;
 }

@@ -1,7 +1,7 @@
 import type { ISpace } from "@amfa-team/space-service-types";
 import type { ReactNode } from "react";
 import React from "react";
-import { useSpaceList } from "../api/useApi";
+import { useSpaceList } from "../api/space/useSpaceList";
 
 interface SpaceListProps {
   children: (space: ISpace) => ReactNode;

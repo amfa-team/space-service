@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import React from "react";
 import type { ApiSettings } from "../api/api";
-import { useSpaceService } from "../api/useApi";
+import { useSpaceService } from "../api/settings/useApiSettings";
 
 interface UserServiceSettingsProps {
   children: JSX.Element | JSX.Element[] | ReactNode;

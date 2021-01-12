@@ -3,7 +3,11 @@ import type {
   GetRoutes,
   PostRoutes,
 } from "@amfa-team/space-service-types";
-import type { APIGatewayEventRequestContext } from "aws-lambda";
+import type {
+  APIGatewayEventRequestContext,
+  APIGatewayProxyEventHeaders,
+  APIGatewayProxyEventQueryStringParameters,
+} from "aws-lambda";
 
 export interface PublicRequest<T> {
   data: T;
@@ -22,13 +26,13 @@ export interface HandlerResult<T> {
 }
 
 export type GetHandler<P extends keyof GetRoutes> = (
-  params: Record<string, string> | null,
-  headers: Record<string, string>,
+  params: APIGatewayProxyEventQueryStringParameters | null,
+  headers: APIGatewayProxyEventHeaders,
   requestContext: APIGatewayEventRequestContext,
 ) => Promise<HandlerResult<GetRoutes[P]["out"]>>;
 
 export type PostHandler<P extends keyof PostRoutes> = (
   data: PostRoutes[P]["in"],
-  headers: Record<string, string>,
+  headers: APIGatewayProxyEventHeaders,
   requestContext: APIGatewayEventRequestContext,
 ) => Promise<HandlerResult<PostRoutes[P]["out"]>>;

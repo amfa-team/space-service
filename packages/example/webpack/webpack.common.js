@@ -13,7 +13,7 @@ const config = {
     extensions: [".ts", ".tsx", ".js"],
   },
   output: {
-    filename: "static/js/[name].[hash].js",
+    filename: "static/js/[name].[contenthash].js",
     path: commonPaths.outputPath,
 
     // There are also additional JS chunk files if you use code splitting.
@@ -80,9 +80,7 @@ const config = {
       },
     ],
   },
-  stats: {
-    warningsFilter: [/Failed to parse source map/],
-  },
+  // ignoreWarnings: [/Failed to parse source map/],
 };
 
 module.exports = config;

@@ -3,6 +3,7 @@ export interface ISpace {
   name: string;
   imageUrl: string | null;
   enabled: boolean;
+  public: boolean;
   home: boolean;
   random: boolean;
   order: number;

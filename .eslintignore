@@ -99,6 +99,7 @@ packages/*/lib
 
 # Webpack directories
 .webpack
+.serverless
 
 # Mac OS
 .DS_Store

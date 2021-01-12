@@ -19,19 +19,21 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-
-      - run: echo '@amfa-team:registry=https://npm.pkg.github.com' > .npmrc
+      - run: echo -e "//npm.pkg.github.com/:_authToken=$NPM_TOKEN\n@amfa-team:registry=https://npm.pkg.github.com" > .npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: yarn install
       - run: echo "SENTRY_DNS=${{secrets.SENTRY_EXAMPLE_DNS}}" >> packages/example/.env
       - run: echo "API_ENDPOINT=${{secrets.API_ENDPOINT_STAGING}}" >> packages/example/.env
+      - run: echo "USER_API_ENDPOINT=${{secrets.USER_API_ENDPOINT_STAGING}}" >> packages/example/.env
       - name: build
         run: yarn build
       # deploy-react:
       - name: publish sdk
-        working-directory: ./packages/react
-        run: yarn semantic-release
+        run: yarn npm:release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_SDK }}
       # deploy-example:
       - name: deploy
@@ -57,3 +59,4 @@ jobs:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           MONGO_DB_URL: ${{ secrets.MONGO_DB_URL_STAGING }}
           API_SECRET: ${{ secrets.API_SECRET_STAGING }}
+          USER_SERVICE_API_SECRET: ${{ secrets.USER_SERVICE_API_SECRET_STAGING }}

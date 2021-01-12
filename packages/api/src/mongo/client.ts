@@ -12,19 +12,26 @@ async function getClient(url: string): Promise<Mongoose> {
 
   let cachedClient = cachedClientMap.get(url) ?? null;
   if (cachedClient) {
+    const client: Promise<Mongoose> = cachedClient
+      .then(async () => Promise.reject(new Error("oops")))
+      .catch(async (e) => {
+        logger.error(e, "[mongo/client:connect]: cache failed");
+        cachedClientMap.delete(url);
+        return getClient(url);
+      });
     logger.info("[mongo/client:getClient]: using cached mongodb client");
-    return cachedClient;
+    return client;
   }
 
   try {
     cachedClient = mongoose.connect(url, {
-      appname: `room-service-${getEnvName()}`,
+      appname: `user-service-${getEnvName()}`,
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      connectTimeoutMS: 10_000,
+      connectTimeoutMS: 30_000,
       socketTimeoutMS: 30_000,
       keepAlive: true,
-      keepAliveInitialDelay: 300_000,
+      keepAliveInitialDelay: 30_000,
       useFindAndModify: false,
       useCreateIndex: true,
     });
@@ -39,20 +46,22 @@ async function getClient(url: string): Promise<Mongoose> {
 
     client.connection.on("error", (err) => {
       logger.error(err, "[mongo/client:event]: error");
+      cachedClientMap.delete(url);
       client.disconnect().catch((e) => logger.error(e));
     });
 
     client.connection.on("reconnectFailed", (err) => {
       logger.error(err, "[mongo/client:event]: reconnectFailed");
+      cachedClientMap.delete(url);
       client.disconnect().catch((e) => logger.error(e));
     });
 
-    client.connection.on("disconnected", () => {
-      logger.error(new Error("[mongo/client:event]: disconnected"));
+    client.connection.on("disconnected", (...args) => {
+      logger.warn("[mongo/client:event]: disconnected", { args });
     });
 
-    client.connection.on("connected", () => {
-      logger.info("[mongo/client:event]: connected");
+    client.connection.on("connected", (...args) => {
+      logger.info("[mongo/client:event]: connected", { args });
     });
 
     client.connection.on("reconnected", () => {

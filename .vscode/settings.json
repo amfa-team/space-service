@@ -7,7 +7,7 @@
   "files.insertFinalNewline": true,
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.preferences.importModuleSpecifier": "project-relative",
   "files.associations": {
     ".stylelintrc": "json"
   },
@@ -37,5 +37,18 @@
     "packages/*/build": true,
     "**/.serverless": true,
     "**/.webpack": true
-  }
+  },
+  "compareFolders.excludeFilter": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/node_modules",
+    "packages/*/lib",
+    "packages/*/dist",
+    "packages/*/build",
+    "**/.serverless",
+    "**/.webpack"
+  ]
 }
