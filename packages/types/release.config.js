@@ -1,4 +1,4 @@
-module.exports = {
+const mainConfig = {
   branches: [
     "master",
     { name: "develop", channel: "beta", prerelease: "beta" },
@@ -20,7 +20,7 @@ module.exports = {
         assets: ["CHANGELOG.md"],
         message:
           // eslint-disable-next-line no-template-curly-in-string
-          "chore(release): ${nextRelease.version} [skip ci]",
+          "chore(release): ${nextRelease.version}",
       },
     ],
     "@semantic-release/github",
@@ -40,3 +40,25 @@ module.exports = {
     ],
   ],
 };
+
+const { execSync } = require("child_process");
+const { createHash } = require("crypto");
+
+const branch = execSync("git branch --show-current").toString().trimEnd("\n");
+const channel = createHash("md5").update(branch).digest("hex");
+
+const localConfig = {
+  branches: [
+    "master",
+    { name: "develop", channel: "beta", prerelease: "beta" },
+    {
+      name: branch,
+      channel,
+      prerelease: channel,
+    },
+  ],
+  repositoryUrl: "https://github.com/amfa-team/space-service.git",
+  plugins: ["@semantic-release/commit-analyzer", "@semantic-release/npm"],
+};
+
+module.exports = process.env.LOCAL_RELEASE ? localConfig : mainConfig;
