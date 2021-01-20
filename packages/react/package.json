@@ -22,8 +22,8 @@
     "access": "restricted"
   },
   "devDependencies": {
-    "@amfa-team/user-service": "^1.2.0-beta.8",
-    "@amfa-team/user-service-types": "^1.0.0-beta.7",
+    "@amfa-team/user-service": "^1.3.0-8918adf3c6a6bcd1cbcec74de56b0719.1",
+    "@amfa-team/user-service-types": "^1.1.0-8918adf3c6a6bcd1cbcec74de56b0719.1",
     "@babel/core": "^7.12.10",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-transform-runtime": "^7.12.10",
@@ -65,8 +65,8 @@
     "typescript-plugin-css-modules": "^3.0.1"
   },
   "peerDependencies": {
-    "@amfa-team/user-service": "^1.2.0-beta.8",
-    "@amfa-team/user-service-types": "^1.0.0-beta.7",
+    "@amfa-team/user-service": "^1.3.0-8918adf3c6a6bcd1cbcec74de56b0719.1",
+    "@amfa-team/user-service-types": "^1.1.0-8918adf3c6a6bcd1cbcec74de56b0719.1",
     "@sentry/react": "^5.29.2",
     "@types/react": "^16.14.2",
     "@types/react-dom": "^16.9.10",
