@@ -36,7 +36,7 @@ export function SpacePage(props: SpacePageProps) {
     return <LoadingComponent />;
   }
 
-  if (space === null && !isPrivate) {
+  if (!isPrivate) {
     return children(space);
   }
 
