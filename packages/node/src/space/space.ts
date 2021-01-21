@@ -15,6 +15,7 @@ export async function getSpace(
   const result = await res.json();
 
   if (!result.success) {
+    // eslint-disable-next-line no-console
     console.error(result);
     throw new Error("[space-service-node/getSpace]: unexpected error");
   }
