@@ -1,3 +1,4 @@
+import { ModalRoot } from "@amfa-team/theme-service";
 import { init } from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import React, { Suspense } from "react";
@@ -5,6 +6,9 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import App from "./App";
+import "normalize.css/normalize.css";
+import "react-datepicker/dist/react-datepicker.css";
+import "@amfa-team/theme-service/dist/index.css";
 import "@amfa-team/space-service/dist/index.css";
 import "@amfa-team/user-service/dist/index.css";
 import "./global.css";
@@ -22,6 +26,7 @@ ReactDOM.render(
     <Router>
       <RecoilRoot>
         <Suspense fallback={<div>Loading...</div>}>
+          <ModalRoot />
           <App />
         </Suspense>
       </RecoilRoot>

@@ -1,3 +1,36 @@
+# @amfa-team/space-service [1.2.0](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.1.0...@amfa-team/space-service@1.2.0) (2021-01-12)
+
+
+### Bug Fixes
+
+* dependencies ([0f4c100](https://github.com/amfa-team/space-service/commit/0f4c10071631a4bb73f35facdcfad19a0be98457))
+* remove notes ([c5764ed](https://github.com/amfa-team/space-service/commit/c5764ed57b70196834457cae67e69fb7efc6f3c5))
+* remove shared ([b94feb3](https://github.com/amfa-team/space-service/commit/b94feb3bbef96d69f8e947a9773f09869d9fc69f))
+* resolve ([c1d776d](https://github.com/amfa-team/space-service/commit/c1d776d46bf2e4da6d62b3ea75d19aecfb8300ab))
+* space name ([f34de0c](https://github.com/amfa-team/space-service/commit/f34de0c87bdd00a4a77d51ed6065d1b435a9cd2b))
+* use latest types package ([3dd8afc](https://github.com/amfa-team/space-service/commit/3dd8afc3a4a5ed3c98617c3f0005a1a80a4c66ad))
+
+
+### Features
+
+* add permission model with admin ([22baaf9](https://github.com/amfa-team/space-service/commit/22baaf9314d9ada8548525948c5b22b5da2fa00f))
+* add permissions ([7c90eee](https://github.com/amfa-team/space-service/commit/7c90eeef19d34ccb3d67c61048e62ba6ac84441e))
+* add public flag ([df8fb2c](https://github.com/amfa-team/space-service/commit/df8fb2c7b398101f09374fb4dec607e5e40686c2))
+* add remove space admin endpoint ([b8d28de](https://github.com/amfa-team/space-service/commit/b8d28de3acc172b9d3ed738a1496283448a73ba3))
+* publish types package ([9b8df0e](https://github.com/amfa-team/space-service/commit/9b8df0ecb3931a8f3751ded75fc1f9c950254f31))
+* upgrade dependencies ([f8d69aa](https://github.com/amfa-team/space-service/commit/f8d69aa20766765d117095daa21910f0ec4ce846))
+* upgrade deps ([4d057b9](https://github.com/amfa-team/space-service/commit/4d057b98730bbd67c6ad4e6ab7f7bd7929fc6f7e))
+* upgrade deps ([14d20b6](https://github.com/amfa-team/space-service/commit/14d20b6f1c047873a3fb259e754a086514d9f730))
+* use private space with user-service ([bff8cb7](https://github.com/amfa-team/space-service/commit/bff8cb746b0a1d6315c7dedd5b989518a9e87213))
+
+
+
+
+
+### Dependencies
+
+* **@amfa-team/space-service-types:** upgraded to 1.2.0
+
 # @amfa-team/space-service [1.2.0-beta.5](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.2.0-beta.4...@amfa-team/space-service@1.2.0-beta.5) (2021-01-10)
 
 

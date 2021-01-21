@@ -1,21 +1,16 @@
 import type { ISpace } from "@amfa-team/space-service-types";
-import {
-  useToken as useJwtToken,
-  useSpaceAccess,
-} from "@amfa-team/user-service";
+import { useToken as useJwtToken } from "@amfa-team/user-service";
 import { useEffect, useState } from "react";
 import { apiPost } from "../api";
 import { useApiSettings } from "../settings/useApiSettings";
 
 export function useSpace(slug: string) {
   const [space, setSpace] = useState<ISpace | null>(null);
-  const [isPrivate, setIsPrivate] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [isPrivate, setIsPrivate] = useState<boolean>(false);
   const token = useJwtToken();
   const settings = useApiSettings();
-
-  useSpaceAccess(slug, isPrivate ? "user" : null);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -54,5 +49,6 @@ export function useSpace(slug: string) {
   return {
     space,
     loading,
+    isPrivate,
   };
 }
