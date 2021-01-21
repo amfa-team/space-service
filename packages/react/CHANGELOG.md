@@ -1,3 +1,16 @@
+# @amfa-team/space-service [1.3.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.2.0...@amfa-team/space-service@1.3.0-beta.1) (2021-01-21)
+
+
+### Bug Fixes
+
+* space page ([595fcdd](https://github.com/amfa-team/space-service/commit/595fcdde1fa5f4781c677b19f1a785b1b077ed6a))
+
+
+### Features
+
+* update user-service ([e3ab254](https://github.com/amfa-team/space-service/commit/e3ab254b3022638dbfb00914a420d250fdbc2f0b))
+* upgrade dependencies ([480b2e8](https://github.com/amfa-team/space-service/commit/480b2e8b8291cf7de3417972e6dfee7216b37659))
+
 # @amfa-team/space-service [1.2.0](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.1.0...@amfa-team/space-service@1.2.0) (2021-01-12)
 
 
