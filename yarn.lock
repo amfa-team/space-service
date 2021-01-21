@@ -10,43 +10,37 @@
     d "1"
     es5-ext "^0.10.47"
 
-"@amfa-team/theme-service@^1.1.0-e5c2b5f8a17fce69db3276fc4e2f8cb7.10":
-  version "1.1.0-e5c2b5f8a17fce69db3276fc4e2f8cb7.10"
-  resolved "https://npm.pkg.github.com/download/@amfa-team/theme-service/1.1.0-e5c2b5f8a17fce69db3276fc4e2f8cb7.10/557bb4545b6dc2fe308e7622028aea109a8c2a0d25fc712128a0103d84a65137#8094899660eee18a46a11d61b6ea58b10cff85ac"
-  integrity sha512-edCb97OtvT/7mfw7ogFivB01r5cD32vixlBZlEYoBnGjp+5EKx8OtQry8MBz8pgArxCt3jofzUl8UfTxXkb1Mg==
+"@amfa-team/theme-service@^1.1.0-beta.1":
+  version "1.1.0-e5c2b5f8a17fce69db3276fc4e2f8cb7.13"
+  resolved "https://npm.pkg.github.com/download/@amfa-team/theme-service/1.1.0-e5c2b5f8a17fce69db3276fc4e2f8cb7.13/885c52896a943f3d6124a5e5aefe9ef9ab5580d52c2e8134d5811555cf7395ce#6140501977fa74decc7032fafcd63023353aee8a"
+  integrity sha512-/1qof6v5kPQbJs8Sk43cG1nNnI/yH7qi1trN6t9V/C523ALppF4ny61sa5Lcs8wivwAXOocOI9IsvPtvU+YtwA==
   dependencies:
     "@babel/runtime" "^7.12.5"
     abortcontroller-polyfill "^1.7.1"
     classnames "^2.2.6"
     core-js "^3.8.2"
     formik "^2.2.6"
-    normalize.css "^8.0.1"
     react-datepicker "^3.4.1"
     whatwg-fetch "^3.5.0"
 
-"@amfa-team/user-service-node@^1.0.0-beta.6":
-  version "1.0.0-beta.6"
-  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service-node/1.0.0-beta.6/f2d424a26eaccaf85f02bf984d9853f0fb98ee0d4d1a4bd162013c56e11f8710#81c8d37313674a20eb2cc95165afcc4d6ff2cc2f"
-  integrity sha512-6UxHmTi2aC3gC+238W6CftCv8VG78RKwiWDkTx/Yc6T8lnmP0m1DEcoCGBRnwvlfNDI4QyD+g2nx5Dquo/JkwQ==
+"@amfa-team/user-service-node@^1.1.0-beta.1":
+  version "1.1.0-beta.1"
+  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service-node/1.1.0-beta.1/1f1cc2033532b405e2bf8428738d86640d92c66ac32c8eaed0d280cd5137a9e2#f6d8d8b71aab7257f4c31a42e307b0bca204a8fc"
+  integrity sha512-6hisle+Hh3egx6I0f6zu5BLvgYmZNxFI104yLt6/qRVjrTjQ8N9r5E1+1Rnvh5oLsByxaUh40GaZd9Eu/AZRhQ==
   dependencies:
     jsonwebtoken "^8.5.1"
+    node-fetch "^2.6.1"
 
-"@amfa-team/user-service-types@^1.0.0-beta.7":
-  version "1.0.0-beta.7"
-  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service-types/1.0.0-beta.7/7736a3c4c3a9e9bb1a2966796bbb6a9cfe5f9d9981275894a13fa149eacd976f#faa6b51ddde62d3baef05efc58c8479204217393"
-  integrity sha512-ku2barzpXxXUdegjT6WY3XB+tISYJGxsm39Qp3lmNced/GYRHHf2f4u/ENdbLC2iPk7zLANrC3IRQ+xFfrK43A==
+"@amfa-team/user-service-types@^1.1.0-beta.1":
+  version "1.1.0-beta.1"
+  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service-types/1.1.0-beta.1/bf9b71ae40a966e4a9bc58b56966bccd54da3fd9a16885469adfcb1b463a67e5#a89ce53ad517f35fdd7a3180b12e439adb83b74f"
+  integrity sha512-HqymFBMR38+xp6+Ne+UxPPcDCfej8tkP+nZJTAQstf+pI4yroj1Ugly+kzZoW4lYK35Y0YojOMywz4XcpVVvuQ==
 
-"@amfa-team/user-service-types@^1.1.0-8918adf3c6a6bcd1cbcec74de56b0719.1":
-  version "1.1.0-8918adf3c6a6bcd1cbcec74de56b0719.1"
-  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service-types/1.1.0-8918adf3c6a6bcd1cbcec74de56b0719.1/4cdadeebedf975c30f5d7aa15f968053022f92abc2c04d65274dfb2447a7ba2e#415df2f648a1d98cdea390cf83614a9bba7a8f03"
-  integrity sha512-GnYvcaISoMSlJUSiqzDaX5sccYshzCSNSVDGnk/A2ajS7NWRwNhBTzb8zsRr2/3XfwU9c5Q1ved+UA4EJ613zw==
-
-"@amfa-team/user-service@^1.3.0-8918adf3c6a6bcd1cbcec74de56b0719.1":
-  version "1.3.0-8918adf3c6a6bcd1cbcec74de56b0719.1"
-  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service/1.3.0-8918adf3c6a6bcd1cbcec74de56b0719.1/86897e0d8ff0ec4c2b7a79c2fc128bc47da689607cfe6fe83d133f3b6846e920#064de9f3698f72cbf383055e2f49072ebe1eb415"
-  integrity sha512-VGXG66VMBvIVKBTD03YVHAxSz07Yz7rzpDBkPWUA6dW5xHKsAiov0viL/EX8ajU+iC9AoSxxtwuE2bEuCvo4YQ==
+"@amfa-team/user-service@^1.3.0-beta.1":
+  version "1.3.0-beta.1"
+  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service/1.3.0-beta.1/a79c67dab408de81d35ee13015fb2957e1d13043dee33079d0d9ba772469e294#93f8c5d2ebfd447b4238b75f6d1c899c4030621e"
+  integrity sha512-itx5sCVn6HTNJwyp8+70kKtci4t3bdfrEDlnHmRloh3BwXawLaatA6RxomV1NjkBTtRvNNzn21A//aCDWNy+3Q==
   dependencies:
-    "@amfa-team/theme-service" "^1.1.0-e5c2b5f8a17fce69db3276fc4e2f8cb7.10"
     "@babel/runtime" "^7.12.5"
     abortcontroller-polyfill "^1.7.1"
     classnames "^2.2.6"

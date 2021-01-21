@@ -1,6 +1,6 @@
 {
   "name": "@amfa-team/space-service-node",
-  "repository": "https://github.com/amfa-team/user-service.git",
+  "repository": "https://github.com/amfa-team/space-service.git",
   "version": "0.1.0",
   "description": "NodeJS library",
   "license": "SEE LICENSE IN LICENSE.md",

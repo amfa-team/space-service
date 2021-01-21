@@ -6,6 +6,8 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import App from "./App";
+import "normalize.css/normalize.css";
+import "react-datepicker/dist/react-datepicker.css";
 import "@amfa-team/theme-service/dist/index.css";
 import "@amfa-team/space-service/dist/index.css";
 import "@amfa-team/user-service/dist/index.css";
