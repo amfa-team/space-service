@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "lib": ["ES2019"],
+    "module": "commonjs",
+    "target": "ES2019",
+    "tsBuildInfoFile": "../../.build-cache/node.tsbuildinfo"
+  },
+  "include": ["src"],
+  "references": [{ "path": "../types", "prepend": false }]
+}

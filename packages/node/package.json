@@ -1,0 +1,33 @@
+{
+  "name": "@amfa-team/space-service-node",
+  "repository": "https://github.com/amfa-team/user-service.git",
+  "version": "0.1.0",
+  "description": "NodeJS library",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@amfa-team/space-service-types": "^1.1.0",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/exec": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
+    "semantic-release": "^17.3.1",
+    "semantic-release-slack-bot": "^1.7.0",
+    "typescript": "^4.1.3"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "peerDependencies": {
+    "@amfa-team/space-service-types": "^1.1.0"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "tsc -b --clean && rm -rf lib",
+    "prepublishOnly": "yarn build"
+  }
+}

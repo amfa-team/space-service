@@ -43,6 +43,7 @@
   },
   "scripts": {
     "lint": "eslint --cache . --ext .js,.jsx,.ts,.tsx .",
+    "lint:commit": "eslint --cache . --ext .js,.jsx,.ts,.tsx",
     "lint:style": "stylelint '**/*.css'",
     "prettier:fix": "prettier --write .",
     "prettier:check": "prettier --check .",
@@ -64,7 +65,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --cache .",
+      "yarn lint:commit",
       "prettier --write"
     ],
     "*.{css}": "stylelint",
