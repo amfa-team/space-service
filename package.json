@@ -43,6 +43,7 @@
   },
   "scripts": {
     "lint": "eslint --cache . --ext .js,.jsx,.ts,.tsx .",
+    "lint:commit": "eslint --cache . --ext .js,.jsx,.ts,.tsx",
     "lint:style": "stylelint '**/*.css'",
     "prettier:fix": "prettier --write .",
     "prettier:check": "prettier --check .",
@@ -51,8 +52,10 @@
     "start": "ttab yarn start:react; ttab yarn start:api; ttab yarn start:example",
     "start:api": "cd packages/api && yarn start",
     "start:react": "cd packages/react && yarn start",
+    "start:storybook": "cd packages/react && yarn storybook",
     "start:example": "sleep 3 && cd packages/example && yarn start",
-    "npm:release": "multi-semantic-release"
+    "npm:release": "multi-semantic-release",
+    "npm:release:local": "CI=true LOCAL_RELEASE=true multi-semantic-release"
   },
   "husky": {
     "hooks": {
@@ -62,7 +65,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --cache",
+      "yarn lint:commit",
       "prettier --write"
     ],
     "*.{css}": "stylelint",

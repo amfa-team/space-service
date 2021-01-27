@@ -1,24 +1,15 @@
 import {
   LoginAction,
   RegisterAction,
+  defaultLoginDictionary,
+  defaultLogoutDictionary,
+  defaultRegisterDictionary,
   useConnect,
   useUser,
 } from "@amfa-team/user-service";
 import type { IPublicUserData } from "@amfa-team/user-service-types";
 import React from "react";
 import classes from "./menu.module.css";
-
-const dictionary = {
-  registerBtn: "Register",
-  loginBtn: "Login",
-  logoutBtn: "Logout",
-  form: {
-    email: "Email:",
-    dob: "D.O.B.:",
-    submitNotice: "I accept to give away all my data",
-    submit: "Register",
-  },
-};
 
 function getStatus(
   isConnecting: boolean,
@@ -54,8 +45,11 @@ export default function Menu() {
             Connect
           </button>
         </div>
-        <RegisterAction dictionary={dictionary} />
-        <LoginAction dictionary={dictionary} />
+        <RegisterAction dictionary={defaultRegisterDictionary.fr} />
+        <LoginAction
+          loginDictionary={defaultLoginDictionary.fr}
+          logoutDictionary={defaultLogoutDictionary.fr}
+        />
       </div>
     </div>
   );

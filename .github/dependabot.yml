@@ -1,0 +1,62 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "@amfa-team/*"
+    target-branch: "develop"
+    versioning-strategy: increase-if-necessary
+    commit-message:
+      prefix: "chore:"
+  - package-ecosystem: "npm"
+    directory: "/packages/api"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "@amfa-team/*"
+    target-branch: "develop"
+    versioning-strategy: increase-if-necessary
+    commit-message:
+      prefix: "chore:"
+  - package-ecosystem: "npm"
+    directory: "/packages/example"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "@amfa-team/*"
+    target-branch: "develop"
+    versioning-strategy: increase-if-necessary
+    commit-message:
+      prefix: "chore:"
+  - package-ecosystem: "npm"
+    directory: "/packages/node"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "@amfa-team/*"
+    target-branch: "develop"
+    versioning-strategy: increase-if-necessary
+    commit-message:
+      prefix: "chore:"
+  - package-ecosystem: "npm"
+    directory: "/packages/react"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "@amfa-team/*"
+    target-branch: "develop"
+    versioning-strategy: increase-if-necessary
+    commit-message:
+      prefix: "chore:"
+  - package-ecosystem: "npm"
+    directory: "/packages/types"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "@amfa-team/*"
+    target-branch: "develop"
+    versioning-strategy: increase-if-necessary
+    commit-message:
+      prefix: "chore:"

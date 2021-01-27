@@ -11,7 +11,8 @@
     "declarationMap": true,
     "sourceMap": true,
     "paths": {
-      "@amfa-team/space-service-types": ["./packages/types/src"]
+      "@amfa-team/space-service-types": ["./packages/types/src"],
+      "@amfa-team/space-service-node": ["./packages/node/src"]
     },
     "allowJs": true,
     "checkJs": true,

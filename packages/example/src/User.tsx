@@ -53,7 +53,7 @@ function User(): ReactElement {
 
   return (
     <UserModalPage
-      dictionary={defaultModelPageDictionary}
+      dictionary={defaultModelPageDictionary.fr}
       resetPassQuery={resetPassQuery}
       invitationQuery={invitationQuery}
     />
