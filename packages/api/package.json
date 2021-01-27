@@ -41,8 +41,8 @@
     "deploy:production:info": "serverless info --stage production"
   },
   "dependencies": {
-    "@amfa-team/user-service-node": "^1.1.0-beta.1",
-    "@amfa-team/user-service-types": "^1.1.0-beta.1",
+    "@amfa-team/user-service-node": "^1.1.0",
+    "@amfa-team/user-service-types": "^1.1.0",
     "@amfa-team/space-service-types": "^1.1.0",
     "@sentry/serverless": "^5.29.2",
     "@types/aws-lambda": "^8.10.70",
