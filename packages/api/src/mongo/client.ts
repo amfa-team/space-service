@@ -12,20 +12,18 @@ async function getClient(url: string): Promise<Mongoose> {
 
   let cachedClient = cachedClientMap.get(url) ?? null;
   if (cachedClient) {
-    const client: Promise<Mongoose> = cachedClient
-      .then(async () => Promise.reject(new Error("oops")))
-      .catch(async (e) => {
-        logger.error(e, "[mongo/client:connect]: cache failed");
-        cachedClientMap.delete(url);
-        return getClient(url);
-      });
+    const client: Promise<Mongoose> = cachedClient.catch(async (e) => {
+      logger.error(e, "[mongo/client:connect]: cache failed");
+      cachedClientMap.delete(url);
+      return getClient(url);
+    });
     logger.info("[mongo/client:getClient]: using cached mongodb client");
     return client;
   }
 
   try {
     cachedClient = mongoose.connect(url, {
-      appname: `user-service-${getEnvName()}`,
+      appname: `space-service-${getEnvName()}`,
       useNewUrlParser: true,
       useUnifiedTopology: true,
       connectTimeoutMS: 30_000,

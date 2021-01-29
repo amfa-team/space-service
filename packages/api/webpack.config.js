@@ -12,7 +12,7 @@ if (!slsw.lib.webpack.isLocal) {
     new SentryWebpackPlugin({
       authToken: process.env.SENTRY_AUTH_TOKEN,
       org: "side-by-side-sas",
-      project: "room-service-api",
+      project: "space-service-api",
       include: "./src",
     }),
   );
