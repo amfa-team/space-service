@@ -54,8 +54,8 @@
     "start:react": "cd packages/react && yarn start",
     "start:storybook": "cd packages/react && yarn storybook",
     "start:example": "sleep 3 && cd packages/example && yarn start",
-    "npm:release": "multi-semantic-release",
-    "npm:release:local": "CI=true LOCAL_RELEASE=true multi-semantic-release"
+    "npm:release": "multi-semantic-release --deps.bump=inherit",
+    "npm:release:local": "CI=true LOCAL_RELEASE=true multi-semantic-release --deps.bump=inherit"
   },
   "husky": {
     "hooks": {
