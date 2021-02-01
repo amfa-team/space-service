@@ -1,5 +1,6 @@
 import type { ISpace } from "@amfa-team/space-service-types";
 import { useToken as useJwtToken } from "@amfa-team/user-service";
+import isEqual from "lodash.isequal";
 import { useEffect, useState } from "react";
 import { apiPost } from "../api";
 import { useApiSettings } from "../settings/useApiSettings";
@@ -21,7 +22,12 @@ export function useSpace(slug: string) {
       apiPost<"get">(settings, "get", { slug, token }, abortController.signal)
         .then((result) => {
           if (!abortController.signal.aborted) {
-            setSpace(result.space);
+            setSpace((currentSpace) => {
+              // do not update reference when equal to prevent re-render
+              return isEqual(result.space, currentSpace)
+                ? currentSpace
+                : result.space;
+            });
             setIsPrivate(result.private);
           }
         })
