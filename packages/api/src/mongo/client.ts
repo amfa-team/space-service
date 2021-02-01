@@ -5,18 +5,37 @@ import { logger } from "../services/io/logger";
 import { getEnv, getEnvName } from "../utils/env";
 
 const cachedClientMap: Map<string, Promise<Mongoose>> = new Map();
-let closing = false;
+
+function discardClient(url: string, client?: Mongoose) {
+  cachedClientMap.delete(url);
+  if (client) {
+    setTimeout(() => {
+      // Do not discard immediately to not fail currently running operations
+      client.disconnect().catch((e) => {
+        logger.error(e, "[mongo/client:discardClient]: disconnect failed");
+      });
+    }, 30_000);
+  }
+}
 
 async function getClient(url: string): Promise<Mongoose> {
   logger.info("[mongo/client:getClient]: connecting to mongodb");
 
   let cachedClient = cachedClientMap.get(url) ?? null;
   if (cachedClient) {
-    const client: Promise<Mongoose> = cachedClient.catch(async (e) => {
-      logger.error(e, "[mongo/client:connect]: cache failed");
-      cachedClientMap.delete(url);
-      return getClient(url);
-    });
+    const client: Promise<Mongoose> = cachedClient
+      .then((c) => {
+        if (c.connection.readyState === 1) {
+          return c;
+        }
+        discardClient(url, c);
+        return getClient(url);
+      })
+      .catch(async (e) => {
+        logger.error(e, "[mongo/client:connect]: cache failed");
+        discardClient(url);
+        return getClient(url);
+      });
     logger.info("[mongo/client:getClient]: using cached mongodb client");
     return client;
   }
@@ -24,10 +43,14 @@ async function getClient(url: string): Promise<Mongoose> {
   try {
     cachedClient = mongoose.connect(url, {
       appname: `space-service-${getEnvName()}`,
+      reconnectTries: 30,
+      reconnectInterval: 500,
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      connectTimeoutMS: 30_000,
-      socketTimeoutMS: 30_000,
+      connectTimeoutMS: 10_000,
+      poolSize: 5, // Maintain up to 5 socket connections
+      serverSelectionTimeoutMS: 5_000, // Keep trying to send operations for 5 seconds
+      socketTimeoutMS: 600_000, // Close sockets after 10 minutes of inactivity
       keepAlive: true,
       keepAliveInitialDelay: 30_000,
       useFindAndModify: false,
@@ -54,24 +77,25 @@ async function getClient(url: string): Promise<Mongoose> {
       client.disconnect().catch((e) => logger.error(e));
     });
 
-    client.connection.on("disconnected", (...args) => {
-      logger.warn("[mongo/client:event]: disconnected", { args });
+    client.connection.on("disconnected", () => {
+      logger.warn("[mongo/client:event]: disconnected");
     });
 
-    client.connection.on("connected", (...args) => {
-      logger.info("[mongo/client:event]: connected", { args });
+    client.connection.on("connected", () => {
+      logger.info("[mongo/client:event]: connected");
     });
 
     client.connection.on("reconnected", () => {
       logger.warn("[mongo/client:event]: reconnected");
     });
 
+    client.connection.on("reconnectTries", () => {
+      logger.warn("[mongo/client:event]: reconnectTries");
+    });
+
     client.connection.on("close", () => {
       logger.warn("[mongo/client:event]: close");
-      cachedClientMap.delete(url);
-      if (!closing) {
-        getClient(url).catch((e) => logger.error(e));
-      }
+      discardClient(url, client);
     });
 
     return client;
@@ -97,5 +121,4 @@ export function close(context: Context | null) {
     // eslint-disable-next-line no-param-reassign
     context.callbackWaitsForEmptyEventLoop = true;
   }
-  closing = true;
 }
