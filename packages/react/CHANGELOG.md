@@ -1,3 +1,10 @@
+## @amfa-team/space-service [1.3.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.3.0...@amfa-team/space-service@1.3.1) (2021-02-01)
+
+
+### Bug Fixes
+
+* prevent useless space page re-render ([aa9a93f](https://github.com/amfa-team/space-service/commit/aa9a93fe7d09c85241629e6e23a3cb346257fc0b))
+
 ## @amfa-team/space-service [1.3.1-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.3.0...@amfa-team/space-service@1.3.1-beta.1) (2021-02-01)
 
 
