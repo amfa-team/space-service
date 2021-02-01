@@ -6,7 +6,7 @@ import type {
   RestrictedPageDictionary,
 } from "@amfa-team/user-service";
 import { RestrictedPage } from "@amfa-team/user-service";
-import React from "react";
+import React, { useMemo } from "react";
 import { useSpace } from "../api/space/useSpace";
 
 interface SpacePageProps {
@@ -32,12 +32,16 @@ export function SpacePage(props: SpacePageProps) {
 
   const { isPrivate, space, loading } = useSpace(slug);
 
+  const child = useMemo(() => {
+    return children(space);
+  }, [children, space]);
+
   if (loading) {
     return <LoadingComponent />;
   }
 
   if (!isPrivate) {
-    return children(space);
+    return child;
   }
 
   return (
@@ -49,7 +53,7 @@ export function SpacePage(props: SpacePageProps) {
       registerDictionary={registerDictionary}
       dictionary={dictionary}
     >
-      {children(space)}
+      {child}
     </RestrictedPage>
   );
 }
