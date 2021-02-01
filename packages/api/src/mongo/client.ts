@@ -6,30 +6,39 @@ import { getEnv, getEnvName } from "../utils/env";
 
 const cachedClientMap: Map<string, Promise<Mongoose>> = new Map();
 
-function discardClient(url: string) {
-  const cachedClient = cachedClientMap.get(url) ?? null;
+function discardClient(url: string, client?: Mongoose) {
   cachedClientMap.delete(url);
-  setTimeout(() => {
-    // Do not discard immediately to not fail currently running operations
-    cachedClient?.disconnect();
-  }, 30_000);
+  if (client) {
+    setTimeout(() => {
+      // Do not discard immediately to not fail currently running operations
+      client.disconnect().catch((e) => {
+        logger.error(e, "[mongo/client:discardClient]: disconnect failed");
+      });
+    }, 30_000);
+  }
 }
 
 async function getClient(url: string): Promise<Mongoose> {
   logger.info("[mongo/client:getClient]: connecting to mongodb");
 
   let cachedClient = cachedClientMap.get(url) ?? null;
-  if (cachedClient?.connection.readyState !== 1 /* connected state */) {
-    const client: Promise<Mongoose> = cachedClient.catch(async (e) => {
-      logger.error(e, "[mongo/client:connect]: cache failed");
-      discardClient(url);
-      return getClient(url);
-    });
+  if (cachedClient) {
+    const client: Promise<Mongoose> = cachedClient
+      .then((c) => {
+        if (c.connection.readyState === 1) {
+          return c;
+        }
+        discardClient(url, c);
+        return getClient(url);
+      })
+      .catch(async (e) => {
+        logger.error(e, "[mongo/client:connect]: cache failed");
+        discardClient(url);
+        return getClient(url);
+      });
     logger.info("[mongo/client:getClient]: using cached mongodb client");
     return client;
   }
-
-  discardClient(url);
 
   try {
     cachedClient = mongoose.connect(url, {
@@ -86,7 +95,7 @@ async function getClient(url: string): Promise<Mongoose> {
 
     client.connection.on("close", () => {
       logger.warn("[mongo/client:event]: close");
-      discardClient(url);
+      discardClient(url, client);
     });
 
     return client;
