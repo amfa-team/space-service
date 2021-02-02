@@ -1,26 +1,48 @@
 import type { ISpace } from "@amfa-team/space-service-types";
+import isEqual from "lodash.isequal";
 import { useEffect, useState } from "react";
+import type { ApiSettings } from "../api";
 import { apiGet } from "../api";
 import { useApiSettings } from "../settings/useApiSettings";
 
-export function useSpaceList() {
-  const [spaces, setSpaces] = useState<ISpace[]>([]);
+export async function getSpaces(
+  settings: ApiSettings,
+  signal?: AbortSignal,
+): Promise<ISpace[]> {
+  const result = await apiGet<"list">(settings, "list", signal);
+  return result.spaces;
+}
+
+export function useSpaceList(initialSpaces: ISpace[]) {
+  const [spaces, setSpaces] = useState<ISpace[]>(initialSpaces);
   const [error, setError] = useState<Error | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
   const settings = useApiSettings();
+
+  useEffect(() => {
+    setSpaces(initialSpaces);
+    setRetryCount(0);
+  }, [initialSpaces]);
 
   useEffect(() => {
     const abortController = new AbortController();
     setError(null);
     if (settings) {
-      apiGet<"list">(settings, "list", abortController.signal)
+      getSpaces(settings, abortController.signal)
         .then((result) => {
           if (!abortController.signal.aborted) {
-            setSpaces(result.spaces);
+            setSpaces((prev) => {
+              return isEqual(prev, result) ? prev : result;
+            });
           }
         })
         .catch((e) => {
           if (!abortController.signal.aborted) {
-            setError(e);
+            if (retryCount < 3) {
+              setRetryCount(retryCount + 1);
+            } else {
+              setError(e);
+            }
           }
         });
     }
@@ -28,7 +50,7 @@ export function useSpaceList() {
     return () => {
       abortController.abort();
     };
-  }, [settings]);
+  }, [settings, retryCount]);
 
   if (error) {
     throw error;
