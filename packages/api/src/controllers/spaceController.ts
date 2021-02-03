@@ -8,10 +8,11 @@ import {
   parseOptionalUserServiceToken,
 } from "@amfa-team/user-service-node";
 import { JsonDecoder } from "ts.data.json";
-import { SpaceModel } from "../mongo/model/space";
+import { getSpaceModel } from "../mongo/model/space";
 import type { HandlerResult } from "../services/io/types";
 
 export async function handleList(): Promise<HandlerResult<SpacesPayload>> {
+  const SpaceModel = await getSpaceModel();
   const spaces = await SpaceModel.find({ enabled: true, home: true }, null, {
     sort: {
       enabled: 1,
@@ -37,6 +38,7 @@ export const handleGetDecoder = JsonDecoder.object(
 export async function handleGet(
   data: GetSpaceReq,
 ): Promise<HandlerResult<GetSpacePayload>> {
+  const SpaceModel = await getSpaceModel();
   const space = await SpaceModel.findById(data.slug);
   const userData = parseOptionalUserServiceToken(data.token);
 

@@ -9,7 +9,7 @@ import type {
 } from "@amfa-team/space-service-types";
 import type { PutObjectRequest } from "aws-sdk/clients/s3";
 import { JsonDecoder } from "ts.data.json";
-import { SpaceModel } from "../../mongo/model/space";
+import { getSpaceModel } from "../../mongo/model/space";
 import type { HandlerResult } from "../../services/io/types";
 import { getS3Client } from "../../services/s3/s3Client";
 import { getEnv } from "../../utils/env";
@@ -42,6 +42,7 @@ export async function handleAdminImageUpload(
 export async function handleAdminSpaces(
   data: AdminListData,
 ): Promise<HandlerResult<PaginationPayload<ISpace>>> {
+  const SpaceModel = await getSpaceModel();
   const { pageSize, pageIndex } = data.pagination;
   const [count, entities] = await Promise.all([
     SpaceModel.countDocuments({}),
@@ -89,6 +90,7 @@ export async function handleAdminSpaceUpdate(
   data: SpaceUpdateReq,
 ): Promise<HandlerResult<ISpace>> {
   const { space } = data;
+  const SpaceModel = await getSpaceModel();
   await SpaceModel.findOneAndUpdate({ _id: space._id }, space, {
     upsert: true,
   });
@@ -109,6 +111,7 @@ export const adminSpaceRemoveDecoder = JsonDecoder.object(
 export async function handleAdminSpaceRemove(
   data: SpaceRemoveReq,
 ): Promise<HandlerResult<null>> {
+  const SpaceModel = await getSpaceModel();
   await SpaceModel.findByIdAndRemove(data.slug);
 
   return {

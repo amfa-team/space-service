@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.4.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.3.1...@amfa-team/space-service@1.4.0-beta.1) (2021-02-02)
+
+
+### Features
+
+* support space hydratation ([df2df26](https://github.com/amfa-team/space-service/commit/df2df260a8ed3553686877efa4725f55acdc2738))
+
 ## @amfa-team/space-service [1.3.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.3.0...@amfa-team/space-service@1.3.1) (2021-02-01)
 
 

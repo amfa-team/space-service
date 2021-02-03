@@ -3,7 +3,6 @@ import type {
   PostRoutes,
   Response,
 } from "@amfa-team/space-service-types";
-import { fetch as fetchPolyfill } from "whatwg-fetch";
 
 export type ApiSettings = {
   endpoint: string;
@@ -15,7 +14,7 @@ export async function apiGet<P extends keyof GetRoutes>(
   path: P,
   signal: AbortSignal | null = null,
 ): Promise<GetRoutes[P]["out"]> {
-  const res = await fetchPolyfill(settings.endpoint + path, {
+  const res = await fetch(settings.endpoint + path, {
     method: "GET",
     signal,
   });
@@ -41,7 +40,7 @@ export async function apiPost<P extends keyof PostRoutes>(
   data: PostRoutes[P]["in"],
   signal: AbortSignal | null = null,
 ): Promise<PostRoutes[P]["out"]> {
-  const res = await fetchPolyfill(settings.endpoint + path, {
+  const res = await fetch(settings.endpoint + path, {
     method: "POST",
     body: JSON.stringify(data),
     signal,
