@@ -43,9 +43,10 @@ async function getClient(url: string): Promise<Mongoose> {
   try {
     const instance = new mongoose.Mongoose();
     cachedClient = instance.connect(url, {
-      appname: `space-service-${getEnvName()}`,
+      appname: `user-service-${getEnvName()}`,
       useNewUrlParser: true,
-      useUnifiedTopology: true,
+      // https://github.com/Automattic/mongoose/issues/9262
+      useUnifiedTopology: false,
       connectTimeoutMS: 10_000,
       poolSize: 5, // Maintain up to 5 socket connections
       serverSelectionTimeoutMS: 5_000, // Keep trying to send operations for 5 seconds
