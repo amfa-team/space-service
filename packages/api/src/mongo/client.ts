@@ -113,7 +113,7 @@ export async function connect(context?: Context | null): Promise<Mongoose> {
     // eslint-disable-next-line no-param-reassign
     context.callbackWaitsForEmptyEventLoop = false;
   }
-  // mongoose.set("debug", true);
+  mongoose.set("debug", true);
 
   return getClient(getEnv("MONGO_DB_URL"));
 }
