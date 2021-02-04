@@ -57,10 +57,8 @@ async function getClient(url: string): Promise<Mongoose> {
       bufferCommands: false, // Disable mongoose buffering
       bufferMaxEntries: 0, // and MongoDB driver buffering
       readPreference: "primaryPreferred",
-      writeConcern: {
-        // because of primaryPreferred --> request write to be propagated
-        w: "majority",
-      },
+      // because of primaryPreferred --> request write to be propagated
+      w: "majority",
     });
 
     cachedClientMap.set(url, cachedClient);
