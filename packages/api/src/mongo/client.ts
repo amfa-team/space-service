@@ -45,8 +45,7 @@ async function getClient(url: string): Promise<Mongoose> {
     cachedClient = instance.connect(url, {
       appname: `user-service-${getEnvName()}`,
       useNewUrlParser: true,
-      // https://github.com/Automattic/mongoose/issues/9262
-      useUnifiedTopology: false,
+      useUnifiedTopology: true,
       connectTimeoutMS: 10_000,
       poolSize: 5, // Maintain up to 5 socket connections
       serverSelectionTimeoutMS: 5_000, // Keep trying to send operations for 5 seconds
@@ -57,6 +56,11 @@ async function getClient(url: string): Promise<Mongoose> {
       useCreateIndex: true,
       bufferCommands: false, // Disable mongoose buffering
       bufferMaxEntries: 0, // and MongoDB driver buffering
+      readPreference: "primaryPreferred",
+      writeConcern: {
+        // because of primaryPreferred --> request write to be propagated
+        w: "majority",
+      },
     });
 
     cachedClientMap.set(url, cachedClient);
