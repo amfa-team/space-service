@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.5.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.4.1...@amfa-team/space-service@1.5.0-beta.1) (2021-02-05)
+
+
+### Features
+
+* retry getSpace ([41e6fe4](https://github.com/amfa-team/space-service/commit/41e6fe444c387f69baad857956392c17c0f443fc))
+
 ## @amfa-team/space-service [1.4.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.4.0...@amfa-team/space-service@1.4.1) (2021-02-03)
 
 
