@@ -31,7 +31,7 @@ export async function handleAdminImageUpload(
     Bucket: getEnv("S3_IMAGE_BUCKET"),
     Key: `${req.name}.jpg`,
     ContentType: "image/jpeg",
-    CacheControl: "public, max-age=604800, s-maxage=604800",
+    // CacheControl: "public, max-age=604800, s-maxage=604800",
     ACL: "public-read",
   };
 
