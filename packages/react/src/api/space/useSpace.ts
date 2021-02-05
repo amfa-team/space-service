@@ -10,8 +10,13 @@ export function useSpace(slug: string) {
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [isPrivate, setIsPrivate] = useState<boolean>(false);
+  const [retryCount, setRetryCount] = useState(0);
   const token = useJwtToken();
   const settings = useApiSettings();
+
+  useEffect(() => {
+    setRetryCount(0);
+  }, [slug]);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -33,7 +38,11 @@ export function useSpace(slug: string) {
         })
         .catch((e) => {
           if (!abortController.signal.aborted) {
-            setError(e);
+            if (retryCount < 3) {
+              setRetryCount(retryCount + 1);
+            } else {
+              setError(e);
+            }
           }
         })
         .finally(() => {
@@ -46,7 +55,7 @@ export function useSpace(slug: string) {
     return () => {
       abortController.abort();
     };
-  }, [settings, slug, token]);
+  }, [settings, slug, token, retryCount]);
 
   if (error) {
     throw error;
