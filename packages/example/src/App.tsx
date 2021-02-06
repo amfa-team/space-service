@@ -2,7 +2,7 @@ import { UserServiceSettings } from "@amfa-team/user-service";
 import type { ReactElement } from "react";
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import Admin from "./Admin";
+// import Admin from "./Admin";
 import Nav from "./Nav/Nav";
 import Public from "./Public/Public";
 import User from "./User";
@@ -23,9 +23,9 @@ function App(): ReactElement {
       <User />
       <Nav />
       <Switch>
-        <Route path="/admin/:pageName">
+        {/* <Route path="/admin/:pageName">
           <Admin />
-        </Route>
+        </Route> */}
         <Route path="/admin">
           <Redirect to="/admin/space" />
         </Route>
