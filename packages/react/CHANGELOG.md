@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.6.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.5.0...@amfa-team/space-service@1.6.0-beta.1) (2021-02-08)
+
+
+### Features
+
+* add close props ([a4481cb](https://github.com/amfa-team/space-service/commit/a4481cb91efb76e1b802518b6cdb5367c7b4f292))
+
 # @amfa-team/space-service [1.5.0](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.4.1...@amfa-team/space-service@1.5.0) (2021-02-06)
 
 
