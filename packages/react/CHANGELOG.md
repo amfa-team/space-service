@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.7.0](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.6.0...@amfa-team/space-service@1.7.0) (2021-02-09)
+
+
+### Features
+
+* add onClose ([3078e1a](https://github.com/amfa-team/space-service/commit/3078e1a7ffd7c7e8b6d31f11eee22ef9651f38e9))
+
 # @amfa-team/space-service [1.7.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.6.0...@amfa-team/space-service@1.7.0-beta.1) (2021-02-09)
 
 
