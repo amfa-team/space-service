@@ -17,7 +17,7 @@ interface SpacePageProps {
   logoutDictionary: LogoutDictionary;
   registerDictionary: RegisterDictionary;
   dictionary: RestrictedPageDictionary;
-  close: () => void;
+  onClose: () => void;
 }
 
 export function SpacePage(props: SpacePageProps) {
@@ -29,7 +29,7 @@ export function SpacePage(props: SpacePageProps) {
     logoutDictionary,
     registerDictionary,
     dictionary,
-    close,
+    onClose,
   } = props;
 
   const { isPrivate, space, loading } = useSpace(slug);
@@ -54,7 +54,7 @@ export function SpacePage(props: SpacePageProps) {
       logoutDictionary={logoutDictionary}
       registerDictionary={registerDictionary}
       dictionary={dictionary}
-      close={close}
+      onClose={onClose}
     >
       {child}
     </RestrictedPage>
@@ -62,5 +62,5 @@ export function SpacePage(props: SpacePageProps) {
 }
 
 SpacePage.defaultProps = {
-  close: () => false,
+  onClose: () => false,
 };

@@ -56,10 +56,10 @@
     react-table "^7.6.2"
     whatwg-fetch "^3.5.0"
 
-"@amfa-team/user-service@^1.7.0":
-  version "1.7.0"
-  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service/1.7.0/6000c421f8ad7c9a96b68c10fc33d08be5f793f5318413a2510bdb1a65c5f3ec#3bf5a18a8ba06872775e90def823aaeab7ae3972"
-  integrity sha512-PfCQhV8/n7A5EPVCrQ8QfXXoxksXefhTI2ivEQr65JEzk8hFtNep6LKAMcsAs1E/I8ad6slxD/GGoTiaVUWuBQ==
+"@amfa-team/user-service@^1.8.0":
+  version "1.8.0"
+  resolved "https://npm.pkg.github.com/download/@amfa-team/user-service/1.8.0/72560acad340f8b9ce8e540f64dbd4c405e85b231855f8646300b56d91bf0d9c#3f1e0e2c5e9bb528a73d079326672888220edcb9"
+  integrity sha512-NuH8qIRRnL8up6lkIutGBuFKmB+cdKNnRZejVVqlzfZbEJD0vqy1ZVvKjZnLFUjftTXAadRMiuJCfdco24EgNg==
   dependencies:
     "@babel/runtime" "^7.12.13"
     abortcontroller-polyfill "^1.7.1"
