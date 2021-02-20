@@ -11,7 +11,7 @@ import React, { useMemo } from "react";
 import { useSpace } from "../api/space/useSpace";
 
 interface SpacePageProps {
-  role: Role;
+  userRole: Role;
   slug: string;
   LoadingComponent: () => JSX.Element;
   children: (space: ISpace | null) => JSX.Element;
@@ -24,7 +24,7 @@ interface SpacePageProps {
 
 export function SpacePage(props: SpacePageProps) {
   const {
-    role,
+    userRole,
     slug,
     LoadingComponent,
     children,
@@ -51,7 +51,7 @@ export function SpacePage(props: SpacePageProps) {
 
   return (
     <RestrictedPage
-      userRole={role}
+      userRole={userRole}
       spaceSlug={slug}
       loginDictionary={loginDictionary}
       logoutDictionary={logoutDictionary}
@@ -65,6 +65,6 @@ export function SpacePage(props: SpacePageProps) {
 }
 
 SpacePage.defaultProps = {
-  role: "user",
+  userRole: "user",
   onClose: () => false,
 };
