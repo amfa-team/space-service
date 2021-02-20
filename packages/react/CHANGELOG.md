@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.8.0-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.8.0-beta.1...@amfa-team/space-service@1.8.0-beta.2) (2021-02-20)
+
+
+### Bug Fixes
+
+* rename role to userRole ([5c65fd9](https://github.com/amfa-team/space-service/commit/5c65fd97bc223f13657a931bcaab3d5c88ae7d25))
+
 # @amfa-team/space-service [1.8.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.7.0...@amfa-team/space-service@1.8.0-beta.1) (2021-02-20)
 
 
