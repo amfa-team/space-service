@@ -78,6 +78,7 @@ export const adminSpaceUpdateDecoder = JsonDecoder.object(
         home: JsonDecoder.boolean,
         public: JsonDecoder.boolean,
         random: JsonDecoder.boolean,
+        live: JsonDecoder.boolean,
         order: JsonDecoder.number,
       },
       "space",

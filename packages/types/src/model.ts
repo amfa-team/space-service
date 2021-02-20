@@ -6,5 +6,6 @@ export interface ISpace {
   public: boolean;
   home: boolean;
   random: boolean;
+  live: boolean;
   order: number;
 }

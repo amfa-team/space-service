@@ -6,10 +6,12 @@ import type {
   RestrictedPageDictionary,
 } from "@amfa-team/user-service";
 import { RestrictedPage } from "@amfa-team/user-service";
+import type { Role } from "@amfa-team/user-service-types";
 import React, { useMemo } from "react";
 import { useSpace } from "../api/space/useSpace";
 
 interface SpacePageProps {
+  role: Role;
   slug: string;
   LoadingComponent: () => JSX.Element;
   children: (space: ISpace | null) => JSX.Element;
@@ -22,6 +24,7 @@ interface SpacePageProps {
 
 export function SpacePage(props: SpacePageProps) {
   const {
+    role,
     slug,
     LoadingComponent,
     children,
@@ -48,7 +51,7 @@ export function SpacePage(props: SpacePageProps) {
 
   return (
     <RestrictedPage
-      userRole="user"
+      userRole={role}
       spaceSlug={slug}
       loginDictionary={loginDictionary}
       logoutDictionary={logoutDictionary}
@@ -62,5 +65,6 @@ export function SpacePage(props: SpacePageProps) {
 }
 
 SpacePage.defaultProps = {
+  role: "user",
   onClose: () => false,
 };
