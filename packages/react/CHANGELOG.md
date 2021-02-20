@@ -1,3 +1,19 @@
+# @amfa-team/space-service [1.8.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.7.0...@amfa-team/space-service@1.8.0-beta.1) (2021-02-20)
+
+
+### Features
+
+* add role option to space page ([40088d6](https://github.com/amfa-team/space-service/commit/40088d6e68904783f0d90ee52cba9a93009aa406))
+* remove admin code ([e4609aa](https://github.com/amfa-team/space-service/commit/e4609aa18ed5d317ef3b1d5b6e58ad2a7290a717))
+
+
+
+
+
+### Dependencies
+
+* **@amfa-team/space-service-types:** upgraded to 1.3.0-beta.1
+
 # @amfa-team/space-service [1.7.0](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.6.0...@amfa-team/space-service@1.7.0) (2021-02-09)
 
 
