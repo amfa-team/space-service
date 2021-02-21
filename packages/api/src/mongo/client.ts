@@ -47,9 +47,11 @@ async function getClient(url: string): Promise<Mongoose> {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       connectTimeoutMS: 10_000,
-      poolSize: 5, // Maintain up to 5 socket connections
+      poolSize: 2, // Maintain up to 2 socket connections
+      maxPoolSize: Number(process.env.MAX_POOL_SIZE ?? 5),
+      minPoolSize: Number(process.env.MIN_POOL_SIZE ?? 1),
       serverSelectionTimeoutMS: 5_000, // Keep trying to send operations for 5 seconds
-      socketTimeoutMS: 600_000, // Close sockets after 10 minutes of inactivity
+      socketTimeoutMS: 30_000, // Close sockets after 30 seconds of inactivity
       keepAlive: true,
       keepAliveInitialDelay: 30_000,
       useFindAndModify: false,
