@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.8.0-beta.3](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.8.0-beta.2...@amfa-team/space-service@1.8.0-beta.3) (2021-02-24)
+
+
+### Bug Fixes
+
+* memo SpacePage ([f8e3ab8](https://github.com/amfa-team/space-service/commit/f8e3ab85d8d1b881c083626b7a6290175a0d61f8))
+
 # @amfa-team/space-service [1.8.0-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.8.0-beta.1...@amfa-team/space-service@1.8.0-beta.2) (2021-02-20)
 
 
