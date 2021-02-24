@@ -63,7 +63,8 @@ export function useSpace(slug: string) {
 
   return {
     space,
-    loading,
+    // Do not show loading on reload (would re-render subtree)
+    loading: loading && space?._id !== slug,
     isPrivate,
   };
 }
