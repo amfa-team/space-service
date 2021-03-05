@@ -21,6 +21,18 @@ const SpaceSchema: Schema = new Schema(
       unique: true,
       description: "space unique name",
     },
+    description: {
+      type: String,
+      required: true,
+    },
+    highlight: {
+      type: String,
+      required: true,
+    },
+    tags: {
+      type: [String],
+      required: true,
+    },
     enabled: {
       type: Boolean,
       required: true,

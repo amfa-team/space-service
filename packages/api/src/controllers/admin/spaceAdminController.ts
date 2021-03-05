@@ -73,6 +73,9 @@ export const adminSpaceUpdateDecoder = JsonDecoder.object(
       {
         _id: JsonDecoder.string,
         name: JsonDecoder.string,
+        description: JsonDecoder.string,
+        highlight: JsonDecoder.string,
+        tags: JsonDecoder.array(JsonDecoder.string, "tags"),
         enabled: JsonDecoder.boolean,
         imageUrl: JsonDecoder.nullable(JsonDecoder.string),
         home: JsonDecoder.boolean,

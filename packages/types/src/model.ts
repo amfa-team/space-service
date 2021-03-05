@@ -8,4 +8,7 @@ export interface ISpace {
   random: boolean;
   live: boolean;
   order: number;
+  description?: string;
+  tags?: string[];
+  highlight?: string;
 }
