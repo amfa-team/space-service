@@ -1,3 +1,10 @@
+# @amfa-team/space-service-types [1.4.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-types@1.3.0...@amfa-team/space-service-types@1.4.0-beta.1) (2021-03-05)
+
+
+### Features
+
+* add space details ([3880fe3](https://github.com/amfa-team/space-service/commit/3880fe35d86b1c9cf4d9a14ca3464cfe6fca15c1))
+
 # @amfa-team/space-service-types [1.3.0](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-types@1.2.1...@amfa-team/space-service-types@1.3.0) (2021-03-05)
 
 
