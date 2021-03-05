@@ -1,3 +1,13 @@
+## @amfa-team/space-service [1.8.1-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.8.0...@amfa-team/space-service@1.8.1-beta.1) (2021-03-05)
+
+
+
+
+
+### Dependencies
+
+* **@amfa-team/space-service-types:** upgraded to 1.4.0-beta.1
+
 # @amfa-team/space-service [1.8.0](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.7.0...@amfa-team/space-service@1.8.0) (2021-03-05)
 
 
