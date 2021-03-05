@@ -43,24 +43,26 @@ async function getClient(url: string): Promise<Mongoose> {
   try {
     const instance = new mongoose.Mongoose();
     cachedClient = instance.connect(url, {
-      appname: `user-service-${getEnvName()}`,
+      appname: `space-service-${getEnvName()}`,
+      autoReconnect: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      connectTimeoutMS: 10_000,
-      poolSize: 2, // Maintain up to 2 socket connections
-      maxPoolSize: Number(process.env.MAX_POOL_SIZE ?? 5),
-      minPoolSize: Number(process.env.MIN_POOL_SIZE ?? 1),
-      serverSelectionTimeoutMS: 5_000, // Keep trying to send operations for 5 seconds
-      socketTimeoutMS: 30_000, // Close sockets after 30 seconds of inactivity
+      connectTimeoutMS: 5_000, // How long to wait for a connection to be established before timing out
+      poolSize: Number(process.env.POOL_SIZE ?? 10), // Maintain up to 10 socket connections
+      maxPoolSize: Number(process.env.MAX_POOL_SIZE ?? 20),
+      minPoolSize: Number(process.env.MIN_POOL_SIZE ?? 2),
+      maxIdleTimeMS: 600_000,
+      serverSelectionTimeoutMS: 5_000, // How long to block for server selection before throwing an error
+      heartbeatFrequencyMS: 2_000, // The frequency with which topology updates are scheduled
+      socketTimeoutMS: 30_000, // How long a send or receive on a socket can take before timing out
+      connectWithNoPrimary: true,
       keepAlive: true,
-      keepAliveInitialDelay: 30_000,
+      keepAliveInitialDelay: 10_000, // The number of milliseconds to wait before initiating keepAlive on the TCP socket
       useFindAndModify: false,
       useCreateIndex: true,
-      bufferCommands: false, // Disable mongoose buffering
-      bufferMaxEntries: 0, // and MongoDB driver buffering
+      bufferCommands: true,
+      bufferMaxEntries: 20, // Sets a cap on how many operations the driver will buffer up before giving up on getting a working connection, default is -1 which is unlimited
       readPreference: "primaryPreferred",
-      // because of primaryPreferred --> request write to be propagated
-      w: "majority",
     });
 
     cachedClientMap.set(url, cachedClient);
