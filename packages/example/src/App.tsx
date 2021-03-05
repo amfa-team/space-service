@@ -2,7 +2,6 @@ import { UserServiceSettings } from "@amfa-team/user-service";
 import type { ReactElement } from "react";
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-// import Admin from "./Admin";
 import Nav from "./Nav/Nav";
 import Public from "./Public/Public";
 import User from "./User";

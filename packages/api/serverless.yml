@@ -27,6 +27,9 @@ provider:
     S3_IMAGE_BUCKET: ${self:custom.sbs.bucketName.${opt:stage, self:provider.stage}}
     API_SECRET: "${env:API_SECRET}"
     USER_SERVICE_API_SECRET: "${env:USER_SERVICE_API_SECRET}"
+    MAX_POOL_SIZE: ${env:MAX_POOL_SIZE, 20}
+    MIN_POOL_SIZE: ${env:MIN_POOL_SIZE, 2}
+    POOL_SIZE: ${env:POOL_SIZE, 10}
   apiGateway:
     shouldStartNameWithService: true
   tracing:

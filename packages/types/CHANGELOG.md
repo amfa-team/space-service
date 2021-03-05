@@ -1,3 +1,10 @@
+# @amfa-team/space-service-types [1.3.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-types@1.2.1...@amfa-team/space-service-types@1.3.0-beta.1) (2021-02-20)
+
+
+### Features
+
+* add live flag ([c504795](https://github.com/amfa-team/space-service/commit/c5047954b2c9680bab16955b7e28b20bcc8b8df0))
+
 ## @amfa-team/space-service-types [1.2.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-types@1.2.0...@amfa-team/space-service-types@1.2.1) (2021-02-03)
 
 

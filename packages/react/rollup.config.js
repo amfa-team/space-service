@@ -4,11 +4,9 @@ import postCssValues from "postcss-modules-values";
 import polyfill from "rollup-plugin-polyfill";
 import postcss from "rollup-plugin-postcss";
 import sourcemaps from "rollup-plugin-sourcemaps";
-import { terser } from "rollup-plugin-terser";
 import pkg from "./package.json";
 
 export const extensions = [".js", ".jsx", ".ts", ".tsx"];
-const extraPlugins = process.env.ROLLUP_WATCH ? [] : [terser()];
 
 export default [
   {
@@ -41,7 +39,6 @@ export default [
         plugins: [["@babel/plugin-transform-runtime", { useESModules: true }]],
       }),
       polyfill(["abortcontroller-polyfill"]),
-      ...extraPlugins,
     ],
   },
   {
@@ -74,7 +71,6 @@ export default [
         plugins: [["@babel/plugin-transform-runtime", { useESModules: false }]],
       }),
       polyfill(["abortcontroller-polyfill"]),
-      ...extraPlugins,
     ],
   },
 ];
