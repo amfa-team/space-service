@@ -1,3 +1,18 @@
+## @amfa-team/space-service [1.8.1-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.8.1-beta.1...@amfa-team/space-service@1.8.1-beta.2) (2021-03-28)
+
+
+### Bug Fixes
+
+* admin space page ([a851ce5](https://github.com/amfa-team/space-service/commit/a851ce57479ffdd57a67d57ca33441c0a6241e56))
+
+
+
+
+
+### Dependencies
+
+* **@amfa-team/space-service-types:** upgraded to 1.4.0-beta.2
+
 ## @amfa-team/space-service [1.8.1-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.8.0...@amfa-team/space-service@1.8.1-beta.1) (2021-03-05)
 
 
