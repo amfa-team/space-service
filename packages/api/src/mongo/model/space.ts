@@ -1,5 +1,5 @@
 import type { ISpace } from "@amfa-team/space-service-types";
-import type { Document, Model } from "mongoose";
+import type { Document } from "mongoose";
 import { Schema } from "mongoose";
 import { connect } from "../client";
 
@@ -89,7 +89,7 @@ SpaceSchema.index(
   { enabled: 1, public: 1, home: 1, random: 1 }, // random resolution
 );
 
-async function getSpaceModel(): Promise<Model<ISpaceDocument>> {
+async function getSpaceModel() {
   const client = await connect();
   return client.model<ISpaceDocument>("Space", SpaceSchema);
 }

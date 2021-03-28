@@ -1,8 +1,6 @@
 import babel from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
-import postCssValues from "postcss-modules-values";
 import polyfill from "rollup-plugin-polyfill";
-import postcss from "rollup-plugin-postcss";
 import sourcemaps from "rollup-plugin-sourcemaps";
 import pkg from "./package.json";
 
@@ -27,12 +25,6 @@ export default [
         resolveOnly: [/^@amfa-team\/space-service.*$/],
       }),
       sourcemaps(),
-      postcss({
-        extract: true,
-        minimize: !process.env.ROLLUP_WATCH,
-        sourceMap: true,
-        plugins: [postCssValues],
-      }),
       babel({
         babelHelpers: "runtime",
         extensions,
@@ -59,12 +51,6 @@ export default [
         resolveOnly: [/^@amfa-team\/space-service.*$/],
       }),
       sourcemaps(),
-      postcss({
-        extract: true,
-        minimize: !process.env.ROLLUP_WATCH,
-        sourceMap: true,
-        plugins: [postCssValues],
-      }),
       babel({
         babelHelpers: "runtime",
         extensions,
