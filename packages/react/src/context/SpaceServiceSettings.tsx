@@ -5,7 +5,7 @@ import { useSpaceService } from "../api/settings/useApiSettings";
 import type { SpaceDictionary } from "../i18n/dictionary";
 import { defaultSpaceDictionary, useSetDictionary } from "../i18n/dictionary";
 
-export interface UserServiceSettingsProps {
+export interface SpaceServiceSettingsProps {
   children: JSX.Element | JSX.Element[] | ReactNode;
   settings: ApiSettings;
   dictionary: SpaceDictionary;
@@ -15,7 +15,7 @@ export function SpaceServiceSettings({
   settings,
   children,
   dictionary,
-}: UserServiceSettingsProps): JSX.Element {
+}: SpaceServiceSettingsProps): JSX.Element {
   useSpaceService(settings);
   useSetDictionary(dictionary);
   // eslint-disable-next-line react/jsx-no-useless-fragment
