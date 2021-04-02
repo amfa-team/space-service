@@ -1,18 +1,16 @@
+import { PollList, VoteList } from "@amfa-team/space-service";
 import type { ISpace } from "@amfa-team/space-service-types";
+import { Container } from "@chakra-ui/react";
 import React from "react";
 
 export function SpacePageContent({ space }: { space: ISpace }) {
   return (
-    <div
-      style={{
-        display: "inline-block",
-        width: "300px",
-        height: "300px",
-      }}
-    >
+    <Container maxW="container.lg">
       <h2>
         {space.name}({space._id})
       </h2>
+      <VoteList space={space} />
+      <PollList space={space} />
       {space.imageUrl && <img src={space.imageUrl} width={300} alt="space" />}
       <h3>highlight: </h3>
       <p>{space.highlight}</p>
@@ -20,6 +18,6 @@ export function SpacePageContent({ space }: { space: ISpace }) {
       <div dangerouslySetInnerHTML={{ __html: space.description ?? "" }} />
       <h3>tags: </h3>
       <p>{space.tags?.join(", ")}</p>
-    </div>
+    </Container>
   );
 }

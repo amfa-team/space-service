@@ -11,6 +11,14 @@ const config = {
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
+    alias: {
+      react: require.resolve("react"),
+      "react-dom": require.resolve("react-dom"),
+      recoil: require.resolve("recoil"),
+      "@chakra-ui/react": require.resolve("@chakra-ui/react"),
+      "@emotion/react": require.resolve("@emotion/react"),
+      "@emotion/styled": require.resolve("@emotion/styled"),
+    },
   },
   output: {
     filename: "static/js/[name].[contenthash].js",

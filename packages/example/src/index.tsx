@@ -1,4 +1,8 @@
-import { ModalRoot } from "@amfa-team/theme-service";
+import {
+  DotLoader,
+  ModalRoot,
+  SbsThemeProvider,
+} from "@amfa-team/theme-service";
 import { init } from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import React, { Suspense } from "react";
@@ -25,10 +29,12 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <RecoilRoot>
-        <Suspense fallback={<div>Loading...</div>}>
-          <ModalRoot />
-          <App />
-        </Suspense>
+        <SbsThemeProvider>
+          <Suspense fallback={DotLoader}>
+            <ModalRoot />
+            <App />
+          </Suspense>
+        </SbsThemeProvider>
       </RecoilRoot>
     </Router>
   </React.StrictMode>,

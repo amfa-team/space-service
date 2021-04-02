@@ -68,7 +68,7 @@ async function getClient(url: string): Promise<Mongoose> {
     cachedClientMap.set(url, cachedClient);
 
     const client: Mongoose = await cachedClient;
-    client.set("debug", true);
+    // client.set("debug", true);
 
     logger.info("[mongo/client:connect]: connected to mongodb", {
       url,
