@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.9.0-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0-beta.1...@amfa-team/space-service@1.9.0-beta.2) (2021-04-02)
+
+
+### Features
+
+* add dictionary exports ([f02a5d4](https://github.com/amfa-team/space-service/commit/f02a5d41e2597f519a5652531a5b22964bbf5bbe))
+
 # @amfa-team/space-service [1.9.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.8.1-beta.2...@amfa-team/space-service@1.9.0-beta.1) (2021-04-02)
 
 
