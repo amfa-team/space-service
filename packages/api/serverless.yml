@@ -79,11 +79,81 @@ functions:
           path: admin/space/remove
           method: post
           cors: ${file(./serverless/cors.yml):main}
+  adminPollCreate:
+    handler: src/handler.adminPollCreate
+    events:
+      - http:
+          path: admin/poll/create
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
+  adminPollUpdate:
+    handler: src/handler.adminPollUpdate
+    events:
+      - http:
+          path: admin/poll/update
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
+  adminPollRemove:
+    handler: src/handler.adminPollRemove
+    events:
+      - http:
+          path: admin/poll/remove
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
+  adminVoterCreate:
+    handler: src/handler.adminVoterCreate
+    events:
+      - http:
+          path: admin/voter/create
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
+  adminVoterUpdate:
+    handler: src/handler.adminVoterUpdate
+    events:
+      - http:
+          path: admin/voter/update
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
+  adminVoterRemove:
+    handler: src/handler.adminVoterRemove
+    events:
+      - http:
+          path: admin/voter/remove
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
   adminImageUpload:
     handler: src/handler.adminImageUpload
     events:
       - http:
           path: admin/image/upload
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
+  pollList:
+    handler: src/handler.pollList
+    events:
+      - http:
+          path: polls/list
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
+  getVote:
+    handler: src/handler.getVote
+    events:
+      - http:
+          path: polls/vote/get
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
+  getPollResult:
+    handler: src/handler.getPollResult
+    events:
+      - http:
+          path: polls/result
+          method: post
+          cors: ${file(./serverless/cors.yml):main}
+  submitVote:
+    handler: src/handler.submitVote
+    events:
+      - http:
+          path: polls/vote/submit
           method: post
           cors: ${file(./serverless/cors.yml):main}
 
