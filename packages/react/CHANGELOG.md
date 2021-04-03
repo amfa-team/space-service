@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.9.0-beta.3](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0-beta.2...@amfa-team/space-service@1.9.0-beta.3) (2021-04-03)
+
+
+### Features
+
+* upgrade services ([ad6f73f](https://github.com/amfa-team/space-service/commit/ad6f73faa4be71d82dd99f849f18c5711ca55be3))
+
 # @amfa-team/space-service [1.9.0-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0-beta.1...@amfa-team/space-service@1.9.0-beta.2) (2021-04-02)
 
 
