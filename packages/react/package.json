@@ -13,6 +13,7 @@
   "dependencies": {
     "@babel/runtime": "^7.13.10",
     "@chakra-ui/react": "^1.4.2",
+    "@chakra-ui/react-utils": "^1.1.0",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
     "abortcontroller-polyfill": "^1.7.1",
@@ -25,10 +26,10 @@
     "access": "restricted"
   },
   "devDependencies": {
-    "@amfa-team/space-service-types": "^1.1.0",
-    "@amfa-team/theme-service": "^1.5.0-beta.15",
-    "@amfa-team/user-service": "^1.9.0",
-    "@amfa-team/user-service-types": "^1.3.0",
+    "@amfa-team/space-service-types": "^1.4.0-beta.3",
+    "@amfa-team/theme-service": "^1.5.0-beta.16",
+    "@amfa-team/user-service": "^1.10.0-beta.2",
+    "@amfa-team/user-service-types": "^1.4.0-beta.1",
     "@babel/core": "^7.13.14",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-transform-runtime": "^7.13.10",
@@ -64,10 +65,10 @@
     "typescript": "^4.2.3"
   },
   "peerDependencies": {
-    "@amfa-team/space-service-types": "^1.1.0",
-    "@amfa-team/theme-service": "^1.5.0-beta.15",
-    "@amfa-team/user-service": "^1.9.0",
-    "@amfa-team/user-service-types": "^1.3.0",
+    "@amfa-team/space-service-types": "^1.4.0-beta.3",
+    "@amfa-team/theme-service": "^1.5.0-beta.16",
+    "@amfa-team/user-service": "^1.10.0-beta.2",
+    "@amfa-team/user-service-types": "^1.4.0-beta.1",
     "@sentry/react": "^6.2.5",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
