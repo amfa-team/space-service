@@ -32,8 +32,16 @@ export interface IPollVote {
   choice: string;
 }
 
+export interface IConnection {
+  _id: string;
+  email: string;
+  canManage: boolean;
+  spaceSlug: string;
+}
+
 export interface IQuorum {
-  at: Date;
+  at: string;
+  spaceSlug: string;
   liveUsers: string[];
   totalWeight: number;
   liveWeight: number;

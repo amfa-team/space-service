@@ -38,6 +38,7 @@ jobs:
       - run: yarn install
       - run: echo "SENTRY_DNS=${{secrets.SENTRY_EXAMPLE_DNS}}" >> packages/example/.env
       - run: echo "API_ENDPOINT=${{secrets.API_ENDPOINT_PRODUCTION}}" >> packages/example/.env
+      - run: echo "WS_ENDPOINT=wss://space-ws.sidebyside.live" >> packages/example/.env
       - run: echo "USER_API_ENDPOINT=${{secrets.USER_API_ENDPOINT_PRODUCTION}}" >> packages/example/.env
       - name: build
         run: yarn build

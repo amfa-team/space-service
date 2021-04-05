@@ -1,4 +1,4 @@
-import type { IPoll, IPollVote } from "../vote/voteModel";
+import type { IPoll, IPollVote, IQuorum } from "../vote/voteModel";
 import type { PostRoute } from "./common";
 
 export interface RestrictedReq {
@@ -11,6 +11,23 @@ export interface PollsReq extends RestrictedReq {
 
 export interface GetPollVoteReq extends RestrictedReq {
   pollId: string;
+}
+
+export interface GetQuorumReq extends RestrictedReq {
+  spaceSlug: string;
+  save: boolean;
+}
+
+export interface QuroumListReq extends RestrictedReq {
+  spaceSlug: string;
+}
+
+export interface QuorumResultPayload {
+  quorum: IQuorum;
+}
+
+export interface QuorumListResultPayload {
+  quorums: IQuorum[];
 }
 
 export interface PollsPayload {
@@ -40,4 +57,6 @@ export type PollsPublicPostRoutes = {
   "polls/vote/submit": PostRoute<SubmitVoteReq, SubmitVotePayload>;
   "polls/vote/get": PostRoute<GetPollVoteReq, PollVotePayload>;
   "polls/result": PostRoute<GetPollVoteReq, PollResultPayload>;
+  "quorum/get": PostRoute<GetQuorumReq, QuorumResultPayload>;
+  "quorum/list": PostRoute<QuroumListReq, QuorumListResultPayload>;
 };

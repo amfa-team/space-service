@@ -31,10 +31,14 @@ import {
   handleAdminVoterUpdate,
 } from "./controllers/admin/voterAdminController";
 import {
+  getQuorumReqDecoder,
+  handleGetQuorum,
+  handleListQuorum,
   handlePollList,
   handlePollResult,
   handlePollVoteGet,
   handleSubmitVote,
+  listQuorumReqDecoder,
   pollListReqDecoder,
   pollVoteGetReqDecoder,
   submitVoteReqDecoder,
@@ -45,9 +49,16 @@ import {
   handleList,
 } from "./controllers/spaceController";
 import {
+  handleWsConnection,
+  handleWsDiconnection,
+  wsConnectionDecoder,
+} from "./controllers/wsController";
+import {
   handleAdminPOST,
   handlePublicGET,
   handlePublicPOST,
+  handlePublicWs,
+  handlePublicWsDisconnect,
   setup,
 } from "./services/io/io";
 
@@ -116,6 +127,53 @@ export const getPollResult: any = AWSLambda.wrapHandler(
     );
   },
 );
+
+export const onWsConnect: any = AWSLambda.wrapHandler(
+  async function onWsConnect(
+    event: APIGatewayProxyEvent,
+    context: Context,
+  ): Promise<APIGatewayProxyResult> {
+    return handlePublicWs(
+      event,
+      context,
+      handleWsConnection,
+      wsConnectionDecoder,
+    );
+  },
+);
+
+export const onWsDisconnect: any = AWSLambda.wrapHandler(
+  async function onWsDisconnect(
+    event: APIGatewayProxyEvent,
+    context: Context,
+  ): Promise<APIGatewayProxyResult> {
+    return handlePublicWsDisconnect(event, context, handleWsDiconnection);
+  },
+);
+
+export const getQuorum: any = AWSLambda.wrapHandler(async function getQuorum(
+  event: APIGatewayProxyEvent,
+  context: Context,
+): Promise<APIGatewayProxyResult> {
+  return handlePublicPOST<"quorum/get">(
+    event,
+    context,
+    handleGetQuorum,
+    getQuorumReqDecoder,
+  );
+});
+
+export const listQuorum: any = AWSLambda.wrapHandler(async function listQuorum(
+  event: APIGatewayProxyEvent,
+  context: Context,
+): Promise<APIGatewayProxyResult> {
+  return handlePublicPOST<"quorum/list">(
+    event,
+    context,
+    handleListQuorum,
+    listQuorumReqDecoder,
+  );
+});
 
 export const adminImageUpload: any = AWSLambda.wrapHandler(
   async function adminImageUpload(

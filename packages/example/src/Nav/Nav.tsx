@@ -14,7 +14,16 @@ export default function Nav() {
           <NavLink to="/">Home Feature</NavLink>
         </div>
         <div>
-          <NavLink to="/space">Space Feature</NavLink>
+          <NavLink to="/space/vaccine">Space Feature</NavLink>
+        </div>
+        <div>
+          <NavLink to="/space/vaccine/quorum">Quorum Feature</NavLink>
+        </div>
+        <div>
+          <NavLink to="/space/vaccine/vote">Vote Feature</NavLink>
+        </div>
+        <div>
+          <NavLink to="/space/vaccine/polls">Polls Feature</NavLink>
         </div>
       </div>
     </div>

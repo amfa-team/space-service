@@ -3,6 +3,7 @@ import { DotLoader, ErrorShield } from "@amfa-team/theme-service";
 import { Box } from "@chakra-ui/react";
 import React from "react";
 import { usePollList } from "../api/poll/usePollList";
+import { useWebsocket } from "../api/websocket/useWebsocket";
 import { useDictionary } from "../i18n/dictionary";
 import { Poll } from "./Poll";
 
@@ -11,7 +12,8 @@ export interface PollListProps {
 }
 
 function RawPollList({ space }: PollListProps) {
-  const { polls, isLoading } = usePollList(space);
+  const { websocket } = useWebsocket(space._id);
+  const { polls, isLoading } = usePollList(space, websocket);
 
   if (isLoading) {
     return <DotLoader />;
@@ -20,7 +22,7 @@ function RawPollList({ space }: PollListProps) {
   return (
     <Box>
       {polls.map((poll) => {
-        return <Poll key={poll._id} poll={poll} />;
+        return <Poll key={poll._id} poll={poll} websocket={websocket} />;
       })}
     </Box>
   );

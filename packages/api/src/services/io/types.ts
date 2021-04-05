@@ -2,6 +2,7 @@ import type {
   AdminData,
   GetRoutes,
   PostRoutes,
+  WsRoutes,
 } from "@amfa-team/space-service-types";
 import type {
   APIGatewayEventRequestContext,
@@ -13,10 +14,17 @@ export interface PublicRequest<T> {
   data: T;
 }
 
+export interface WsRequest<T> {
+  data: T;
+  msgId: string;
+  action: string;
+}
+
 export type AdminRequest<T extends AdminData> = PublicRequest<T>;
 
 export interface RequestContext {
   domainName?: string;
+  connectionId?: string;
   stage: string;
 }
 
@@ -36,3 +44,12 @@ export type PostHandler<P extends keyof PostRoutes> = (
   headers: APIGatewayProxyEventHeaders,
   requestContext: APIGatewayEventRequestContext,
 ) => Promise<HandlerResult<PostRoutes[P]["out"]>>;
+
+export type WsHandler<P extends keyof WsRoutes> = (
+  data: WsRoutes[P]["in"],
+  requestContext: APIGatewayEventRequestContext & { connectionId: string },
+) => Promise<HandlerResult<WsRoutes[P]["out"]>>;
+
+export type WsDiconnectHandler = (
+  requestContext: APIGatewayEventRequestContext & { connectionId: string },
+) => Promise<null>;

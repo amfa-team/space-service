@@ -1,4 +1,5 @@
 import type { ISpace } from "../model";
+import type { IConnection, IQuorum } from "../vote/voteModel";
 import type {
   AdminImageUploadRoute,
   AdminPollCreateRoute,
@@ -11,7 +12,7 @@ import type {
   AdminVoterRemoveRoute,
   AdminVoterUpdateRoute,
 } from "./admin/admin";
-import type { GetRoute, PostRoute } from "./common";
+import type { GetRoute, PostRoute, WsRoute } from "./common";
 import type { PollsPublicPostRoutes } from "./pollRoutes";
 
 export * from "./admin";
@@ -29,6 +30,11 @@ export interface RestrictedReq {
 export interface ManagePermissionRemove extends RestrictedReq {
   spaceId: string;
   userEmail: string;
+}
+
+export interface WsConnectionReq {
+  token: string;
+  spaceId: string;
 }
 
 export type PublicGetRoutes = {
@@ -71,3 +77,31 @@ export type AdminPostRoutes = {
 };
 
 export type PostRoutes = PublicPostRoutes & AdminPostRoutes;
+
+export type WsRoutes = {
+  "/connect": WsRoute<WsConnectionReq, IConnection | null>;
+};
+
+export type QuorumLiveWsServerEvents = {
+  name: "quorum/live";
+  quorum: IQuorum;
+};
+
+export type QuorumSavedWsServerEvents = {
+  name: "quorum/saved";
+};
+
+export type PollUpdatedWsServerEvents = {
+  name: "polls/updated";
+};
+
+export type VotedWsServerEvents = {
+  name: "polls/vote";
+  pollId: string;
+};
+
+export type WsServerEvents =
+  | QuorumLiveWsServerEvents
+  | QuorumSavedWsServerEvents
+  | PollUpdatedWsServerEvents
+  | VotedWsServerEvents;

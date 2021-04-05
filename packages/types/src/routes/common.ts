@@ -23,3 +23,9 @@ export type PostRoute<I, O> = {
   in: I;
   out: O;
 };
+
+export type WsRoute<I, O> = {
+  in: I;
+  out: O;
+  msgId: string;
+};

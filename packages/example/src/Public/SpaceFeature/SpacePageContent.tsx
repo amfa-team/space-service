@@ -1,4 +1,3 @@
-import { PollList, VoteList } from "@amfa-team/space-service";
 import type { ISpace } from "@amfa-team/space-service-types";
 import { Container } from "@chakra-ui/react";
 import React from "react";
@@ -9,8 +8,6 @@ export function SpacePageContent({ space }: { space: ISpace }) {
       <h2>
         {space.name}({space._id})
       </h2>
-      <VoteList space={space} />
-      <PollList space={space} />
       {space.imageUrl && <img src={space.imageUrl} width={300} alt="space" />}
       <h3>highlight: </h3>
       <p>{space.highlight}</p>

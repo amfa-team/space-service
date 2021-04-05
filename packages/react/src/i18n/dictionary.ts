@@ -16,6 +16,14 @@ export interface SpaceDictionary {
       update: string;
     };
   };
+  quorum: {
+    liveLabel: string;
+    saveLabel: string;
+    atLabel: string;
+    liveUserCount: string;
+    liveVoteCount: string;
+    totalVoteCount: string;
+  };
 }
 
 export const defaultSpaceDictionary: Record<"en" | "fr", SpaceDictionary> = {
@@ -34,6 +42,14 @@ export const defaultSpaceDictionary: Record<"en" | "fr", SpaceDictionary> = {
         update: "Update",
       },
     },
+    quorum: {
+      saveLabel: "Save Quorum",
+      liveLabel: "Live",
+      atLabel: "At",
+      liveUserCount: "Live Users",
+      liveVoteCount: "Live Count",
+      totalVoteCount: "Total Count",
+    },
   },
   fr: {
     error: {
@@ -50,6 +66,14 @@ export const defaultSpaceDictionary: Record<"en" | "fr", SpaceDictionary> = {
         countHeader: "nombre de voix",
         update: "Rafraichir",
       },
+    },
+    quorum: {
+      saveLabel: "Save Quorum",
+      liveLabel: "Direct",
+      atLabel: "At",
+      liveUserCount: "Live Users",
+      liveVoteCount: "Live Count",
+      totalVoteCount: "Total Count",
     },
   },
 };
