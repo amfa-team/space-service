@@ -8,6 +8,7 @@ import { JsonDecoder } from "ts.data.json";
 import { getPollModel } from "../../mongo/model/poll";
 import { getSpaceModel } from "../../mongo/model/space";
 import type { HandlerResult } from "../../services/io/types";
+import { onPollsUpdated } from "../wsController";
 
 export const adminPollCreateDecoder = JsonDecoder.object<AdminPollCreateReq>(
   {
@@ -76,6 +77,7 @@ export async function handleAdminPollCreate(
 
   const poll = new PollModel(pollData);
   await poll.save();
+  await onPollsUpdated(poll.spaceSlug);
 
   return {
     payload: poll,
@@ -119,6 +121,8 @@ export async function handleAdminPollUpdate(
     throw new Error("poll not found");
   }
 
+  await onPollsUpdated(poll.spaceSlug);
+
   return {
     payload: poll,
   };
@@ -136,7 +140,11 @@ export async function handleAdminPollRemove(
   data: AdminPollRemoveReq,
 ): Promise<HandlerResult<null>> {
   const PollModel = await getPollModel();
-  await PollModel.findByIdAndRemove(data.id);
+  const poll = await PollModel.findByIdAndDelete(data.id);
+
+  if (poll) {
+    await onPollsUpdated(poll.spaceSlug);
+  }
 
   return {
     payload: null,

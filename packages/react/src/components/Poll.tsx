@@ -15,13 +15,18 @@ import {
 import React from "react";
 import { usePollResult } from "../api/poll/usePollResult";
 import { useDictionary } from "../i18n/dictionary";
+import type { Ws } from "../websocket/Ws";
 
 export interface PollProps {
   poll: IPoll;
+  websocket: Ws | null;
 }
 
-export function Poll({ poll }: PollProps) {
-  const { isLoading, pollResult, updatePollResult } = usePollResult(poll);
+export function Poll({ poll, websocket }: PollProps) {
+  const { isLoading, pollResult, updatePollResult } = usePollResult(
+    poll,
+    websocket,
+  );
   const dictionary = useDictionary("poll");
 
   return (

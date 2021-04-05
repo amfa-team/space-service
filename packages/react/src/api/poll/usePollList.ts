@@ -1,7 +1,14 @@
-import type { IPoll, ISpace, PollStatus } from "@amfa-team/space-service-types";
+import type {
+  IPoll,
+  ISpace,
+  PollStatus,
+  WsServerEvents,
+} from "@amfa-team/space-service-types";
 import { useToken } from "@amfa-team/user-service";
 import isEqual from "lodash.isequal";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+import type { Ws } from "../../websocket/Ws";
+import type { WsEvent } from "../../websocket/WsEvent";
 import type { ApiSettings } from "../api";
 import { apiPost } from "../api";
 import { useApiSettings } from "../settings/useApiSettings";
@@ -29,7 +36,7 @@ export async function getPolls(
   return result.polls;
 }
 
-export function usePollList(space: ISpace) {
+export function usePollList(space: ISpace, websocket: Ws | null) {
   const token = useToken();
   const [polls, setPolls] = useState<IPoll[]>([]);
   const [error, setError] = useState<Error | null>(null);
@@ -65,9 +72,12 @@ export function usePollList(space: ISpace) {
         .finally(() => {
           if (!signal.aborted) {
             setIsLoading(!(settings && token));
-            timeoutID = setTimeout(() => {
-              updatePolls(signal);
-            }, 10_000);
+            if (websocket === null) {
+              // If Websocket is not connected
+              timeoutID = setTimeout(() => {
+                updatePolls(signal);
+              }, 10_000);
+            }
           }
         });
     };
@@ -75,13 +85,21 @@ export function usePollList(space: ISpace) {
     setIsLoading(true);
     updatePolls(abortController.signal);
 
+    const listener = (event: WsEvent<"server", WsServerEvents>) => {
+      if (event.data.name === "polls/updated") {
+        updatePolls(abortController.signal);
+      }
+    };
+    websocket?.addEventListener("server", listener);
+
     return () => {
       if (timeoutID) {
         clearTimeout(timeoutID);
       }
+      websocket?.removeEventListener("server", listener);
       abortController.abort();
     };
-  }, [settings, space._id, token]);
+  }, [settings, space._id, token, websocket]);
 
   if (error) {
     throw error;
@@ -93,13 +111,20 @@ export function usePollList(space: ISpace) {
   };
 }
 
-export function usePollListWithFilter(space: ISpace, statuses: PollStatus[]) {
-  const { polls, isLoading } = usePollList(space);
+export function usePollListWithFilter(
+  space: ISpace,
+  websocket: Ws | null,
+  statuses: PollStatus[],
+) {
+  const { polls, isLoading } = usePollList(space, websocket);
+  const [result, setResult] = useState(polls);
 
-  const result = useMemo(
-    () => polls.filter((p) => statuses.includes(p.status)),
-    [polls, statuses],
-  );
+  useEffect(() => {
+    if (!isLoading) {
+      const r = polls.filter((p) => statuses.includes(p.status));
+      setResult((prev) => (isEqual(prev, r) ? prev : r));
+    }
+  }, [polls, isLoading, statuses]);
 
   return {
     polls: result,

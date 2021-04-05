@@ -1,6 +1,8 @@
-import type { IPoll } from "@amfa-team/space-service-types";
+import type { IPoll, WsServerEvents } from "@amfa-team/space-service-types";
 import { useToken } from "@amfa-team/user-service";
 import { useCallback, useEffect, useState } from "react";
+import type { Ws } from "../../websocket/Ws";
+import type { WsEvent } from "../../websocket/WsEvent";
 import type { ApiSettings } from "../api";
 import { apiPost } from "../api";
 import { useApiSettings } from "../settings/useApiSettings";
@@ -36,7 +38,7 @@ async function getPollResult(
   return data;
 }
 
-export function usePollResult(poll: IPoll) {
+export function usePollResult(poll: IPoll, websocket: Ws | null) {
   const token = useToken();
   const [error, setError] = useState<Error | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -71,10 +73,20 @@ export function usePollResult(poll: IPoll) {
       setError(err);
     });
 
+    const listener = (event: WsEvent<"server", WsServerEvents>) => {
+      if (event.data.name === "polls/vote" && event.data.pollId === poll._id) {
+        updatePollResult(abortController.signal).catch((err) => {
+          setError(err);
+        });
+      }
+    };
+    websocket?.addEventListener("server", listener);
+
     return () => {
+      websocket?.removeEventListener("server", listener);
       abortController.abort();
     };
-  }, [updatePollResult]);
+  }, [poll._id, websocket, updatePollResult]);
 
   if (error) {
     throw error;

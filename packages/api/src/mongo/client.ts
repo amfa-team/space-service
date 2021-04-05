@@ -19,7 +19,9 @@ function discardClient(url: string, client?: Mongoose) {
 }
 
 async function getClient(url: string): Promise<Mongoose> {
-  logger.info("[mongo/client:getClient]: connecting to mongodb");
+  if (!process.env.IS_OFFLINE) {
+    logger.info("[mongo/client:getClient]: connecting to mongodb");
+  }
 
   let cachedClient = cachedClientMap.get(url) ?? null;
   if (cachedClient) {
@@ -36,7 +38,9 @@ async function getClient(url: string): Promise<Mongoose> {
         discardClient(url);
         return getClient(url);
       });
-    logger.info("[mongo/client:getClient]: using cached mongodb client");
+    if (!process.env.IS_OFFLINE) {
+      logger.info("[mongo/client:getClient]: using cached mongodb client");
+    }
     return client;
   }
 
@@ -44,7 +48,6 @@ async function getClient(url: string): Promise<Mongoose> {
     const instance = new mongoose.Mongoose();
     cachedClient = instance.connect(url, {
       appname: `space-service-${getEnvName()}`,
-      autoReconnect: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
       connectTimeoutMS: 5_000, // How long to wait for a connection to be established before timing out
@@ -61,7 +64,6 @@ async function getClient(url: string): Promise<Mongoose> {
       useFindAndModify: false,
       useCreateIndex: true,
       bufferCommands: true,
-      bufferMaxEntries: 20, // Sets a cap on how many operations the driver will buffer up before giving up on getting a working connection, default is -1 which is unlimited
       readPreference: "primaryPreferred",
     });
 

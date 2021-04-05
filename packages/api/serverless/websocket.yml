@@ -1,0 +1,11 @@
+onWsConnect:
+  handler: src/handler.onWsConnect
+  events:
+    # do not use $connect because we need token & spaceId
+    - websocket:
+        route: /connect
+        routeResponseSelectionExpression: $default
+onWsDisconnect:
+  handler: src/handler.onWsDisconnect
+  events:
+    - websocket: $disconnect

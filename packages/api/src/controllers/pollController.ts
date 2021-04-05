@@ -1,9 +1,13 @@
 import type {
   GetPollVoteReq,
+  GetQuorumReq,
   PollResultPayload,
   PollVotePayload,
   PollsPayload,
   PollsReq,
+  QuorumListResultPayload,
+  QuorumResultPayload,
+  QuroumListReq,
   SubmitVotePayload,
   SubmitVoteReq,
 } from "@amfa-team/space-service-types";
@@ -16,10 +20,13 @@ import type { IPublicUserData } from "@amfa-team/user-service-types";
 import { JsonDecoder } from "ts.data.json";
 import { getPollModel } from "../mongo/model/poll";
 import { getPollVoteModel } from "../mongo/model/pollVote";
+import { getQuorumModel } from "../mongo/model/quorum";
 import { getSpaceModel } from "../mongo/model/space";
 import { getVoterModel } from "../mongo/model/voter";
 import { ForbiddenError } from "../services/io/exceptions";
 import type { HandlerResult } from "../services/io/types";
+import { computeInstantQuorum } from "../services/quorumService";
+import { onQuorumSaved, onVoted } from "./wsController";
 
 export const pollListReqDecoder = JsonDecoder.object<PollsReq>(
   {
@@ -114,8 +121,6 @@ export async function handlePollResult(
     VoterModel.find({ spaceSlug: poll.spaceSlug }),
   ]);
 
-  console.log({ votes, voters, poll, req });
-
   const weightMap = voters.reduce<Record<string, number>>((acc, voter) => {
     acc[voter.email] = voter.count;
     return acc;
@@ -137,8 +142,6 @@ export async function handlePollResult(
 
     return acc;
   }, emptyResult);
-
-  console.log({ weightMap, result });
 
   return {
     payload: {
@@ -181,7 +184,7 @@ export async function handleSubmitVote(
     };
   }
 
-  if (!userData.email || !userData.registered || !userData.verified) {
+  if (!userData.email) {
     return {
       payload: {
         success: false,
@@ -202,5 +205,71 @@ export async function handleSubmitVote(
     { upsert: true },
   );
 
+  await onVoted(poll, userData.email);
+
   return { payload: { success: true } };
+}
+
+export const getQuorumReqDecoder = JsonDecoder.object<GetQuorumReq>(
+  {
+    token: JsonDecoder.string,
+    spaceSlug: JsonDecoder.string,
+    save: JsonDecoder.boolean,
+  },
+  "getQuorumReqDecoder",
+);
+
+export async function handleGetQuorum(
+  req: GetQuorumReq,
+): Promise<HandlerResult<QuorumResultPayload>> {
+  const [SpaceModel, QuorumModel] = await Promise.all([
+    getSpaceModel(),
+    getQuorumModel(),
+  ]);
+
+  const userData: IPublicUserData = parseUserServiceToken(req.token);
+  const [space, quorum] = await Promise.all([
+    SpaceModel.findById(req.spaceSlug),
+    computeInstantQuorum(req.spaceSlug),
+  ]);
+
+  if (space === null) {
+    throw new ForbiddenError();
+  }
+
+  if (!canManageSpace(userData, space._id)) {
+    throw new ForbiddenError();
+  }
+
+  if (req.save) {
+    const doc = new QuorumModel(quorum);
+    await doc.save();
+    await onQuorumSaved(space._id);
+  }
+
+  return { payload: { quorum } };
+}
+
+export const listQuorumReqDecoder = JsonDecoder.object<QuroumListReq>(
+  {
+    token: JsonDecoder.string,
+    spaceSlug: JsonDecoder.string,
+  },
+  "listQuorumReqDecoder",
+);
+
+export async function handleListQuorum(
+  req: QuroumListReq,
+): Promise<HandlerResult<QuorumListResultPayload>> {
+  const QuorumModel = await getQuorumModel();
+
+  const userData: IPublicUserData = parseUserServiceToken(req.token);
+
+  if (!canManageSpace(userData, req.spaceSlug)) {
+    throw new ForbiddenError();
+  }
+
+  const quorums = await QuorumModel.find({ spaceSlug: req.spaceSlug });
+
+  return { payload: { quorums } };
 }

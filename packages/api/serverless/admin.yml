@@ -1,0 +1,70 @@
+adminSpaceList:
+  handler: src/handler.adminSpaceList
+  events:
+    - http:
+        path: admin/space
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+adminSpaceUpdate:
+  handler: src/handler.adminSpaceUpdate
+  events:
+    - http:
+        path: admin/space/update
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+adminSpaceRemove:
+  handler: src/handler.adminSpaceRemove
+  events:
+    - http:
+        path: admin/space/remove
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+adminPollCreate:
+  handler: src/handler.adminPollCreate
+  events:
+    - http:
+        path: admin/poll/create
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+adminPollUpdate:
+  handler: src/handler.adminPollUpdate
+  events:
+    - http:
+        path: admin/poll/update
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+adminPollRemove:
+  handler: src/handler.adminPollRemove
+  events:
+    - http:
+        path: admin/poll/remove
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+adminVoterCreate:
+  handler: src/handler.adminVoterCreate
+  events:
+    - http:
+        path: admin/voter/create
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+adminVoterUpdate:
+  handler: src/handler.adminVoterUpdate
+  events:
+    - http:
+        path: admin/voter/update
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+adminVoterRemove:
+  handler: src/handler.adminVoterRemove
+  events:
+    - http:
+        path: admin/voter/remove
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+adminImageUpload:
+  handler: src/handler.adminImageUpload
+  events:
+    - http:
+        path: admin/image/upload
+        method: post
+        cors: ${file(./serverless/cors.yml):main}

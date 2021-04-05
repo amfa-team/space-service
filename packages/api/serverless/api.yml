@@ -1,0 +1,56 @@
+list:
+  handler: src/handler.list
+  events:
+    - http:
+        path: list
+        method: get
+        cors: ${file(./serverless/cors.yml):main}
+getSpace:
+  handler: src/handler.getSpace
+  events:
+    - http:
+        path: get
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+pollList:
+  handler: src/handler.pollList
+  events:
+    - http:
+        path: polls/list
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+getVote:
+  handler: src/handler.getVote
+  events:
+    - http:
+        path: polls/vote/get
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+getPollResult:
+  handler: src/handler.getPollResult
+  events:
+    - http:
+        path: polls/result
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+submitVote:
+  handler: src/handler.submitVote
+  events:
+    - http:
+        path: polls/vote/submit
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+getQuorum:
+  handler: src/handler.getQuorum
+  events:
+    - http:
+        path: quorum/get
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+listQuorum:
+  handler: src/handler.listQuorum
+  events:
+    - http:
+        path: quorum/list
+        method: post
+        cors: ${file(./serverless/cors.yml):main}

@@ -2,6 +2,8 @@ service: space-service-api
 
 frameworkVersion: ^2.11.0
 
+configValidationMode: error
+
 plugins:
   - serverless-dotenv-plugin
   - serverless-stage-manager
@@ -23,6 +25,7 @@ provider:
     SENTRY_ENVIRONMENT: "${self:provider.stage}"
     SENTRY_DNS: "${env:SENTRY_DNS}"
     MONGO_DB_URL: "${env:MONGO_DB_URL}"
+    WEBSOCKET_DOMAIN: "#{WebsocketsApi}.execute-api.#{AWS::Region}.amazonaws.com/${self:provider.stage}"
     DOMAIN: ${self:custom.sbs.domains.${opt:stage, self:provider.stage}}
     S3_IMAGE_BUCKET: ${self:custom.sbs.bucketName.${opt:stage, self:provider.stage}}
     API_SECRET: "${env:API_SECRET}"
@@ -44,118 +47,9 @@ package:
   individually: false
 
 functions:
-  list:
-    handler: src/handler.list
-    events:
-      - http:
-          path: list
-          method: get
-          cors: ${file(./serverless/cors.yml):main}
-  getSpace:
-    handler: src/handler.getSpace
-    events:
-      - http:
-          path: get
-          method: post
-          cors: ${file(./serverless/cors.yml):main}
-  adminSpaceList:
-    handler: src/handler.adminSpaceList
-    events:
-      - http:
-          path: admin/space
-          method: post
-          cors: ${file(./serverless/cors.yml):main}
-  adminSpaceUpdate:
-    handler: src/handler.adminSpaceUpdate
-    events:
-      - http:
-          path: admin/space/update
-          method: post
-          cors: ${file(./serverless/cors.yml):main}
-  adminSpaceRemove:
-    handler: src/handler.adminSpaceRemove
-    events:
-      - http:
-          path: admin/space/remove
-          method: post
-          cors: ${file(./serverless/cors.yml):main}
-  adminPollCreate:
-    handler: src/handler.adminPollCreate
-    events:
-      - http:
-          path: admin/poll/create
-          method: post
-          cors: ${file(./serverless/cors.yml):main}
-  adminPollUpdate:
-    handler: src/handler.adminPollUpdate
-    events:
-      - http:
-          path: admin/poll/update
-          method: post
-          cors: ${file(./serverless/cors.yml):main}
-  adminPollRemove:
-    handler: src/handler.adminPollRemove
-    events:
-      - http:
-          path: admin/poll/remove
-          method: post
-          cors: ${file(./serverless/cors.yml):main}
-  adminVoterCreate:
-    handler: src/handler.adminVoterCreate
-    events:
-      - http:
-          path: admin/voter/create
-          method: post
-          cors: ${file(./serverless/cors.yml):main}
-  adminVoterUpdate:
-    handler: src/handler.adminVoterUpdate
-    events:
-      - http:
-          path: admin/voter/update
-          method: post
-          cors: ${file(./serverless/cors.yml):main}
-  adminVoterRemove:
-    handler: src/handler.adminVoterRemove
-    events:
-      - http:
-          path: admin/voter/remove
-          method: post
-          cors: ${file(./serverless/cors.yml):main}
-  adminImageUpload:
-    handler: src/handler.adminImageUpload
-    events:
-      - http:
-          path: admin/image/upload
-          method: post
-          cors: ${file(./serverless/cors.yml):main}
-  pollList:
-    handler: src/handler.pollList
-    events:
-      - http:
-          path: polls/list
-          method: post
-          cors: ${file(./serverless/cors.yml):main}
-  getVote:
-    handler: src/handler.getVote
-    events:
-      - http:
-          path: polls/vote/get
-          method: post
-          cors: ${file(./serverless/cors.yml):main}
-  getPollResult:
-    handler: src/handler.getPollResult
-    events:
-      - http:
-          path: polls/result
-          method: post
-          cors: ${file(./serverless/cors.yml):main}
-  submitVote:
-    handler: src/handler.submitVote
-    events:
-      - http:
-          path: polls/vote/submit
-          method: post
-          cors: ${file(./serverless/cors.yml):main}
+  - ${file(./serverless/api.yml)}
+  - ${file(./serverless/admin.yml)}
+  - ${file(./serverless/websocket.yml)}
 
 resources:
   Resources:
@@ -186,6 +80,10 @@ custom:
       production: "space.sidebyside.live"
       staging: "space.dev.sidebyside.live"
       dev: "localhost"
+    wsDomains:
+      production: "space-ws.sidebyside.live"
+      staging: "space-ws.dev.sidebyside.live"
+      dev: "localhost"
 
   serverless-offline:
     useChildProcesses: true
@@ -204,14 +102,23 @@ custom:
     - staging
 
   customDomain:
-    domainName: ${self:custom.sbs.domains.${opt:stage, self:provider.stage}}
-    stage: ${opt:stage}
-    basePath: api
-    certificateName: "*.sidebyside.live"
-    createRoute53Record: true
-    endpointType: "regional"
-    apiType: rest
-    autoDomain: true
+    rest:
+      domainName: ${self:custom.sbs.domains.${opt:stage, self:provider.stage}}
+      stage: ${opt:stage}
+      basePath: api
+      certificateName: "*.sidebyside.live"
+      createRoute53Record: true
+      endpointType: "regional"
+      apiType: rest
+      autoDomain: true
+    websocket:
+      domainName: ${self:custom.sbs.wsDomains.${opt:stage, self:provider.stage}}
+      stage: ${opt:stage}
+      certificateName: "*.sidebyside.live"
+      createRoute53Record: true
+      endpointType: "regional"
+      apiType: websocket
+      autoDomain: true
 
   s3:
     host: localhost

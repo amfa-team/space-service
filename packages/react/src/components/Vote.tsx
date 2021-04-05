@@ -12,13 +12,15 @@ import {
 import React from "react";
 import { useVote } from "../api/poll/useVote";
 import { useDictionary } from "../i18n/dictionary";
+import type { Ws } from "../websocket/Ws";
 
 export interface VoteProps {
   poll: IPoll;
+  websocket: Ws | null;
 }
 
 function RawVote(props: VoteProps) {
-  const { poll } = props;
+  const { poll, websocket } = props;
   const {
     isLoading,
     onSubmitVote,
@@ -26,7 +28,7 @@ function RawVote(props: VoteProps) {
     isVoting,
     choice,
     canVote,
-  } = useVote(poll);
+  } = useVote(poll, websocket);
 
   if (isLoading) {
     return <DotLoader />;
