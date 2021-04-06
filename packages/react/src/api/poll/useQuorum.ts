@@ -105,7 +105,7 @@ export function useQuorums(space: ISpace, websocket: Ws | null) {
         update();
       }
     };
-
+    // @ts-ignore
     websocket?.addEventListener("server", listener);
 
     update();

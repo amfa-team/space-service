@@ -80,6 +80,7 @@ export function usePollResult(poll: IPoll, websocket: Ws | null) {
         });
       }
     };
+    // @ts-ignore
     websocket?.addEventListener("server", listener);
 
     return () => {

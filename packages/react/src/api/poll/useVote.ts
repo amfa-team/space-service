@@ -129,7 +129,7 @@ export function useVote(poll: IPoll, websocket: Ws | null) {
         );
       }
     };
-
+    // @ts-ignore
     websocket?.addEventListener("server", listener);
 
     return () => {
