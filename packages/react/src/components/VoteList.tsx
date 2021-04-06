@@ -3,18 +3,18 @@ import { DotLoader, ErrorShield } from "@amfa-team/theme-service";
 import { Box, Divider } from "@chakra-ui/react";
 import React from "react";
 import { usePollListWithFilter } from "../api/poll/usePollList";
-import { useWebsocket } from "../api/websocket/useWebsocket";
 import { useDictionary } from "../i18n/dictionary";
 import { Vote } from "./Vote";
 
 export interface VoteListProps {
   space: ISpace;
+  websocket: any | null;
 }
 
 const startedOnly: PollStatus[] = ["started"];
 
 function RawVoteList(props: VoteListProps) {
-  const { websocket } = useWebsocket(props.space._id);
+  const { websocket } = props;
   const { polls, isLoading } = usePollListWithFilter(
     props.space,
     websocket,
