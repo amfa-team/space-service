@@ -5,9 +5,11 @@ import {
   Button,
   FormControl,
   FormLabel,
+  Heading,
   Radio,
   RadioGroup,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 import React from "react";
 import { useVote } from "../api/poll/useVote";
@@ -37,13 +39,34 @@ function RawVote(props: VoteProps) {
   return (
     <Box>
       <FormControl>
-        <FormLabel>{poll.question}</FormLabel>
-        <RadioGroup onChange={setChoice} value={choice} name={poll.question}>
+        <FormLabel mb="8">
+          <Heading size="h4" color="white">
+            {poll.question}
+          </Heading>
+        </FormLabel>
+        <RadioGroup
+          onChange={setChoice}
+          value={choice}
+          name={poll.question}
+          mb="8"
+        >
           <Stack>
             {poll.choices.map((c) => {
               return (
-                <Radio key={c} value={c} isDisabled={!canVote}>
-                  {c}
+                <Radio
+                  key={c}
+                  value={c}
+                  isDisabled={!canVote}
+                  colorScheme="secondary"
+                >
+                  <Text
+                    variant="normal"
+                    color="white"
+                    fontSize="md"
+                    fontWeight="semibold"
+                  >
+                    {c}
+                  </Text>
                 </Radio>
               );
             })}
@@ -53,6 +76,8 @@ function RawVote(props: VoteProps) {
           onClick={onSubmitVote}
           isLoading={isVoting}
           isDisabled={isVoting || !canVote}
+          size="lg"
+          colorScheme="whatsapp"
         >
           Vote
         </Button>

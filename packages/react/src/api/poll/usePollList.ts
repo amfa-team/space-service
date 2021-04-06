@@ -90,6 +90,7 @@ export function usePollList(space: ISpace, websocket: Ws | null) {
         updatePolls(abortController.signal);
       }
     };
+    // @ts-ignore
     websocket?.addEventListener("server", listener);
 
     return () => {

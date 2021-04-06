@@ -19,6 +19,7 @@ export function useWebsocket(spaceId: string) {
 
     setWebsocket(ws);
     setIsConnected(false);
+    // @ts-ignore
     ws?.addEventListener("state:change", (event) => {
       setIsConnected(event.data === "connected");
       if (event.data === "closed") {

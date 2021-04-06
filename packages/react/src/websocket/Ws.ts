@@ -127,7 +127,8 @@ export class Ws extends EventTarget<WsEvents, "strict"> {
     try {
       // Load the new WebSocket
       const conn = await new Promise((resolve, reject) => {
-        ws.addEventListener("open", async () => {
+        // @ts-ignore
+        ws.addEventListener("open", async (): any => {
           ws.removeEventListener("error", reject);
           ws.removeEventListener("close", reject);
           this.send("/connect", {
