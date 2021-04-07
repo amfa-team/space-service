@@ -1,3 +1,15 @@
+# @amfa-team/space-service [1.9.0-beta.6](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0-beta.5...@amfa-team/space-service@1.9.0-beta.6) (2021-04-07)
+
+
+### Bug Fixes
+
+* usewebsocket ([aece210](https://github.com/amfa-team/space-service/commit/aece21065dbddff1f44192dc583ce26ca482e67f))
+
+
+### Features
+
+* export useWebsocket ([87e5ff7](https://github.com/amfa-team/space-service/commit/87e5ff7adfa89b8e3a5ec6808bfdde4a145b0814))
+
 # @amfa-team/space-service [1.9.0-beta.5](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0-beta.4...@amfa-team/space-service@1.9.0-beta.5) (2021-04-06)
 
 
