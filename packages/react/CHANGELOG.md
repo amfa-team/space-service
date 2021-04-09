@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.9.0-beta.7](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0-beta.6...@amfa-team/space-service@1.9.0-beta.7) (2021-04-09)
+
+
+### Features
+
+* profile space list ([f7fb4ec](https://github.com/amfa-team/space-service/commit/f7fb4ec82abab2898b01e693e8e43ad19eb19b9a))
+
 # @amfa-team/space-service [1.9.0-beta.6](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0-beta.5...@amfa-team/space-service@1.9.0-beta.6) (2021-04-07)
 
 
