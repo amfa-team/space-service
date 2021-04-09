@@ -5,11 +5,12 @@ import { useSpaceList } from "../api/space/useSpaceList";
 
 interface SpaceListProps {
   initialSpaces: ISpace[];
+  profile: boolean;
   children: (space: ISpace) => ReactNode;
 }
 
 export function SpaceList(props: SpaceListProps) {
-  const { spaces } = useSpaceList(props.initialSpaces);
+  const { spaces } = useSpaceList(props.initialSpaces, props.profile);
 
   return (
     <>
@@ -26,4 +27,5 @@ export function SpaceList(props: SpaceListProps) {
 
 SpaceList.defaultProps = {
   initialSpaces: [],
+  profile: false,
 };
