@@ -82,6 +82,9 @@ export const adminSpaceUpdateDecoder = JsonDecoder.object(
         public: JsonDecoder.boolean,
         random: JsonDecoder.boolean,
         live: JsonDecoder.boolean,
+        isLiveNow: JsonDecoder.boolean,
+        hasRooms: JsonDecoder.boolean,
+        scheduledAt: JsonDecoder.string,
         order: JsonDecoder.number,
       },
       "space",
@@ -96,9 +99,16 @@ export async function handleAdminSpaceUpdate(
 ): Promise<HandlerResult<ISpace>> {
   const { space } = data;
   const SpaceModel = await getSpaceModel();
-  await SpaceModel.findOneAndUpdate({ _id: space._id }, space, {
-    upsert: true,
-  });
+
+  // const scheduledAt = new Date(space.scheduledAt);
+  const { scheduledAt } = space;
+  await SpaceModel.findOneAndUpdate(
+    { _id: space._id },
+    { ...space, scheduledAt },
+    {
+      upsert: true,
+    },
+  );
 
   return {
     payload: space,
