@@ -11,7 +11,7 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "@amfa-team/space-service-types": "^1.3.0",
+    "@amfa-team/space-service-types": "^1.4.0-beta.4",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/exec": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
@@ -23,7 +23,7 @@
     "access": "restricted"
   },
   "peerDependencies": {
-    "@amfa-team/space-service-types": "^1.1.0"
+    "@amfa-team/space-service-types": "^1.4.0-beta.4"
   },
   "scripts": {
     "build": "tsc -b",

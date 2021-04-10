@@ -10,15 +10,10 @@
     d "1"
     es5-ext "^0.10.47"
 
-"@amfa-team/space-service-types@^1.3.0":
-  version "1.3.0"
-  resolved "https://npm.pkg.github.com/download/@amfa-team/space-service-types/1.3.0/aad07b883f62cfd1a0838e4f800d6f637d9649e93b65db970a5d6e9b1ff0578c#d7df0307c74aff23fa334f64feb344aa6941b532"
-  integrity sha512-WGTqHuUE+ATAA6wCBLxt2vYb5UKd662LflCXIOjPb2AA7BtbrW1J5pcecVRAELbfrxQipwj2OyKUoFjjiHSDyw==
-
-"@amfa-team/space-service-types@^1.4.0-beta.3":
-  version "1.4.0-beta.3"
-  resolved "https://npm.pkg.github.com/download/@amfa-team/space-service-types/1.4.0-beta.3/7dd4e31defda1df3561e02e46bc308e6b172cb3f5c4be8c6898b3aa86bc0fbc3#8705bf9bb3de81f4829d5be1997cf331ffb4b4e0"
-  integrity sha512-8kQR0olDPqnIUQ3FXqR2jnnb17srVQ1Pe87yAXIWJZ6DabR/4loielT/CYbZyZIXsaQ+B+/93lhUTMcTaOnP6g==
+"@amfa-team/space-service-types@^1.4.0-beta.4":
+  version "1.4.0-beta.4"
+  resolved "https://npm.pkg.github.com/download/@amfa-team/space-service-types/1.4.0-beta.4/ccfd646c23923f35090cdbdbf134d30106954c5979669d232ac4e15c112d8487#5a935daa8ee79b03c440f8e1e71238b4a6ffb4ab"
+  integrity sha512-yoNvDbZ1c9A7lYJT3veJVD2j9DWuI6hWFAx2Ye2wy7brB86yHRr64PiJjX1SHxP/3syf3IwyqP2gSv0wqQ5+EQ==
 
 "@amfa-team/theme-service@^1.5.0-beta.15":
   version "1.5.0-beta.15"
