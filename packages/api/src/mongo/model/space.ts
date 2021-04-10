@@ -1,12 +1,11 @@
-import type { ISpaceBase } from "@amfa-team/space-service-types";
+import type { ISpace } from "@amfa-team/space-service-types";
 import type { Document } from "mongoose";
 import { Schema } from "mongoose";
 import { connect } from "../client";
 
-interface ISpaceDocument extends ISpaceBase, Document {
+interface ISpaceDocument extends ISpace, Document {
   id: string;
   _id: string;
-  scheduledAt: string; // Date | null;
 }
 
 const SpaceSchema: Schema = new Schema(

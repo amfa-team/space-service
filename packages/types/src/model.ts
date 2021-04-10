@@ -1,4 +1,4 @@
-export interface ISpaceBase {
+export interface ISpace {
   _id: string;
   name: string;
   imageUrl: string | null;
@@ -9,12 +9,9 @@ export interface ISpaceBase {
   live: boolean;
   isLiveNow: boolean;
   hasRooms: boolean;
+  scheduledAt: string;
   order: number;
   description?: string;
   tags?: string[];
   highlight?: string;
-}
-
-export interface ISpace extends ISpaceBase {
-  scheduledAt: string;
 }
