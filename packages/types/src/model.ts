@@ -1,3 +1,4 @@
+// interface
 export interface ISpace {
   _id: string;
   name: string;
