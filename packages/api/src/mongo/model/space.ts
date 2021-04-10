@@ -1,11 +1,12 @@
-import type { ISpace } from "@amfa-team/space-service-types";
+import type { ISpaceBase } from "@amfa-team/space-service-types";
 import type { Document } from "mongoose";
 import { Schema } from "mongoose";
 import { connect } from "../client";
 
-interface ISpaceDocument extends ISpace, Document {
+interface ISpaceDocument extends ISpaceBase, Document {
   id: string;
   _id: string;
+  scheduledAt: string; // Date | null;
 }
 
 const SpaceSchema: Schema = new Schema(
@@ -68,6 +69,21 @@ const SpaceSchema: Schema = new Schema(
       default: 0,
     },
     live: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    isLiveNow: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    scheduledAt: {
+      type: String, // Date,
+      required: false,
+      default: null,
+    },
+    hasRooms: {
       type: Boolean,
       required: true,
       default: false,
