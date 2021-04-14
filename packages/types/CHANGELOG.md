@@ -1,3 +1,19 @@
+# @amfa-team/space-service-types [1.4.0](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-types@1.3.0...@amfa-team/space-service-types@1.4.0) (2021-04-14)
+
+
+### Bug Fixes
+
+* admin space page ([a851ce5](https://github.com/amfa-team/space-service/commit/a851ce57479ffdd57a67d57ca33441c0a6241e56))
+
+
+### Features
+
+* add field ([e555d8f](https://github.com/amfa-team/space-service/commit/e555d8f97aa719f8899ad6a1c6e0694d9033a856))
+* add polls components ([3ea99c3](https://github.com/amfa-team/space-service/commit/3ea99c39bf89fb062d17aa090f6ce001cbe0ffd4))
+* add space details ([3880fe3](https://github.com/amfa-team/space-service/commit/3880fe35d86b1c9cf4d9a14ca3464cfe6fca15c1))
+* add websocket ([ac07882](https://github.com/amfa-team/space-service/commit/ac07882ee00ae2570f7b8cd62c0ebab99f6a13f4))
+* upgrade deps ([42f9496](https://github.com/amfa-team/space-service/commit/42f9496f58f460fcf0bc0b09f68b395ec7392f91))
+
 # @amfa-team/space-service-types [1.4.0-beta.6](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-types@1.4.0-beta.5...@amfa-team/space-service-types@1.4.0-beta.6) (2021-04-14)
 
 
