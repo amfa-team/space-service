@@ -1,3 +1,10 @@
+## @amfa-team/space-service [1.9.1-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0...@amfa-team/space-service@1.9.1-beta.1) (2021-04-14)
+
+
+### Bug Fixes
+
+* useSpaceList using nullable token ([1f03b4a](https://github.com/amfa-team/space-service/commit/1f03b4a0638a7ac781733a43c258b1f9e9a422a2))
+
 # @amfa-team/space-service [1.9.0](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.8.0...@amfa-team/space-service@1.9.0) (2021-04-14)
 
 
