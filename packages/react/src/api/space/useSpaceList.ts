@@ -17,7 +17,7 @@ export async function getSpaces(
 export async function getSpace(
   settings: ApiSettings,
   slug: string,
-  token: string,
+  token: string | null,
   signal?: AbortSignal,
 ): Promise<GetSpacePayload> {
   const result = await apiPost<"get">(settings, "get", { slug, token }, signal);
@@ -70,7 +70,7 @@ export function useSpaceList(
             return getSpace(
               settings,
               slug,
-              token ?? "",
+              token ?? null,
               abortController.signal,
             );
           }),
