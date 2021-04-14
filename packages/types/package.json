@@ -1,7 +1,7 @@
 {
   "name": "@amfa-team/space-service-types",
   "repository": "https://github.com/amfa-team/space-service.git",
-  "version": "1.1.0",
+  "version": "0.0.0",
   "description": "",
   "license": "SEE LICENSE IN LICENSE.md",
   "main": "lib/index.js",
@@ -14,7 +14,7 @@
     "@semantic-release/git": "^9.0.0",
     "semantic-release": "^17.4.2",
     "semantic-release-slack-bot": "^2.1.0",
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.4"
   },
   "publishConfig": {
     "access": "restricted"
