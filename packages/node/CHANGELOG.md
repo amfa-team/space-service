@@ -1,3 +1,24 @@
+# @amfa-team/space-service-node [1.1.0](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-node@1.0.2...@amfa-team/space-service-node@1.1.0) (2021-04-14)
+
+
+### Bug Fixes
+
+* admin space page ([a851ce5](https://github.com/amfa-team/space-service/commit/a851ce57479ffdd57a67d57ca33441c0a6241e56))
+
+
+### Features
+
+* upgrade deps ([42f9496](https://github.com/amfa-team/space-service/commit/42f9496f58f460fcf0bc0b09f68b395ec7392f91))
+* upgrade deps ([8a70660](https://github.com/amfa-team/space-service/commit/8a7066014cf666a4f44b52c6054c5f748f99268d))
+
+
+
+
+
+### Dependencies
+
+* **@amfa-team/space-service-types:** upgraded to 1.4.0
+
 # @amfa-team/space-service-node [1.1.0-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-node@1.1.0-beta.1...@amfa-team/space-service-node@1.1.0-beta.2) (2021-04-14)
 
 
