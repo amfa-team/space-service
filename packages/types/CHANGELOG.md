@@ -1,3 +1,10 @@
+# @amfa-team/space-service-types [1.4.0-beta.6](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-types@1.4.0-beta.5...@amfa-team/space-service-types@1.4.0-beta.6) (2021-04-14)
+
+
+### Features
+
+* upgrade deps ([42f9496](https://github.com/amfa-team/space-service/commit/42f9496f58f460fcf0bc0b09f68b395ec7392f91))
+
 # @amfa-team/space-service-types [1.4.0-beta.5](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-types@1.4.0-beta.4...@amfa-team/space-service-types@1.4.0-beta.5) (2021-04-10)
 
 
