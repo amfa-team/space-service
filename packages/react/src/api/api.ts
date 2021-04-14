@@ -6,6 +6,7 @@ import type {
 
 export type ApiSettings = {
   endpoint: string;
+  wsEndpoint: string;
   secret?: string;
 };
 

@@ -45,7 +45,7 @@ export function SpacePage(props: SpacePageProps) {
     return <LoadingComponent />;
   }
 
-  if (!isPrivate) {
+  if (!isPrivate && userRole === "user") {
     return child;
   }
 

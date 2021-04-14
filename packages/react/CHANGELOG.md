@@ -1,3 +1,133 @@
+# @amfa-team/space-service [1.9.0-beta.9](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0-beta.8...@amfa-team/space-service@1.9.0-beta.9) (2021-04-14)
+
+
+### Features
+
+* upgrade deps ([42f9496](https://github.com/amfa-team/space-service/commit/42f9496f58f460fcf0bc0b09f68b395ec7392f91))
+
+
+
+
+
+### Dependencies
+
+* **@amfa-team/space-service-types:** upgraded to 1.4.0-beta.6
+
+# @amfa-team/space-service [1.9.0-beta.8](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0-beta.7...@amfa-team/space-service@1.9.0-beta.8) (2021-04-10)
+
+
+### Features
+
+* upgrade deps ([8a70660](https://github.com/amfa-team/space-service/commit/8a7066014cf666a4f44b52c6054c5f748f99268d))
+
+
+
+
+
+### Dependencies
+
+* **@amfa-team/space-service-types:** upgraded to 1.4.0-beta.5
+
+# @amfa-team/space-service [1.9.0-beta.7](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0-beta.6...@amfa-team/space-service@1.9.0-beta.7) (2021-04-09)
+
+
+### Features
+
+* profile space list ([f7fb4ec](https://github.com/amfa-team/space-service/commit/f7fb4ec82abab2898b01e693e8e43ad19eb19b9a))
+
+# @amfa-team/space-service [1.9.0-beta.6](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0-beta.5...@amfa-team/space-service@1.9.0-beta.6) (2021-04-07)
+
+
+### Bug Fixes
+
+* usewebsocket ([aece210](https://github.com/amfa-team/space-service/commit/aece21065dbddff1f44192dc583ce26ca482e67f))
+
+
+### Features
+
+* export useWebsocket ([87e5ff7](https://github.com/amfa-team/space-service/commit/87e5ff7adfa89b8e3a5ec6808bfdde4a145b0814))
+
+# @amfa-team/space-service [1.9.0-beta.5](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0-beta.4...@amfa-team/space-service@1.9.0-beta.5) (2021-04-06)
+
+
+### Bug Fixes
+
+* up and ts ([7f66cae](https://github.com/amfa-team/space-service/commit/7f66caebbb6595f4fa9294c71c5b51f980117bbd))
+
+
+### Features
+
+* quick ([4eeadff](https://github.com/amfa-team/space-service/commit/4eeadffe261e00627090ab161244ad60dfe0d251))
+
+# @amfa-team/space-service [1.9.0-beta.4](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0-beta.3...@amfa-team/space-service@1.9.0-beta.4) (2021-04-05)
+
+
+### Features
+
+* add websocket ([ac07882](https://github.com/amfa-team/space-service/commit/ac07882ee00ae2570f7b8cd62c0ebab99f6a13f4))
+
+
+
+
+
+### Dependencies
+
+* **@amfa-team/space-service-types:** upgraded to 1.4.0-beta.4
+
+# @amfa-team/space-service [1.9.0-beta.3](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0-beta.2...@amfa-team/space-service@1.9.0-beta.3) (2021-04-03)
+
+
+### Features
+
+* upgrade services ([ad6f73f](https://github.com/amfa-team/space-service/commit/ad6f73faa4be71d82dd99f849f18c5711ca55be3))
+
+# @amfa-team/space-service [1.9.0-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0-beta.1...@amfa-team/space-service@1.9.0-beta.2) (2021-04-02)
+
+
+### Features
+
+* add dictionary exports ([f02a5d4](https://github.com/amfa-team/space-service/commit/f02a5d41e2597f519a5652531a5b22964bbf5bbe))
+
+# @amfa-team/space-service [1.9.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.8.1-beta.2...@amfa-team/space-service@1.9.0-beta.1) (2021-04-02)
+
+
+### Features
+
+* add polls components ([3ea99c3](https://github.com/amfa-team/space-service/commit/3ea99c39bf89fb062d17aa090f6ce001cbe0ffd4))
+
+
+
+
+
+### Dependencies
+
+* **@amfa-team/space-service-types:** upgraded to 1.4.0-beta.3
+
+## @amfa-team/space-service [1.8.1-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.8.1-beta.1...@amfa-team/space-service@1.8.1-beta.2) (2021-03-28)
+
+
+### Bug Fixes
+
+* admin space page ([a851ce5](https://github.com/amfa-team/space-service/commit/a851ce57479ffdd57a67d57ca33441c0a6241e56))
+
+
+
+
+
+### Dependencies
+
+* **@amfa-team/space-service-types:** upgraded to 1.4.0-beta.2
+
+## @amfa-team/space-service [1.8.1-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.8.0...@amfa-team/space-service@1.8.1-beta.1) (2021-03-05)
+
+
+
+
+
+### Dependencies
+
+* **@amfa-team/space-service-types:** upgraded to 1.4.0-beta.1
+
 # @amfa-team/space-service [1.8.0](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.7.0...@amfa-team/space-service@1.8.0) (2021-03-05)
 
 

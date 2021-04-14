@@ -19,24 +19,20 @@ function discardClient(url: string, client?: Mongoose) {
 }
 
 async function getClient(url: string): Promise<Mongoose> {
-  logger.info("[mongo/client:getClient]: connecting to mongodb");
+  if (!process.env.IS_OFFLINE) {
+    logger.info("[mongo/client:getClient]: connecting to mongodb");
+  }
 
   let cachedClient = cachedClientMap.get(url) ?? null;
   if (cachedClient) {
-    const client: Promise<Mongoose> = cachedClient
-      .then((c) => {
-        if (c.connection.readyState === 1) {
-          return c;
-        }
-        discardClient(url, c);
-        return getClient(url);
-      })
-      .catch(async (e) => {
-        logger.error(e, "[mongo/client:connect]: cache failed");
-        discardClient(url);
-        return getClient(url);
-      });
-    logger.info("[mongo/client:getClient]: using cached mongodb client");
+    const client: Promise<Mongoose> = cachedClient.catch(async (e) => {
+      logger.error(e, "[mongo/client:connect]: cache failed");
+      discardClient(url);
+      return getClient(url);
+    });
+    if (!process.env.IS_OFFLINE) {
+      logger.info("[mongo/client:getClient]: using cached mongodb client");
+    }
     return client;
   }
 
@@ -44,13 +40,12 @@ async function getClient(url: string): Promise<Mongoose> {
     const instance = new mongoose.Mongoose();
     cachedClient = instance.connect(url, {
       appname: `space-service-${getEnvName()}`,
-      autoReconnect: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
       connectTimeoutMS: 5_000, // How long to wait for a connection to be established before timing out
-      poolSize: Number(process.env.POOL_SIZE ?? 10), // Maintain up to 10 socket connections
-      maxPoolSize: Number(process.env.MAX_POOL_SIZE ?? 20),
-      minPoolSize: Number(process.env.MIN_POOL_SIZE ?? 2),
+      poolSize: Number(process.env.POOL_SIZE ?? 5), // Maintain up to 5 socket connections
+      maxPoolSize: Number(process.env.MAX_POOL_SIZE ?? 5),
+      minPoolSize: Number(process.env.MIN_POOL_SIZE ?? 0),
       maxIdleTimeMS: 600_000,
       serverSelectionTimeoutMS: 5_000, // How long to block for server selection before throwing an error
       heartbeatFrequencyMS: 2_000, // The frequency with which topology updates are scheduled
@@ -61,14 +56,13 @@ async function getClient(url: string): Promise<Mongoose> {
       useFindAndModify: false,
       useCreateIndex: true,
       bufferCommands: true,
-      bufferMaxEntries: 20, // Sets a cap on how many operations the driver will buffer up before giving up on getting a working connection, default is -1 which is unlimited
       readPreference: "primaryPreferred",
     });
 
     cachedClientMap.set(url, cachedClient);
 
     const client: Mongoose = await cachedClient;
-    client.set("debug", true);
+    // client.set("debug", true);
 
     logger.info("[mongo/client:connect]: connected to mongodb", {
       url,

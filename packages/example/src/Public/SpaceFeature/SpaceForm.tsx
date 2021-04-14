@@ -1,3 +1,4 @@
+import { Button, Container, Input } from "@chakra-ui/react";
 import type { FormEvent } from "react";
 import React, { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -15,13 +16,15 @@ export function SpaceForm() {
   );
 
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        type="text"
-        value={spaceName}
-        onChange={(e) => setSpaceName(e.target.value)}
-      />
-      <button type="submit">Go!</button>
-    </form>
+    <Container maxW="container.lg">
+      <form onSubmit={onSubmit}>
+        <Input
+          type="text"
+          value={spaceName}
+          onChange={(e) => setSpaceName(e.target.value)}
+        />
+        <Button type="submit">Go!</Button>
+      </form>
+    </Container>
   );
 }
