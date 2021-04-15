@@ -50,7 +50,6 @@ package:
 
 functions:
   - ${file(./serverless/api.yml)}
-  - ${file(./serverless/admin.yml)}
   - ${file(./serverless/websocket.yml)}
 
 resources:

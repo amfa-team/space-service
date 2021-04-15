@@ -163,6 +163,8 @@ export async function handleHttpErrorResponse(
   event: APIGatewayProxyEvent,
 ): Promise<APIGatewayProxyResult> {
   if (e instanceof InvalidRequestError) {
+    logger.error(e, "handleHttpErrorResponse: invalid request", { event });
+
     return {
       statusCode: e.code,
       headers: { ...getCorsHeaders() },

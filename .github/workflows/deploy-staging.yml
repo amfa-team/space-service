@@ -61,3 +61,7 @@ jobs:
           MONGO_DB_URL: ${{ secrets.MONGO_DB_URL_STAGING }}
           API_SECRET: ${{ secrets.API_SECRET_STAGING }}
           USER_SERVICE_API_SECRET: ${{ secrets.USER_SERVICE_API_SECRET_STAGING }}
+          CONCURRENCY: ${{ secrets.CONCURRENCY_STAGING }}
+          POOL_SIZE: ${{ secrets.POOL_SIZE_STAGING }}
+          MAX_POOL_SIZE: ${{ secrets.MAX_POOL_SIZE_STAGING }}
+          MIN_POOL_SIZE: ${{ secrets.MAX_POOL_SIZE_STAGING }}
