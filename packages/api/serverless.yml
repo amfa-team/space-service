@@ -46,7 +46,7 @@ provider:
       Resource: "arn:aws:s3:::${self:custom.sbs.bucketName.${opt:stage, self:provider.stage}}/*"
 
 package:
-  individually: false
+  individually: true
 
 functions:
   - ${file(./serverless/api.yml)}
