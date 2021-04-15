@@ -71,121 +71,121 @@ export const handler = AWSLambda.wrapHandler(async function handler(
   context: Context,
 ): Promise<APIGatewayProxyResult> {
   switch (event.path) {
-    case "get":
+    case "/get":
       return handlePublicPOST<"get">(
         event,
         context,
         handleGet,
         handleGetDecoder,
       );
-    case "list":
+    case "/list":
       return handlePublicGET<"list">(event, context, handleList);
-    case "polls/list":
+    case "/polls/list":
       return handlePublicPOST<"polls/list">(
         event,
         context,
         handlePollList,
         pollListReqDecoder,
       );
-    case "polls/vote/get":
+    case "/polls/vote/get":
       return handlePublicPOST<"polls/vote/get">(
         event,
         context,
         handlePollVoteGet,
         pollVoteGetReqDecoder,
       );
-    case "polls/vote/submit":
+    case "/polls/vote/submit":
       return handlePublicPOST<"polls/vote/submit">(
         event,
         context,
         handleSubmitVote,
         submitVoteReqDecoder,
       );
-    case "polls/result":
+    case "/polls/result":
       return handlePublicPOST<"polls/result">(
         event,
         context,
         handlePollResult,
         pollVoteGetReqDecoder,
       );
-    case "quorum/get":
+    case "/quorum/get":
       return handlePublicPOST<"quorum/get">(
         event,
         context,
         handleGetQuorum,
         getQuorumReqDecoder,
       );
-    case "quorum/list":
+    case "/quorum/list":
       return handlePublicPOST<"quorum/list">(
         event,
         context,
         handleListQuorum,
         listQuorumReqDecoder,
       );
-    case "admin/image/upload":
+    case "/admin/image/upload":
       return handleAdminPOST<"admin/image/upload">(
         event,
         context,
         handleAdminImageUpload,
         adminImageUploadDecoder,
       );
-    case "admin/space":
+    case "/admin/space":
       return handleAdminPOST<"admin/space">(
         event,
         context,
         handleAdminSpaces,
         adminListDecoder,
       );
-    case "admin/space/update":
+    case "/admin/space/update":
       return handleAdminPOST<"admin/space/update">(
         event,
         context,
         handleAdminSpaceUpdate,
         adminSpaceUpdateDecoder,
       );
-    case "admin/space/remove":
+    case "/admin/space/remove":
       return handleAdminPOST<"admin/space/remove">(
         event,
         context,
         handleAdminSpaceRemove,
         adminSpaceRemoveDecoder,
       );
-    case "admin/poll/create":
+    case "/admin/poll/create":
       return handleAdminPOST<"admin/poll/create">(
         event,
         context,
         handleAdminPollCreate,
         adminPollCreateDecoder,
       );
-    case "admin/poll/update":
+    case "/admin/poll/update":
       return handleAdminPOST<"admin/poll/update">(
         event,
         context,
         handleAdminPollUpdate,
         adminPollUpdateDecoder,
       );
-    case "admin/poll/remove":
+    case "/admin/poll/remove":
       return handleAdminPOST<"admin/poll/remove">(
         event,
         context,
         handleAdminPollRemove,
         adminPollRemoveDecoder,
       );
-    case "admin/voter/create":
+    case "/admin/voter/create":
       return handleAdminPOST<"admin/voter/create">(
         event,
         context,
         handleAdminVoterCreate,
         adminVoterCreateDecoder,
       );
-    case "admin/voter/update":
+    case "/admin/voter/update":
       return handleAdminPOST<"admin/voter/update">(
         event,
         context,
         handleAdminVoterUpdate,
         adminVoterUpdateDecoder,
       );
-    case "admin/voter/remove":
+    case "/admin/voter/remove":
       return handleAdminPOST<"admin/voter/remove">(
         event,
         context,
