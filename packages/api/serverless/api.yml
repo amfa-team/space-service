@@ -74,3 +74,7 @@ handler:
         path: admin/image/upload
         method: post
         cors: ${file(./serverless/cors.yml):main}
+    - websocket:
+        route: /connect
+        routeResponseSelectionExpression: $default
+    - websocket: $disconnect
