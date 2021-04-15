@@ -89,7 +89,7 @@ export const handler = AWSLambda.wrapHandler(async function handler(
     return handlePublicWsDisconnect(event, context, handleWsDiconnection);
   }
 
-  switch (event.path) {
+  switch (event.resource) {
     case "/get":
       return handlePublicPOST<"get">(
         event,
