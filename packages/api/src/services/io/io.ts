@@ -55,28 +55,7 @@ export function setup() {
     environment: process.env.SENTRY_ENVIRONMENT,
     enabled: !process.env.IS_OFFLINE,
     frameContextLines: 0,
-    integrations: [
-      new RewriteFrames({
-        iteratee(frame) {
-          if (!frame.filename) return frame;
-          if (!frame.filename.startsWith("/")) return frame;
-          if (frame.filename.includes("/node_modules/")) return frame;
-          if (!process.env.AWS_LAMBDA_FUNCTION_NAME) return frame;
-
-          const functionName = process.env.AWS_LAMBDA_FUNCTION_NAME.replace(
-            /^.+-([^-]+)$/g,
-            "$1",
-          );
-          // eslint-disable-next-line no-param-reassign
-          frame.filename = frame.filename.replace(
-            "/var/task",
-            `/var/task/${functionName}`,
-          );
-
-          return frame;
-        },
-      }),
-    ],
+    integrations: [new RewriteFrames()],
   });
 }
 

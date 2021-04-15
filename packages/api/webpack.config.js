@@ -13,7 +13,9 @@ if (!slsw.lib.webpack.isLocal) {
       authToken: process.env.SENTRY_AUTH_TOKEN,
       org: "side-by-side-sas",
       project: "space-service-api",
-      include: "./webpack/service/src",
+      include: `${__dirname}/.webpack`,
+      urlPrefix: "/var/task",
+      // debug: true,
     }),
   );
 }
