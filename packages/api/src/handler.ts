@@ -61,6 +61,7 @@ import {
   handlePublicPOST,
   handlePublicWs,
   handlePublicWsDisconnect,
+  handleWsErrorResponse,
   setup,
 } from "./services/io/io";
 
@@ -70,6 +71,24 @@ export const handler = AWSLambda.wrapHandler(async function handler(
   event: APIGatewayProxyEvent,
   context: Context,
 ): Promise<APIGatewayProxyResult> {
+  if (event.requestContext.eventType === "MESSAGE") {
+    switch (event.requestContext.routeKey) {
+      case "/connect":
+        return handlePublicWs(
+          event,
+          context,
+          handleWsConnection,
+          wsConnectionDecoder,
+        );
+      default:
+        return handleWsErrorResponse(new NotFoundError(), "", event);
+    }
+  }
+
+  if (event.requestContext.eventType === "DISCONNECT") {
+    return handlePublicWsDisconnect(event, context, handleWsDiconnection);
+  }
+
   switch (event.path) {
     case "/get":
       return handlePublicPOST<"get">(
@@ -196,26 +215,3 @@ export const handler = AWSLambda.wrapHandler(async function handler(
       return handleHttpErrorResponse(new NotFoundError(), event);
   }
 });
-
-export const onWsConnect: any = AWSLambda.wrapHandler(
-  async function onWsConnect(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handlePublicWs(
-      event,
-      context,
-      handleWsConnection,
-      wsConnectionDecoder,
-    );
-  },
-);
-
-export const onWsDisconnect: any = AWSLambda.wrapHandler(
-  async function onWsDisconnect(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handlePublicWsDisconnect(event, context, handleWsDiconnection);
-  },
-);
