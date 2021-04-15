@@ -7,7 +7,7 @@ import type {
   WsRoutes,
   WsServerEvents,
 } from "@amfa-team/space-service-types";
-import { RewriteFrames } from "@sentry/integrations";
+// import { RewriteFrames } from "@sentry/integrations";
 import { flush, init as initSentry } from "@sentry/serverless";
 import type {
   APIGatewayProxyEvent,
@@ -55,7 +55,7 @@ export function setup() {
     environment: process.env.SENTRY_ENVIRONMENT,
     enabled: !process.env.IS_OFFLINE,
     frameContextLines: 0,
-    integrations: [new RewriteFrames()],
+    // integrations: [new RewriteFrames()],
   });
 }
 
