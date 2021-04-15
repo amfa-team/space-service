@@ -64,4 +64,4 @@ jobs:
           CONCURRENCY: ${{ secrets.CONCURRENCY_STAGING }}
           POOL_SIZE: ${{ secrets.POOL_SIZE_STAGING }}
           MAX_POOL_SIZE: ${{ secrets.MAX_POOL_SIZE_STAGING }}
-          MIN_POOL_SIZE: ${{ secrets.MAX_POOL_SIZE_STAGING }}
+          MIN_POOL_SIZE: ${{ secrets.MIN_POOL_SIZE_STAGING }}
