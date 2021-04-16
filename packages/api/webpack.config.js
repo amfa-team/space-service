@@ -13,7 +13,9 @@ if (!slsw.lib.webpack.isLocal) {
       authToken: process.env.SENTRY_AUTH_TOKEN,
       org: "side-by-side-sas",
       project: "space-service-api",
-      include: "./src",
+      include: `${__dirname}/.webpack/service`,
+      urlPrefix: "/var/task",
+      // debug: true,
     }),
   );
 }
@@ -22,8 +24,10 @@ module.exports = {
   entry: slsw.lib.entries,
   mode: slsw.lib.webpack.isLocal ? "development" : "production",
   target: "node",
+  devtool: slsw.lib.webpack.isLocal ? false : "source-map",
   optimization: {
     concatenateModules: false,
+    minimize: false,
   },
   module: {
     rules: [

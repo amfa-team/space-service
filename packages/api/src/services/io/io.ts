@@ -7,6 +7,7 @@ import type {
   WsRoutes,
   WsServerEvents,
 } from "@amfa-team/space-service-types";
+// import { RewriteFrames } from "@sentry/integrations";
 import { flush, init as initSentry } from "@sentry/serverless";
 import type {
   APIGatewayProxyEvent,
@@ -48,10 +49,13 @@ function getCorsHeaders(): Record<string, string> {
 }
 
 export function setup() {
+  // https://botondveress.com/blog/sentry-sourcemaps-aws-lambda-functions
   initSentry({
     dsn: process.env.SENTRY_DNS,
     environment: process.env.SENTRY_ENVIRONMENT,
     enabled: !process.env.IS_OFFLINE,
+    frameContextLines: 0,
+    // integrations: [new RewriteFrames()],
   });
 }
 
@@ -163,6 +167,8 @@ export async function handleHttpErrorResponse(
   event: APIGatewayProxyEvent,
 ): Promise<APIGatewayProxyResult> {
   if (e instanceof InvalidRequestError) {
+    logger.error(e, "handleHttpErrorResponse: invalid request", { event });
+
     return {
       statusCode: e.code,
       headers: { ...getCorsHeaders() },

@@ -53,264 +53,165 @@ import {
   handleWsDiconnection,
   wsConnectionDecoder,
 } from "./controllers/wsController";
+import { NotFoundError } from "./services/io/exceptions";
 import {
   handleAdminPOST,
+  handleHttpErrorResponse,
   handlePublicGET,
   handlePublicPOST,
   handlePublicWs,
   handlePublicWsDisconnect,
+  handleWsErrorResponse,
   setup,
 } from "./services/io/io";
 
 setup();
 
-export const getSpace: any = AWSLambda.wrapHandler(async function list(
+export const handler = AWSLambda.wrapHandler(async function handler(
   event: APIGatewayProxyEvent,
   context: Context,
 ): Promise<APIGatewayProxyResult> {
-  return handlePublicPOST<"get">(event, context, handleGet, handleGetDecoder);
-});
+  if (event.requestContext.eventType === "MESSAGE") {
+    switch (event.requestContext.routeKey) {
+      case "/connect":
+        return handlePublicWs(
+          event,
+          context,
+          handleWsConnection,
+          wsConnectionDecoder,
+        );
+      default:
+        return handleWsErrorResponse(new NotFoundError(), "", event);
+    }
+  }
 
-export const list: any = AWSLambda.wrapHandler(async function list(
-  event: APIGatewayProxyEvent,
-  context: Context,
-): Promise<APIGatewayProxyResult> {
-  return handlePublicGET<"list">(event, context, handleList);
-});
-
-export const pollList: any = AWSLambda.wrapHandler(async function pollList(
-  event: APIGatewayProxyEvent,
-  context: Context,
-): Promise<APIGatewayProxyResult> {
-  return handlePublicPOST<"polls/list">(
-    event,
-    context,
-    handlePollList,
-    pollListReqDecoder,
-  );
-});
-
-export const getVote: any = AWSLambda.wrapHandler(async function getVote(
-  event: APIGatewayProxyEvent,
-  context: Context,
-): Promise<APIGatewayProxyResult> {
-  return handlePublicPOST<"polls/vote/get">(
-    event,
-    context,
-    handlePollVoteGet,
-    pollVoteGetReqDecoder,
-  );
-});
-
-export const submitVote: any = AWSLambda.wrapHandler(async function submitVote(
-  event: APIGatewayProxyEvent,
-  context: Context,
-): Promise<APIGatewayProxyResult> {
-  return handlePublicPOST<"polls/vote/submit">(
-    event,
-    context,
-    handleSubmitVote,
-    submitVoteReqDecoder,
-  );
-});
-
-export const getPollResult: any = AWSLambda.wrapHandler(
-  async function getPollResult(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handlePublicPOST<"polls/result">(
-      event,
-      context,
-      handlePollResult,
-      pollVoteGetReqDecoder,
-    );
-  },
-);
-
-export const onWsConnect: any = AWSLambda.wrapHandler(
-  async function onWsConnect(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handlePublicWs(
-      event,
-      context,
-      handleWsConnection,
-      wsConnectionDecoder,
-    );
-  },
-);
-
-export const onWsDisconnect: any = AWSLambda.wrapHandler(
-  async function onWsDisconnect(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
+  if (event.requestContext.eventType === "DISCONNECT") {
     return handlePublicWsDisconnect(event, context, handleWsDiconnection);
-  },
-);
+  }
 
-export const getQuorum: any = AWSLambda.wrapHandler(async function getQuorum(
-  event: APIGatewayProxyEvent,
-  context: Context,
-): Promise<APIGatewayProxyResult> {
-  return handlePublicPOST<"quorum/get">(
-    event,
-    context,
-    handleGetQuorum,
-    getQuorumReqDecoder,
-  );
+  switch (event.resource) {
+    case "/get":
+      return handlePublicPOST<"get">(
+        event,
+        context,
+        handleGet,
+        handleGetDecoder,
+      );
+    case "/list":
+      return handlePublicGET<"list">(event, context, handleList);
+    case "/polls/list":
+      return handlePublicPOST<"polls/list">(
+        event,
+        context,
+        handlePollList,
+        pollListReqDecoder,
+      );
+    case "/polls/vote/get":
+      return handlePublicPOST<"polls/vote/get">(
+        event,
+        context,
+        handlePollVoteGet,
+        pollVoteGetReqDecoder,
+      );
+    case "/polls/vote/submit":
+      return handlePublicPOST<"polls/vote/submit">(
+        event,
+        context,
+        handleSubmitVote,
+        submitVoteReqDecoder,
+      );
+    case "/polls/result":
+      return handlePublicPOST<"polls/result">(
+        event,
+        context,
+        handlePollResult,
+        pollVoteGetReqDecoder,
+      );
+    case "/quorum/get":
+      return handlePublicPOST<"quorum/get">(
+        event,
+        context,
+        handleGetQuorum,
+        getQuorumReqDecoder,
+      );
+    case "/quorum/list":
+      return handlePublicPOST<"quorum/list">(
+        event,
+        context,
+        handleListQuorum,
+        listQuorumReqDecoder,
+      );
+    case "/admin/image/upload":
+      return handleAdminPOST<"admin/image/upload">(
+        event,
+        context,
+        handleAdminImageUpload,
+        adminImageUploadDecoder,
+      );
+    case "/admin/space":
+      return handleAdminPOST<"admin/space">(
+        event,
+        context,
+        handleAdminSpaces,
+        adminListDecoder,
+      );
+    case "/admin/space/update":
+      return handleAdminPOST<"admin/space/update">(
+        event,
+        context,
+        handleAdminSpaceUpdate,
+        adminSpaceUpdateDecoder,
+      );
+    case "/admin/space/remove":
+      return handleAdminPOST<"admin/space/remove">(
+        event,
+        context,
+        handleAdminSpaceRemove,
+        adminSpaceRemoveDecoder,
+      );
+    case "/admin/poll/create":
+      return handleAdminPOST<"admin/poll/create">(
+        event,
+        context,
+        handleAdminPollCreate,
+        adminPollCreateDecoder,
+      );
+    case "/admin/poll/update":
+      return handleAdminPOST<"admin/poll/update">(
+        event,
+        context,
+        handleAdminPollUpdate,
+        adminPollUpdateDecoder,
+      );
+    case "/admin/poll/remove":
+      return handleAdminPOST<"admin/poll/remove">(
+        event,
+        context,
+        handleAdminPollRemove,
+        adminPollRemoveDecoder,
+      );
+    case "/admin/voter/create":
+      return handleAdminPOST<"admin/voter/create">(
+        event,
+        context,
+        handleAdminVoterCreate,
+        adminVoterCreateDecoder,
+      );
+    case "/admin/voter/update":
+      return handleAdminPOST<"admin/voter/update">(
+        event,
+        context,
+        handleAdminVoterUpdate,
+        adminVoterUpdateDecoder,
+      );
+    case "/admin/voter/remove":
+      return handleAdminPOST<"admin/voter/remove">(
+        event,
+        context,
+        handleAdminVoterRemove,
+        adminVoterRemoveDecoder,
+      );
+    default:
+      return handleHttpErrorResponse(new NotFoundError(), event);
+  }
 });
-
-export const listQuorum: any = AWSLambda.wrapHandler(async function listQuorum(
-  event: APIGatewayProxyEvent,
-  context: Context,
-): Promise<APIGatewayProxyResult> {
-  return handlePublicPOST<"quorum/list">(
-    event,
-    context,
-    handleListQuorum,
-    listQuorumReqDecoder,
-  );
-});
-
-export const adminImageUpload: any = AWSLambda.wrapHandler(
-  async function adminImageUpload(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handleAdminPOST<"admin/image/upload">(
-      event,
-      context,
-      handleAdminImageUpload,
-      adminImageUploadDecoder,
-    );
-  },
-);
-
-export const adminSpaceList: any = AWSLambda.wrapHandler(
-  async function adminSpaceList(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handleAdminPOST<"admin/space">(
-      event,
-      context,
-      handleAdminSpaces,
-      adminListDecoder,
-    );
-  },
-);
-
-export const adminSpaceUpdate: any = AWSLambda.wrapHandler(
-  async function adminSpaceUpdate(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handleAdminPOST<"admin/space/update">(
-      event,
-      context,
-      handleAdminSpaceUpdate,
-      adminSpaceUpdateDecoder,
-    );
-  },
-);
-
-export const adminSpaceRemove: any = AWSLambda.wrapHandler(
-  async function adminSpaceRemove(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handleAdminPOST<"admin/space/remove">(
-      event,
-      context,
-      handleAdminSpaceRemove,
-      adminSpaceRemoveDecoder,
-    );
-  },
-);
-
-export const adminPollCreate: any = AWSLambda.wrapHandler(
-  async function adminPollCreate(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handleAdminPOST<"admin/poll/create">(
-      event,
-      context,
-      handleAdminPollCreate,
-      adminPollCreateDecoder,
-    );
-  },
-);
-
-export const adminPollUpdate: any = AWSLambda.wrapHandler(
-  async function adminPollUpdate(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handleAdminPOST<"admin/poll/update">(
-      event,
-      context,
-      handleAdminPollUpdate,
-      adminPollUpdateDecoder,
-    );
-  },
-);
-
-export const adminPollRemove: any = AWSLambda.wrapHandler(
-  async function adminPollRemove(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handleAdminPOST<"admin/poll/remove">(
-      event,
-      context,
-      handleAdminPollRemove,
-      adminPollRemoveDecoder,
-    );
-  },
-);
-
-export const adminVoterCreate: any = AWSLambda.wrapHandler(
-  async function adminVoterCreate(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handleAdminPOST<"admin/voter/create">(
-      event,
-      context,
-      handleAdminVoterCreate,
-      adminVoterCreateDecoder,
-    );
-  },
-);
-
-export const adminVoterUpdate: any = AWSLambda.wrapHandler(
-  async function adminVoterUpdate(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handleAdminPOST<"admin/voter/update">(
-      event,
-      context,
-      handleAdminVoterUpdate,
-      adminVoterUpdateDecoder,
-    );
-  },
-);
-
-export const adminVoterRemove: any = AWSLambda.wrapHandler(
-  async function adminVoterRemove(
-    event: APIGatewayProxyEvent,
-    context: Context,
-  ): Promise<APIGatewayProxyResult> {
-    return handleAdminPOST<"admin/voter/remove">(
-      event,
-      context,
-      handleAdminVoterRemove,
-      adminVoterRemoveDecoder,
-    );
-  },
-);
