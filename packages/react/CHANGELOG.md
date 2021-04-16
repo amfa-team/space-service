@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.10.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.2-beta.1...@amfa-team/space-service@1.10.0-beta.1) (2021-04-16)
+
+
+### Features
+
+* missing route definition ([d8cb8c0](https://github.com/amfa-team/space-service/commit/d8cb8c09d82b9a8b530fed8121bc4463d3c841d1))
+
 ## @amfa-team/space-service [1.9.2-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.1...@amfa-team/space-service@1.9.2-beta.1) (2021-04-16)
 
 
