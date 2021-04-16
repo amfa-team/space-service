@@ -78,3 +78,5 @@ jobs:
           POOL_SIZE: ${{ secrets.POOL_SIZE_PRODUCTION }}
           MAX_POOL_SIZE: ${{ secrets.MAX_POOL_SIZE_PRODUCTION }}
           MIN_POOL_SIZE: ${{ secrets.MIN_POOL_SIZE_PRODUCTION }}
+          STREAM_IO_API_KEY: ${{ secrets.STREAM_IO_API_KEY_PRODUCTION }}
+          STREAM_IO_API_SECRET: ${{ secrets.STREAM_IO_API_SECRET_PRODUCTION }}

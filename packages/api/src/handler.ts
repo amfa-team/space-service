@@ -45,6 +45,7 @@ import {
 } from "./controllers/pollController";
 import {
   handleGet,
+  handleGetChatToken,
   handleGetDecoder,
   handleList,
 } from "./controllers/spaceController";
@@ -95,6 +96,13 @@ export const handler = AWSLambda.wrapHandler(async function handler(
         event,
         context,
         handleGet,
+        handleGetDecoder,
+      );
+    case "/getChatToken":
+      return handlePublicPOST<"getChatToken">(
+        event,
+        context,
+        handleGetChatToken,
         handleGetDecoder,
       );
     case "/list":

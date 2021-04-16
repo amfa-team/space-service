@@ -55,11 +55,16 @@ export interface GetSpacePayload {
   private: boolean;
 }
 
+export interface GetChatTokenPayload {
+  chatToken: null | string;
+}
+
 export type GetRoutes = PublicGetRoutes & AdminGetRoutes;
 
 export type PublicPostRoutes = {
   // no-op
   get: PostRoute<GetSpaceReq, GetSpacePayload>;
+  getChatToken: PostRoute<GetSpaceReq, GetChatTokenPayload>;
   "manage/space/list": PostRoute<RestrictedReq, SpacesPayload>;
 } & PollsPublicPostRoutes;
 
