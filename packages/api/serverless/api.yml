@@ -11,6 +11,10 @@ handler:
         method: post
         cors: ${file(./serverless/cors.yml):main}
     - http:
+        path: getChatToken
+        method: post
+        cors: ${file(./serverless/cors.yml):main}
+    - http:
         path: polls/list
         method: post
         cors: ${file(./serverless/cors.yml):main}
