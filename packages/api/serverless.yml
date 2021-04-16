@@ -39,6 +39,7 @@ provider:
     shouldStartNameWithService: true
   tracing:
     apiGateway: true
+    lambda: true
   iamRoleStatements:
     - Effect: "Allow"
       Action:
