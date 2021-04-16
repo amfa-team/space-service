@@ -35,7 +35,7 @@ export async function createSpaceChannelChat(space: ISpaceDocument | null) {
   const channel = client.channel("sbs", space._id, {
     name: space.name,
     image: space.imageUrl,
-    created_by_id: "",
+    created_by_id: "602c111b44546b00091292e4",
   });
   await channel.create();
   return channel;
