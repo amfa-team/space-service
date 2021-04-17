@@ -30,7 +30,6 @@ export function useChat(slug: string) {
         abortController.signal,
       )
         .then((result) => {
-          console.log(result);
           if (!abortController.signal.aborted) {
             setChatToken((currentChatToken) => {
               // do not update reference when equal to prevent re-render
