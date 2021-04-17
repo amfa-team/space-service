@@ -42,6 +42,10 @@ provider:
   tracing:
     apiGateway: true
     lambda: true
+  usagePlan:
+    throttle:
+      burstLimit: "${env:CONCURRENCY, 100}"
+
   iamRoleStatements:
     - Effect: "Allow"
       Action:
