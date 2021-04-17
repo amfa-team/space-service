@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.10.0-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0-beta.1...@amfa-team/space-service@1.10.0-beta.2) (2021-04-17)
+
+
+### Bug Fixes
+
+* remove log ([7718a70](https://github.com/amfa-team/space-service/commit/7718a70e41463eacc8a48f8ed00d3ec34f3ab59b))
+
 # @amfa-team/space-service [1.10.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.2-beta.1...@amfa-team/space-service@1.10.0-beta.1) (2021-04-16)
 
 
