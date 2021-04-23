@@ -9,12 +9,13 @@ import { Vote } from "./Vote";
 export interface VoteListProps {
   space: ISpace;
   websocket: any | null;
+  voteActionLabel: string;
 }
 
 const startedOnly: PollStatus[] = ["started"];
 
 function RawVoteList(props: VoteListProps) {
-  const { websocket } = props;
+  const { websocket, voteActionLabel } = props;
   const { polls, isLoading } = usePollListWithFilter(
     props.space,
     websocket,
@@ -30,7 +31,11 @@ function RawVoteList(props: VoteListProps) {
       {polls.map((poll, i) => (
         <React.Fragment key={poll.question}>
           {i > 0 && <Divider />}
-          <Vote poll={poll} websocket={websocket} />
+          <Vote
+            poll={poll}
+            websocket={websocket}
+            voteActionLabel={voteActionLabel}
+          />
         </React.Fragment>
       ))}
     </Box>
