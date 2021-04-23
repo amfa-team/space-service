@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.10.0-beta.6](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0-beta.5...@amfa-team/space-service@1.10.0-beta.6) (2021-04-23)
+
+
+### Bug Fixes
+
+* 00X error ([de78dff](https://github.com/amfa-team/space-service/commit/de78dff6fb849a047eb81147c3ca72109a22f46d))
+
 # @amfa-team/space-service [1.10.0-beta.5](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0-beta.4...@amfa-team/space-service@1.10.0-beta.5) (2021-04-23)
 
 
