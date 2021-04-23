@@ -1,3 +1,11 @@
+# @amfa-team/space-service [1.10.0-beta.3](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0-beta.2...@amfa-team/space-service@1.10.0-beta.3) (2021-04-23)
+
+
+### Features
+
+* stuff ([7ddc67a](https://github.com/amfa-team/space-service/commit/7ddc67af865e5e18536c61064c29f2fb36fdcb7e))
+* update theme service ([be7d923](https://github.com/amfa-team/space-service/commit/be7d923c6f03308ba61e90350a55bc6b20e659df))
+
 # @amfa-team/space-service [1.10.0-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0-beta.1...@amfa-team/space-service@1.10.0-beta.2) (2021-04-17)
 
 
