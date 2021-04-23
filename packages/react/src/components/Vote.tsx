@@ -19,10 +19,11 @@ import type { Ws } from "../websocket/Ws";
 export interface VoteProps {
   poll: IPoll;
   websocket: Ws | null;
+  voteActionLabel: string;
 }
 
 function RawVote(props: VoteProps) {
-  const { poll, websocket } = props;
+  const { poll, websocket, voteActionLabel } = props;
   const {
     isLoading,
     onSubmitVote,
@@ -79,7 +80,7 @@ function RawVote(props: VoteProps) {
           size="lg"
           colorScheme="whatsapp"
         >
-          Vote
+          {voteActionLabel}
         </Button>
       </FormControl>
     </Box>
