@@ -20,7 +20,7 @@ export function useChat(slug: string) {
   useEffect(() => {
     const abortController = new AbortController();
     setError(null);
-    if (settings) {
+    if (settings && token) {
       setLoading(true);
       setIsPrivate(false);
       apiPost<"getChatToken">(
