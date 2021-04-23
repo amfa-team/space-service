@@ -13,6 +13,7 @@ export function useWebsocket(spaceId: string) {
   const isRegistered = useIsRegistered();
 
   useEffect(() => {
+    const abortController = new AbortController();
     const ws =
       token === null || wsEndpoint === null || !isRegistered
         ? null
@@ -22,14 +23,22 @@ export function useWebsocket(spaceId: string) {
     setIsConnected(false);
     // @ts-ignore
     ws?.addEventListener("state:change", (event) => {
-      setIsConnected(event.data === "connected");
-      if (event.data === "closed") {
-        setError(new Error("Websocket is closed"));
+      if (!abortController.signal.aborted) {
+        setIsConnected(event.data === "connected");
+        if (event.data === "closed") {
+          setError(new Error("Websocket is closed"));
+        }
       }
     });
-    ws?.load().catch(captureException);
+    ws?.load().catch((e) => {
+      if (!abortController.signal.aborted) {
+        setError(e);
+        captureException(e);
+      }
+    });
 
     return () => {
+      abortController.abort();
       ws?.removeEventListener("state:change");
       ws?.destroy();
     };
