@@ -16,7 +16,7 @@ export interface ISpaceBase {
 }
 
 export interface ISpace extends ISpaceBase {
-  scheduledAt: string;
+  scheduledAt: null | string;
 }
 export interface ISpaceDocument extends ISpace {
   id: string;
