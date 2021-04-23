@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.10.0-beta.5](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0-beta.4...@amfa-team/space-service@1.10.0-beta.5) (2021-04-23)
+
+
+### Features
+
+* make sure token exists ([c97fdfe](https://github.com/amfa-team/space-service/commit/c97fdfe222d99b55b9b2608867d30864af681caa))
+
 # @amfa-team/space-service [1.10.0-beta.4](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0-beta.3...@amfa-team/space-service@1.10.0-beta.4) (2021-04-23)
 
 
