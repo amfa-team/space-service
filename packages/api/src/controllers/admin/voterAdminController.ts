@@ -80,7 +80,7 @@ export async function handleAdminVoterUpdate(
   if (data.voter.email) {
     update.email = data.voter.email;
   }
-  if (data.voter.count) {
+  if (data.voter.count != null) {
     update.count = data.voter.count;
   }
 
