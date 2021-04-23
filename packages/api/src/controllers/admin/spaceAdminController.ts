@@ -84,7 +84,7 @@ export const adminSpaceUpdateDecoder = JsonDecoder.object(
         live: JsonDecoder.boolean,
         isLiveNow: JsonDecoder.boolean,
         hasRooms: JsonDecoder.boolean,
-        scheduledAt: JsonDecoder.string,
+        scheduledAt: JsonDecoder.nullable(JsonDecoder.string),
         order: JsonDecoder.number,
       },
       "space",
