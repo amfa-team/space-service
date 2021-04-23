@@ -6,7 +6,7 @@ import { connect } from "../client";
 interface ISpaceDocument extends ISpaceBase, Document {
   id: string;
   _id: string;
-  scheduledAt: string; // Date | null;
+  scheduledAt: null | string; // Date | null;
 }
 
 const SpaceSchema: Schema = new Schema(

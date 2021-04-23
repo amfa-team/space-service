@@ -100,11 +100,9 @@ export async function handleAdminSpaceUpdate(
   const { space } = data;
   const SpaceModel = await getSpaceModel();
 
-  // const scheduledAt = new Date(space.scheduledAt);
-  const { scheduledAt } = space;
   await SpaceModel.findOneAndUpdate(
     { _id: space._id },
-    { ...space, scheduledAt },
+    { ...space },
     {
       upsert: true,
     },
