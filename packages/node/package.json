@@ -8,6 +8,7 @@
   "types": "lib/index.d.ts",
   "sideEffects": false,
   "dependencies": {
+    "fetch-retry": "^4.1.1",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {

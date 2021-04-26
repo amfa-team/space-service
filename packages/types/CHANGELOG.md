@@ -1,3 +1,17 @@
+# @amfa-team/space-service-types [1.5.0-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-types@1.5.0-beta.1...@amfa-team/space-service-types@1.5.0-beta.2) (2021-04-23)
+
+
+### Bug Fixes
+
+* types ([e19f7eb](https://github.com/amfa-team/space-service/commit/e19f7eb949067c5b93fffcf07f04f468f7827834))
+
+# @amfa-team/space-service-types [1.5.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-types@1.4.0...@amfa-team/space-service-types@1.5.0-beta.1) (2021-04-16)
+
+
+### Features
+
+* add get chat token ([2a8e73b](https://github.com/amfa-team/space-service/commit/2a8e73b65f1ea5c2f2bde00f23462989d39acf52))
+
 # @amfa-team/space-service-types [1.4.0](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-types@1.3.0...@amfa-team/space-service-types@1.4.0) (2021-04-14)
 
 

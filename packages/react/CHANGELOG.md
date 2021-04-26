@@ -1,3 +1,66 @@
+# @amfa-team/space-service [1.10.0-beta.7](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0-beta.6...@amfa-team/space-service@1.10.0-beta.7) (2021-04-26)
+
+
+### Bug Fixes
+
+* upgrade dependencies ([cf5701d](https://github.com/amfa-team/space-service/commit/cf5701dea308cb966962563b9561859085aa35a4))
+
+# @amfa-team/space-service [1.10.0-beta.6](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0-beta.5...@amfa-team/space-service@1.10.0-beta.6) (2021-04-23)
+
+
+### Bug Fixes
+
+* 00X error ([de78dff](https://github.com/amfa-team/space-service/commit/de78dff6fb849a047eb81147c3ca72109a22f46d))
+
+# @amfa-team/space-service [1.10.0-beta.5](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0-beta.4...@amfa-team/space-service@1.10.0-beta.5) (2021-04-23)
+
+
+### Features
+
+* make sure token exists ([c97fdfe](https://github.com/amfa-team/space-service/commit/c97fdfe222d99b55b9b2608867d30864af681caa))
+
+# @amfa-team/space-service [1.10.0-beta.4](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0-beta.3...@amfa-team/space-service@1.10.0-beta.4) (2021-04-23)
+
+
+
+
+
+### Dependencies
+
+* **@amfa-team/space-service-types:** upgraded to 1.5.0-beta.2
+
+# @amfa-team/space-service [1.10.0-beta.3](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0-beta.2...@amfa-team/space-service@1.10.0-beta.3) (2021-04-23)
+
+
+### Features
+
+* stuff ([7ddc67a](https://github.com/amfa-team/space-service/commit/7ddc67af865e5e18536c61064c29f2fb36fdcb7e))
+* update theme service ([be7d923](https://github.com/amfa-team/space-service/commit/be7d923c6f03308ba61e90350a55bc6b20e659df))
+
+# @amfa-team/space-service [1.10.0-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0-beta.1...@amfa-team/space-service@1.10.0-beta.2) (2021-04-17)
+
+
+### Bug Fixes
+
+* remove log ([7718a70](https://github.com/amfa-team/space-service/commit/7718a70e41463eacc8a48f8ed00d3ec34f3ab59b))
+
+# @amfa-team/space-service [1.10.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.2-beta.1...@amfa-team/space-service@1.10.0-beta.1) (2021-04-16)
+
+
+### Features
+
+* missing route definition ([d8cb8c0](https://github.com/amfa-team/space-service/commit/d8cb8c09d82b9a8b530fed8121bc4463d3c841d1))
+
+## @amfa-team/space-service [1.9.2-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.1...@amfa-team/space-service@1.9.2-beta.1) (2021-04-16)
+
+
+
+
+
+### Dependencies
+
+* **@amfa-team/space-service-types:** upgraded to 1.5.0-beta.1
+
 ## @amfa-team/space-service [1.9.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.0...@amfa-team/space-service@1.9.1) (2021-04-15)
 
 

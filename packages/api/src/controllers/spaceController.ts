@@ -1,4 +1,5 @@
 import type {
+  GetChatTokenPayload,
   GetSpacePayload,
   GetSpaceReq,
   SpacesPayload,
@@ -10,6 +11,10 @@ import {
 import { JsonDecoder } from "ts.data.json";
 import { getSpaceModel } from "../mongo/model/space";
 import type { HandlerResult } from "../services/io/types";
+import {
+  createParticipantChatToken,
+  createSpaceChannelChat,
+} from "../services/streamChat";
 
 export async function handleList(): Promise<HandlerResult<SpacesPayload>> {
   const SpaceModel = await getSpaceModel();
@@ -63,6 +68,30 @@ export async function handleGet(
     payload: {
       space: isPublic || canAccessSpace(userData, data.slug) ? space : null,
       private: !isPublic,
+    },
+  };
+}
+
+export async function handleGetChatToken(
+  data: GetSpaceReq,
+): Promise<HandlerResult<GetChatTokenPayload>> {
+  const SpaceModel = await getSpaceModel();
+  const space = await SpaceModel.findById(data.slug);
+  const userData = parseOptionalUserServiceToken(data.token);
+
+  const channel = await createSpaceChannelChat(space);
+  const chatToken = await createParticipantChatToken(
+    userData,
+    space?._id ?? "",
+    channel,
+  );
+
+  const isPublic = space?.public ?? true;
+
+  return {
+    payload: {
+      chatToken:
+        isPublic || canAccessSpace(userData, data.slug) ? chatToken : null,
     },
   };
 }

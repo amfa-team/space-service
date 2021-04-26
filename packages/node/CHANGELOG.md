@@ -1,3 +1,30 @@
+# @amfa-team/space-service-node [1.2.0-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-node@1.2.0-beta.1...@amfa-team/space-service-node@1.2.0-beta.2) (2021-04-23)
+
+
+
+
+
+### Dependencies
+
+* **@amfa-team/space-service-types:** upgraded to 1.5.0-beta.2
+
+# @amfa-team/space-service-node [1.2.0-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-node@1.1.1-beta.1...@amfa-team/space-service-node@1.2.0-beta.1) (2021-04-17)
+
+
+### Features
+
+* fetch retry ([96cdb35](https://github.com/amfa-team/space-service/commit/96cdb35f5d3180f09b3d11fa06e1c7d3ae6e2812))
+
+## @amfa-team/space-service-node [1.1.1-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-node@1.1.0...@amfa-team/space-service-node@1.1.1-beta.1) (2021-04-16)
+
+
+
+
+
+### Dependencies
+
+* **@amfa-team/space-service-types:** upgraded to 1.5.0-beta.1
+
 # @amfa-team/space-service-node [1.1.0](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service-node@1.0.2...@amfa-team/space-service-node@1.1.0) (2021-04-14)
 
 
