@@ -1,3 +1,10 @@
+# @amfa-team/space-service [1.10.0-beta.7](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0-beta.6...@amfa-team/space-service@1.10.0-beta.7) (2021-04-26)
+
+
+### Bug Fixes
+
+* upgrade dependencies ([cf5701d](https://github.com/amfa-team/space-service/commit/cf5701dea308cb966962563b9561859085aa35a4))
+
 # @amfa-team/space-service [1.10.0-beta.6](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0-beta.5...@amfa-team/space-service@1.10.0-beta.6) (2021-04-23)
 
 
