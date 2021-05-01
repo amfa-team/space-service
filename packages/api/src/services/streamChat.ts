@@ -5,6 +5,9 @@ import { StreamChat } from "stream-chat";
 const client = new StreamChat(
   process.env.STREAM_IO_API_KEY ?? "",
   process.env.STREAM_IO_API_SECRET ?? "",
+  {
+    timeout: 20_000,
+  },
 );
 
 async function createChannelType() {
