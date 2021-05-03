@@ -25,9 +25,9 @@ export function useWebsocket(spaceId: string) {
     ws?.addEventListener("state:change", (event) => {
       if (!abortController.signal.aborted) {
         setIsConnected(event.data === "connected");
-        if (event.data === "closed") {
-          setError(new Error("Websocket is closed"));
-        }
+        // if (event.data === "closed") {
+        //   setError(new Error("Websocket is closed"));
+        // }
       }
     });
     ws?.load().catch((e) => {
