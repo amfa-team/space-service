@@ -1,3 +1,10 @@
+## @amfa-team/space-service [1.10.1-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0...@amfa-team/space-service@1.10.1-beta.1) (2021-05-03)
+
+
+### Bug Fixes
+
+* rm setError ([c689aac](https://github.com/amfa-team/space-service/commit/c689aacad7c5eb28302ebbdaca5fc0f6bc8a84ce))
+
 # @amfa-team/space-service [1.10.0](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.9.1...@amfa-team/space-service@1.10.0) (2021-04-26)
 
 
