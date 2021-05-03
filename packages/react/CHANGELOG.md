@@ -1,3 +1,10 @@
+## @amfa-team/space-service [1.10.1-beta.2](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.1-beta.1...@amfa-team/space-service@1.10.1-beta.2) (2021-05-03)
+
+
+### Bug Fixes
+
+* websocket closed ([4450f43](https://github.com/amfa-team/space-service/commit/4450f43d60117984821b0d300e4c1e5f322afca7))
+
 ## @amfa-team/space-service [1.10.1-beta.1](https://github.com/amfa-team/space-service/compare/@amfa-team/space-service@1.10.0...@amfa-team/space-service@1.10.1-beta.1) (2021-05-03)
 
 
