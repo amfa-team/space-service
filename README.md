@@ -1,4 +1,4 @@
-# Side By Side Service Template
+# Space Service
 
 ## Getting Started
 
