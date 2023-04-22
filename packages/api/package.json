@@ -54,7 +54,7 @@
     "imagemin-jpeg-recompress": "^7.0.0",
     "imagemin-jpegtran": "^7.0.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.3",
+    "mongoose": "^5.13.15",
     "source-map-support": "^0.5.19",
     "stream-chat": "^3.7.0",
     "ts.data.json": "^1.7.0"
