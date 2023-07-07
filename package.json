@@ -29,7 +29,7 @@
     "lint-staged": "^10.5.4",
     "multi-semantic-release": "^2.8.0",
     "prettier": "^2.2.1",
-    "stylelint": "^13.12.0",
+    "stylelint": "^15.10.1",
     "stylelint-config-css-modules": "^2.2.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-css-modules": "^1.2.0-globals",
